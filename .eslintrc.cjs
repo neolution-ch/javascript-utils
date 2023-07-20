@@ -92,4 +92,12 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: ["*.spec.ts"],
+      rules: {
+        "jsdoc/require-jsdoc": "off",
+      },
+    },
+  ],
 };

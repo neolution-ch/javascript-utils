@@ -1,7 +1,7 @@
 import { getEnumNames, getEnumNameFromValue, getEnumValueFromName, getEnumValues } from "./enum";
 
 describe("enum tests", () => {
-  test("getEnumNameFromValue or Name with integer values", () => {
+  test("getEnumNameFromValue/getEnumValueFromName with integer values", () => {
     enum TestEnum {
       A = 1,
       B = 2,
@@ -15,7 +15,7 @@ describe("enum tests", () => {
     expect(value).toBe(TestEnum.B);
   });
 
-  test("getEnumValueFromName or Value with string values", () => {
+  test("getEnumValueFromName/getEnumNameFromValue with string values", () => {
     enum TestEnum {
       A = "Test3",
       B = "Test1",
@@ -29,7 +29,7 @@ describe("enum tests", () => {
     expect(value).toBe(TestEnum.B);
   });
 
-  test("getEnumNames or Values with integer values", () => {
+  test("getEnumNames/getEnumValues with integer values", () => {
     enum TestEnum {
       A = 1,
       B = 2,
@@ -43,7 +43,7 @@ describe("enum tests", () => {
     expect(values).toStrictEqual([TestEnum.A, TestEnum.B, TestEnum.C]);
   });
 
-  test("getEnumNames or Labels with unspecified values", () => {
+  test("getEnumNames/getEnumValues with unspecified values", () => {
     enum TestEnum {
       A,
       B,
@@ -56,7 +56,7 @@ describe("enum tests", () => {
     expect(values).toStrictEqual([0, 1, 2]);
   });
 
-  test("getEnumNames or Labels with progressive values", () => {
+  test("getEnumNames/getEnumValues with progressive values", () => {
     enum TestEnum {
       A = 10,
       B,
@@ -69,7 +69,7 @@ describe("enum tests", () => {
     expect(values).toStrictEqual([10, 11, 12]);
   });
 
-  test("getEnumNames or Labels with constants values", () => {
+  test("getEnumNames/getEnumValues with constants values", () => {
     enum TestEnum {
       None,
       Read = 1 << 1,
@@ -84,7 +84,7 @@ describe("enum tests", () => {
     expect(values).toStrictEqual([0, 2, 4, 6]);
   });
 
-  test("getEnumNames or Values with string values", () => {
+  test("getEnumNames/getEnumValues with string values", () => {
     enum TestEnum {
       A = "Test3",
       B = "Test1",

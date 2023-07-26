@@ -9,12 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Enums utils
+- `getEnumValueFromName`, `getEnumNames`, `getEnumNameValues` utils
 
 ### Added
 
-- initial release :tada:
-
 - added `eslint-plugin-jsdoc` to lint jsdoc comments
 - `getEnumNameFromValue` function to get the name of an enum from its value
-

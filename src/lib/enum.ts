@@ -59,7 +59,7 @@ export function getEnumValues<T>(enumVariable: StandardEnum<T>) {
 function isEnumString<T>(enumVariable: StandardEnum<T>) {
   const keys = Object.keys(enumVariable);
 
-  return keys.length > 0 && isNaN(Number(keys.at(0)));
+  return keys.length > 0 && !/^\d+$/.test(keys.at(0) as string);
 }
 
 export { getEnumNameFromValue };

@@ -10,6 +10,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier",
+    "plugin:jsdoc/recommended-typescript",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -17,7 +18,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint", "import", "jest"],
+  plugins: ["@typescript-eslint", "import", "jest", "jsdoc"],
   settings: {
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"],
@@ -60,5 +61,43 @@ module.exports = {
     "prefer-destructuring": "error",
     "no-empty-function": "error",
     "arrow-body-style": ["error", "as-needed"],
+
+    "jsdoc/require-jsdoc": [
+      "warn",
+      {
+        publicOnly: false,
+        require: {
+          ArrowFunctionExpression: true,
+          ClassDeclaration: true,
+          ClassExpression: true,
+          FunctionDeclaration: true,
+          FunctionExpression: true,
+          MethodDefinition: true,
+        },
+        contexts: [
+          "ArrowFunctionExpression",
+          "FunctionDeclaration",
+          "FunctionExpression",
+          "MethodDefinition",
+          "Property",
+          "TSDeclareFunction",
+          "TSEnumDeclaration",
+          "TSInterfaceDeclaration",
+          "TSMethodSignature",
+          "TSPropertySignature",
+          "TSTypeAliasDeclaration",
+          "VariableDeclaration",
+        ],
+        checkGetters: true,
+      },
+    ],
   },
+  overrides: [
+    {
+      files: ["*.spec.ts"],
+      rules: {
+        "jsdoc/require-jsdoc": "off",
+      },
+    },
+  ],
 };

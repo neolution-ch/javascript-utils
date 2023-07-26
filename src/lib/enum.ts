@@ -7,4 +7,25 @@ function getEnumNameFromValue<T>(enumVariable: StandardEnum<T>, enumValue: T): s
   return Object.keys(enumVariable)[Object.values(enumVariable).findIndex((x) => x === enumValue)];
 }
 
+export function getEnumValueFromName<T>(enumVariable: StandardEnum<T>, enumName: string): number | string {
+  const value = Object.values(enumVariable)[Object.keys(enumVariable).findIndex((x) => x === enumName)] as string;
+
+  return isEnumString(enumVariable) ? value : Number.parseInt(value);
+}
+
+export function getEnumNames<T>(enumVariable: StandardEnum<T>) {
+  const names = Object.values(enumVariable);
+  return isEnumString(enumVariable) ? Object.keys(enumVariable) : names.slice(0, names.length / 2);
+}
+
+export function getEnumValues<T>(enumVariable: StandardEnum<T>) {
+  const keys = Object.keys(enumVariable);
+  return isEnumString(enumVariable) ? Object.values(enumVariable) : keys.slice(0, keys.length / 2).map((value) => Number.parseInt(value));
+}
+
+function isEnumString<T>(enumVariable: StandardEnum<T>) {
+  const keys = Object.keys(enumVariable);
+  return keys.length > 0 && isNaN(Number(keys.at(0)));
+}
+
 export { getEnumNameFromValue };

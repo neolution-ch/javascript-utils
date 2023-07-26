@@ -15,11 +15,15 @@ export function getEnumValueFromName<T>(enumVariable: StandardEnum<T>, enumName:
 
 export function getEnumNames<T>(enumVariable: StandardEnum<T>) {
   const names = Object.values(enumVariable);
+
+  // If enum is with values integer, object.values returns a list of [names, values].
   return isEnumString(enumVariable) ? Object.keys(enumVariable) : names.slice(0, names.length / 2);
 }
 
 export function getEnumValues<T>(enumVariable: StandardEnum<T>) {
   const keys = Object.keys(enumVariable);
+
+  // If enum is with values integer, object.keys returns a list of [values, names].
   return isEnumString(enumVariable) ? Object.values(enumVariable) : keys.slice(0, keys.length / 2).map((value) => Number.parseInt(value));
 }
 

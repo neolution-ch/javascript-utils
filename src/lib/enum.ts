@@ -23,9 +23,6 @@ function getEnumNameFromValue<T>(enumVariable: StandardEnum<T>, enumValue: T): s
  * @returns A string containing the value of the enum
  */
 export function getEnumValueFromName<T>(enumVariable: StandardEnum<T>, enumName: string): number | string {
-  /**
-   * the current value
-   */
   const value = Object.values(enumVariable)[Object.keys(enumVariable).findIndex((x) => x === enumName)] as string;
   return isEnumString(enumVariable) ? value : Number.parseInt(value);
 }
@@ -36,9 +33,6 @@ export function getEnumValueFromName<T>(enumVariable: StandardEnum<T>, enumName:
  * @returns A string array containing the names of the enum
  */
 export function getEnumNames<T>(enumVariable: StandardEnum<T>) {
-  /**
-   * all the enum values
-   */
   const names = Object.values(enumVariable);
 
   // If enum is with values integer, object.values returns a list of [names, values].
@@ -51,9 +45,6 @@ export function getEnumNames<T>(enumVariable: StandardEnum<T>) {
  * @returns A string or number array containing the values of the enum
  */
 export function getEnumValues<T>(enumVariable: StandardEnum<T>) {
-  /**
-   * all the enum keys
-   */
   const keys = Object.keys(enumVariable);
 
   // If enum is with values integer, object.keys returns a list of [values, names].
@@ -66,10 +57,8 @@ export function getEnumValues<T>(enumVariable: StandardEnum<T>) {
  * @returns A bool
  */
 function isEnumString<T>(enumVariable: StandardEnum<T>) {
-  /**
-   * all the enum keys
-   */
   const keys = Object.keys(enumVariable);
+
   return keys.length > 0 && isNaN(Number(keys.at(0)));
 }
 

@@ -86,7 +86,6 @@ module.exports = {
           "TSMethodSignature",
           "TSPropertySignature",
           "TSTypeAliasDeclaration",
-          "VariableDeclaration",
         ],
         checkGetters: true,
       },

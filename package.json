@@ -15,7 +15,7 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.modern.js",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.js"
     }
   },
   "main": "dist/index.js",

@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `dataHandler` utility from `react-pattern-ui` package
 
+## [0.1.1] - 2023-08-04
+
 ### Fixed
 
 - Fixed export for CommonJS
@@ -22,5 +24,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added `eslint-plugin-jsdoc` to lint jsdoc comments
 - `getEnumNameFromValue`,`getEnumValueFromName`, `getEnumNames`,`getEnumNameValues` functions to respectively get the name of an enum from its value, the value from its name, all the names and all the values
 
-[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/0.1.0...HEAD
+[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/neolution-ch/javascript-utils/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/neolution-ch/javascript-utils/releases/tag/0.1.0

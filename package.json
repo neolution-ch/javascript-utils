@@ -42,7 +42,9 @@
     "start-yalc": "yarn nodemon --watch dist -x \"yarn yalc push\"",
     "storybook": "start-storybook -p 6006"
   },
-  "dependencies": {},
+  "dependencies": {
+    "date-fns": "^2.30.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@popperjs/core": "^2.11.7",

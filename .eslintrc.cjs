@@ -79,7 +79,7 @@ module.exports = {
           "FunctionDeclaration",
           "FunctionExpression",
           "MethodDefinition",
-          "Property",
+          "PropertyDefinition",
           "TSDeclareFunction",
           "TSEnumDeclaration",
           "TSInterfaceDeclaration",

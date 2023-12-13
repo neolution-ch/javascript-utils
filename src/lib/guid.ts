@@ -8,4 +8,7 @@ export function newGuid() {
   return uuid.v4();
 }
 
+/**
+ * The empty Guid (an identifier containing all zeros)
+ */
 export const emptyGuid = uuid.NIL;

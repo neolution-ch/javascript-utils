@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### dependabot: \#19 Bump tj-actions/changed-files from 37 to 41 in /.github/workflows
+
 - added `dateIsValid`, `dateIsLastDayOfMonth` and `dateDifferenceInDays` utility functions
 - added `newGuid` function and `emptyGuid` constant
 

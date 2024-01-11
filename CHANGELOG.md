@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- added `isNullOrEmpty`, `isNullOrWhitespace` and `capitalize` utility functions
+
 ## [0.2.0] - 2024-01-11
 
 ### dependabot: \#19 Bump tj-actions/changed-files from 37 to 41 in /.github/workflows

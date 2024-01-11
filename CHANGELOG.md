@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### dependabot: \#19 Bump tj-actions/changed-files from 37 to 41 in /.github/workflows
+
 ### dependabot: \#20 Bump @babel/traverse from 7.21.5 to 7.23.7
 
 - added `dateIsValid`, `dateIsLastDayOfMonth` and `dateDifferenceInDays` utility functions

@@ -23,7 +23,7 @@ export function isNullOrWhitespace(value?: string): boolean {
 /**
  * Capitalize the string
  * @param value The string to capitalize
- * @returns true The capitalized string
+ * @returns The capitalized string
  */
 export function capitalize(value?: string): string | undefined {
   if (!value || isNullOrWhitespace(value)) {

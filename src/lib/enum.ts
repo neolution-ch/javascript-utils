@@ -1,7 +1,7 @@
 /**
  * The standard enum type
  */
-type StandardEnum<T> = {
+export type StandardEnum<T> = {
   [id: string]: T | string;
   [nu: number]: string;
 };
@@ -12,7 +12,7 @@ type StandardEnum<T> = {
  * @param enumValue The value of the enum for which you want to get the name
  * @returns A string containing the name of the enum
  */
-function getEnumNameFromValue<T>(enumVariable: StandardEnum<T>, enumValue: T): string {
+export function getEnumNameFromValue<T>(enumVariable: StandardEnum<T>, enumValue: T): string {
   return Object.keys(enumVariable)[Object.values(enumVariable).findIndex((x) => x === enumValue)];
 }
 
@@ -61,5 +61,3 @@ function isEnumString<T>(enumVariable: StandardEnum<T>) {
 
   return keys.length > 0 && !/^\d+$/.test(keys.at(0) as string);
 }
-
-export { getEnumNameFromValue };

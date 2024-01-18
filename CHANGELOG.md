@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- added export `lib/string` and `lib/guid`
+
 ## [0.3.0] - 2024-01-15
 
 - added `isNullOrEmpty`, `isNullOrWhitespace` and `capitalize` utility functions

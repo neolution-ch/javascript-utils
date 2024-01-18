@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- added export string-utils `lib/string`
+- added export `lib/string` and `lib/guid`
 
 ## [0.3.0] - 2024-01-15
 

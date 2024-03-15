@@ -2,7 +2,7 @@ import { newGuid, emptyGuid, isValidGuid } from "./guid";
 
 describe("guid tests", () => {
   test("newGuid", () => {
-    expect(newGuid()).toMatch(/^[0-9a-ff-f]{8}-(?:[0-9a-ff-f]{4}-){3}[0-9a-ff-f]{12}$/);
+    expect(newGuid()).toMatch(/^[0-9a-fA-F]{8}-(?:[0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$/);
   });
 
   test("emptyGuid", () => {
@@ -22,6 +22,8 @@ describe("guid tests", () => {
     [newGuid(), true],
     [emptyGuid, true],
     ["3B467B14-CD99-4199-8E35-82B3C37182BA", true],
+    // MAX not recognized as guid > https://github.com/uuidjs/uuid/pull/714
+    ["ffffffff-ffff-ffff-ffff-ffffffffffff", false],
   ])("isValidGuid", (value, expected) => {
     expect(isValidGuid(value)).toBe(expected);
   });

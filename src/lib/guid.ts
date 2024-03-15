@@ -13,7 +13,7 @@ export function newGuid() {
  * @param str The string to test whether it is a valid Guid
  * @returns A value indicating whether the string is a valid Guid
  */
-export function validateGuid(str: string) {
+export function isValidGuid(str: string) {
   return uuid.validate(str);
 }
 

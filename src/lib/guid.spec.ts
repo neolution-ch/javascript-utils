@@ -1,4 +1,4 @@
-import { newGuid, emptyGuid, validateGuid } from "./guid";
+import { newGuid, emptyGuid, isValidGuid } from "./guid";
 
 describe("guid tests", () => {
   test("newGuid", () => {
@@ -9,10 +9,10 @@ describe("guid tests", () => {
     expect(emptyGuid).toBe("00000000-0000-0000-0000-000000000000");
   });
 
-  test("validateGuid", () => {
-    expect(validateGuid(newGuid().toString())).toBeTruthy();
-    expect(validateGuid("507956c7-30b3-4401-9800-e5e7f8f32761")).toBeTruthy();
-    expect(validateGuid("Im not a guid")).toBeFalsy();
-    expect(validateGuid("507956c7-30b3-4401-9800-e5e7f8f3276")).toBeFalsy();
+  test("isValidGuid", () => {
+    expect(isValidGuid(newGuid().toString())).toBeTruthy();
+    expect(isValidGuid("507956c7-30b3-4401-9800-e5e7f8f32761")).toBeTruthy();
+    expect(isValidGuid("Im not a guid")).toBeFalsy();
+    expect(isValidGuid("507956c7-30b3-4401-9800-e5e7f8f3276")).toBeFalsy();
   });
 });

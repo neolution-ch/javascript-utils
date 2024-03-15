@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `validateGuid` function to check whether a given string is a valid Guid
+
 ### dependabot: \#31 Bump ip from 1.1.8 to 1.1.9
 
 ## [0.4.0] - 2024-01-29

@@ -9,6 +9,15 @@ export function newGuid() {
 }
 
 /**
+ * Check whether a string it is a valid Guid (version 4 UUID)
+ * @param str The string to test whether it is a valid Guid
+ * @returns A value indicating whether the string is a valid Guid
+ */
+export function validateGuid(str: string) {
+  return uuid.validate(str);
+}
+
+/**
  * The empty Guid (an identifier containing all zeros)
  */
 export const emptyGuid = uuid.NIL;

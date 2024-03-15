@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2024-03-15
+
 ### Added
 
 - `isValidGuid` function to check whether a given string is a valid Guid
@@ -49,7 +51,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added `eslint-plugin-jsdoc` to lint jsdoc comments
 - `getEnumNameFromValue`,`getEnumValueFromName`, `getEnumNames`,`getEnumNameValues` functions to respectively get the name of an enum from its value, the value from its name, all the names and all the values
 
-[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/0.4.0...HEAD
+[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/0.5.0...HEAD
+[0.5.0]: https://github.com/neolution-ch/javascript-utils/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/neolution-ch/javascript-utils/compare/0.3.1...0.4.0
 [0.3.1]: https://github.com/neolution-ch/javascript-utils/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/neolution-ch/javascript-utils/compare/0.2.0...0.3.0

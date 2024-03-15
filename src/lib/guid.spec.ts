@@ -12,6 +12,7 @@ describe("guid tests", () => {
   test("isValidGuid", () => {
     expect(isValidGuid(newGuid().toString())).toBeTruthy();
     expect(isValidGuid("507956c7-30b3-4401-9800-e5e7f8f32761")).toBeTruthy();
+    expect(isValidGuid(emptyGuid)).toBeTruthy();
     expect(isValidGuid("Im not a guid")).toBeFalsy();
     expect(isValidGuid("507956c7-30b3-4401-9800-e5e7f8f3276")).toBeFalsy();
   });

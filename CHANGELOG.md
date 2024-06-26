@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### dependabot: \#37 Bump braces from 3.0.2 to 3.0.3
 
 - added `dateIsFirstDayOfMonth`, `dateIsLeapYear`, `dateIsWeekend` and `getNextBusinessDate` utility functions
+- added `isObject` and `convertNullToUndefined` utility functions
 
 ## [0.5.0] - 2024-03-15
 

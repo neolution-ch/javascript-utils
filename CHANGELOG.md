@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- added `parseBool` utility function
+
 ## [0.6.0] - 2024-06-26
 
 ### dependabot: \#37 Bump braces from 3.0.2 to 3.0.3

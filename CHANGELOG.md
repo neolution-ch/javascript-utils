@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### dependabot: \#42 Bump rollup from 3.21.4 to 3.29.5
+
 ### dependabot: \#40 Bump webpack from 5.82.0 to 5.94.0
 
 - added `parseBool` utility function

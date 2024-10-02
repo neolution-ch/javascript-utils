@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### dependabot: \#41 Bump micromatch from 4.0.5 to 4.0.8
 
 - added `parseBool` utility function
+- added `clamp` and `roundPrecision` utility functions
 
 ## [0.6.0] - 2024-06-26
 

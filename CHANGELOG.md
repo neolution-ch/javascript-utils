@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- `getEnumValues` and `getEnumValueFromName` return type from `string | number` to enum type
+- :boom: `getEnumValues` and `getEnumValueFromName` return type from `string | number` to enum type
 
 ## [0.7.0] - 2024-10-02
 

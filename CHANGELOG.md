@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `pkg.pr.new` workflow
+
+### Changed
+
+- `getEnumValues` and `getEnumValueFromName` return type from `string | number` to enum type
+
 ## [0.7.0] - 2024-10-02
 
 ### dependabot: \#42 Bump rollup from 3.21.4 to 3.29.5

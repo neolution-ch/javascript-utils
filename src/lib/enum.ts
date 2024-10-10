@@ -22,9 +22,9 @@ export function getEnumNameFromValue<T>(enumVariable: StandardEnum<T>, enumValue
  * @param enumName The name of the enum for which you want to get the value
  * @returns A string containing the value of the enum
  */
-export function getEnumValueFromName<T>(enumVariable: StandardEnum<T>, enumName: string): number | string {
+export function getEnumValueFromName<T>(enumVariable: StandardEnum<T>, enumName: string): T {
   const value = Object.values(enumVariable)[Object.keys(enumVariable).findIndex((x) => x === enumName)] as string;
-  return isEnumString(enumVariable) ? value : Number.parseInt(value);
+  return (isEnumString(enumVariable) ? value : Number.parseInt(value)) as T;
 }
 
 /**
@@ -44,11 +44,13 @@ export function getEnumNames<T>(enumVariable: StandardEnum<T>) {
  * @param enumVariable The enum for which you want to get the values
  * @returns A string or number array containing the values of the enum
  */
-export function getEnumValues<T>(enumVariable: StandardEnum<T>) {
+export function getEnumValues<T>(enumVariable: StandardEnum<T>): T[] {
   const keys = Object.keys(enumVariable);
 
   // If enum is with values integer, object.keys returns a list of [values, names].
-  return isEnumString(enumVariable) ? Object.values(enumVariable) : keys.slice(0, keys.length / 2).map((value) => Number.parseInt(value));
+  return (
+    isEnumString(enumVariable) ? Object.values(enumVariable) : keys.slice(0, keys.length / 2).map((value) => Number.parseInt(value))
+  ) as T[];
 }
 
 /**

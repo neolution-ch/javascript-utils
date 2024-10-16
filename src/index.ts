@@ -1,3 +1,4 @@
+export * from "./lib/boolean";
 export * from "./lib/cacheProvider";
 export * from "./lib/date";
 export * from "./lib/enum";

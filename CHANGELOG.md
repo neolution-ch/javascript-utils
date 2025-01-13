@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2025-01-13
+
 ### Added
 
 - `getStartOfDay`, `getEndOfDay` and `getLastDayOfYear` date utility functions
@@ -87,7 +89,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added `eslint-plugin-jsdoc` to lint jsdoc comments
 - `getEnumNameFromValue`,`getEnumValueFromName`, `getEnumNames`,`getEnumNameValues` functions to respectively get the name of an enum from its value, the value from its name, all the names and all the values
 
-[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/1.1.0...HEAD
+[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/1.2.0...HEAD
+[1.2.0]: https://github.com/neolution-ch/javascript-utils/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/neolution-ch/javascript-utils/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/neolution-ch/javascript-utils/compare/0.7.0...1.0.0
 [0.7.0]: https://github.com/neolution-ch/javascript-utils/compare/0.6.0...0.7.0

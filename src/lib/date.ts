@@ -7,6 +7,9 @@ import {
   isWeekend,
   differenceInCalendarDays,
   addBusinessDays,
+  startOfDay,
+  endOfDay,
+  lastDayOfYear,
 } from "date-fns";
 
 /**
@@ -72,4 +75,31 @@ export function dateDifferenceInDays(from: Date, to: Date): number {
  */
 export function getNextBusinessDate(date: Date): Date {
   return dateIsValid(date) ? addBusinessDays(date, 1) : new Date(Number.NaN);
+}
+
+/**
+ * Get the start of a day for the given date
+ * @param date The date
+ * @returns The start of a day date
+ */
+export function getStartOfDay(date: Date): Date {
+  return dateIsValid(date) ? startOfDay(date) : new Date(Number.NaN);
+}
+
+/**
+ * Get the end of a day for the given date
+ * @param date The date
+ * @returns The end of a day date
+ */
+export function getEndOfDay(date: Date): Date {
+  return dateIsValid(date) ? endOfDay(date) : new Date(Number.NaN);
+}
+
+/**
+ * Get the last day of a year for the given date
+ * @param date The date
+ * @returns The last day of the date year
+ */
+export function getLastDayOfYear(date: Date): Date {
+  return dateIsValid(date) ? lastDayOfYear(date) : new Date(Number.NaN);
 }

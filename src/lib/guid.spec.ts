@@ -10,6 +10,7 @@ describe("guid tests", () => {
   });
 
   test.each([
+    // eslint-disable-next-line unicorn/no-null
     [null as unknown as string, false],
     [undefined as unknown as string, false],
     [0 as unknown as string, false],

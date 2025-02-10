@@ -2,8 +2,11 @@ import { clamp, roundPrecision } from "./number";
 
 describe("number tests", () => {
   test.each([
+    // eslint-disable-next-line unicorn/no-null
     [null as unknown as number, null as unknown as number, null as unknown as number, 0],
+    // eslint-disable-next-line unicorn/no-null
     [null as unknown as number, null as unknown as number, 2, 0],
+    // eslint-disable-next-line unicorn/no-null
     [null as unknown as number, 1, 2, 1],
     [undefined as unknown as number, undefined as unknown as number, undefined as unknown as number, Number.NaN],
     [undefined as unknown as number, undefined as unknown as number, 2, Number.NaN],
@@ -30,8 +33,11 @@ describe("number tests", () => {
   });
 
   test.each([
+    // eslint-disable-next-line unicorn/no-null
     [null as unknown as number, null as unknown as number, 0],
+    // eslint-disable-next-line unicorn/no-null
     [null as unknown as number, 2, 0],
+    // eslint-disable-next-line unicorn/no-null
     [2, null as unknown as number, 2],
     [undefined as unknown as number, undefined as unknown as number, Number.NaN],
     [undefined as unknown as number, 2, Number.NaN],

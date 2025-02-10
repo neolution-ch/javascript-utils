@@ -17,7 +17,7 @@ describe("localStorage tests", () => {
   });
 
   test("getLocalStorageItem expired", () => {
-    const expirationDate = new Date(new Date().getTime() - 1);
+    const expirationDate = new Date(Date.now() - 1);
     localStorage.setItem("test", JSON.stringify({ data: true, expirationDate: expirationDate.toISOString() }));
     expect(localStorage.length).toBe(1);
     expect(getLocalStorageItem("test")).toBeUndefined();

@@ -24,6 +24,7 @@ describe("date tests", () => {
     [new Date(Number.MAX_VALUE), false],
     [new Date(Number.NaN), false],
     [new Date("2014-03-36"), false],
+    // eslint-disable-next-line unicorn/no-null
     [null as unknown as Date, false],
     [undefined as unknown as Date, false],
     [42 as unknown as Date, false],
@@ -83,7 +84,9 @@ describe("date tests", () => {
     [new Date(2014, 3, 16), new Date(2014, 3, 15), 1],
     [new Date(2014, 3, 15, 0, 0), new Date(2014, 3, 15, 23, 59), 0],
     [new Date(2014, 3, 15, 23, 59), new Date(2014, 3, 16, 0, 0), 1],
+    // eslint-disable-next-line unicorn/no-null
     [null as unknown as Date, new Date(), Number.NaN],
+    // eslint-disable-next-line unicorn/no-null
     [new Date(), null as unknown as Date, Number.NaN],
     [undefined as unknown as Date, new Date(), Number.NaN],
     [new Date(), undefined as unknown as Date, Number.NaN],
@@ -104,6 +107,7 @@ describe("date tests", () => {
     [new Date(2024, 0, 6), new Date(2024, 0, 8)],
     [new Date(2024, 0, 7), new Date(2024, 0, 8)],
     [new Date(2024, 0, 8), new Date(2024, 0, 9)],
+    // eslint-disable-next-line unicorn/no-null
     [null as unknown as Date, new Date(Number.NaN)],
     [undefined as unknown as Date, new Date(Number.NaN)],
     [42 as unknown as Date, new Date(Number.NaN)],
@@ -114,6 +118,7 @@ describe("date tests", () => {
 
   test.each([
     [new Date(2024, 0, 1, 12, 45, 25, 333), new Date(2024, 0, 1, 0, 0, 0, 0)],
+    // eslint-disable-next-line unicorn/no-null
     [null as unknown as Date, new Date(Number.NaN)],
     [undefined as unknown as Date, new Date(Number.NaN)],
     [42 as unknown as Date, new Date(Number.NaN)],
@@ -124,6 +129,7 @@ describe("date tests", () => {
 
   test.each([
     [new Date(2024, 0, 1, 12, 45, 25, 333), new Date(2024, 0, 1, 23, 59, 59, 999)],
+    // eslint-disable-next-line unicorn/no-null
     [null as unknown as Date, new Date(Number.NaN)],
     [undefined as unknown as Date, new Date(Number.NaN)],
     [42 as unknown as Date, new Date(Number.NaN)],
@@ -133,6 +139,7 @@ describe("date tests", () => {
   });
 
   test.each([
+    // eslint-disable-next-line unicorn/no-null
     [null as unknown as Date, new Date(Number.NaN)],
     [undefined as unknown as Date, new Date(Number.NaN)],
     [42 as unknown as Date, new Date(Number.NaN)],

@@ -1,4 +1,5 @@
 import commonjs from "@rollup/plugin-commonjs";
+// eslint-disable-next-line import/no-named-as-default
 import nodeResolve from "@rollup/plugin-node-resolve";
 import external from "rollup-plugin-peer-deps-external";
 import terser from "@rollup/plugin-terser";
@@ -35,7 +36,6 @@ export default [
       name: "JavaScriptUtilities",
       sourcemap: true,
       exports: "named",
-      sourcemap: true,
       interop: "auto",
     },
     plugins,
@@ -48,7 +48,6 @@ export default [
       name: "JavaScriptUtilities",
       sourcemap: true,
       exports: "named",
-      sourcemap: true,
     },
     plugins,
   },
@@ -60,7 +59,6 @@ export default [
       name: "JavaScriptUtilities",
       sourcemap: true,
       exports: "named",
-      sourcemap: true,
     },
     plugins,
   },

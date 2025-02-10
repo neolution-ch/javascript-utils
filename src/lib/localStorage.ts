@@ -20,7 +20,7 @@ interface LocalStorageItem<T> {
  */
 const checkLocalStorageSupport = () => {
   if (typeof localStorage === "undefined") {
-    throw new Error("localStorage not supported");
+    throw new TypeError("localStorage not supported");
   }
 };
 

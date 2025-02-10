@@ -3,6 +3,7 @@ import { isObject, convertNullToUndefined } from "./object";
 describe("object tests", () => {
   test.each([
     // Invalid objects
+    // eslint-disable-next-line unicorn/no-null
     [null as unknown as object, false],
     [undefined as unknown as object, false],
     [0 as unknown as object, false],
@@ -28,8 +29,11 @@ describe("object tests", () => {
   test.each([
     [{}, {}],
     [{ hello: "world" }, { hello: "world" }],
+    // eslint-disable-next-line unicorn/no-null
     [{ hello: null }, {}],
+    // eslint-disable-next-line unicorn/no-null
     [{ hello: "world", other: null }, { hello: "world" }],
+    // eslint-disable-next-line unicorn/no-null
     [{ nested: { prop1: "test", prop2: null } }, { nested: { prop1: "test" } }],
   ])("convertNullToUndefined", (obj, expected) => {
     convertNullToUndefined(obj);

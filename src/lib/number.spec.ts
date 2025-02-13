@@ -3,9 +3,7 @@ import { clamp, roundPrecision } from "./number";
 describe("number tests", () => {
   test.each([
     [null as unknown as number, null as unknown as number, null as unknown as number, 0],
-
     [null as unknown as number, null as unknown as number, 2, 0],
-
     [null as unknown as number, 1, 2, 1],
     [undefined as unknown as number, undefined as unknown as number, undefined as unknown as number, Number.NaN],
     [undefined as unknown as number, undefined as unknown as number, 2, Number.NaN],
@@ -33,9 +31,7 @@ describe("number tests", () => {
 
   test.each([
     [null as unknown as number, null as unknown as number, 0],
-
     [null as unknown as number, 2, 0],
-
     [2, null as unknown as number, 2],
     [undefined as unknown as number, undefined as unknown as number, Number.NaN],
     [undefined as unknown as number, 2, Number.NaN],

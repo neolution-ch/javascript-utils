@@ -25,7 +25,6 @@ describe("CacheProvider tests", () => {
   });
 
   test.each([
-    // eslint-disable-next-line unicorn/no-null
     [CacheContainer.Colors, null, "CacheContainer:Colors"],
     [CacheContainer.Colors, undefined, "CacheContainer:Colors"],
     [CacheContainer.Colors, "", "CacheContainer:Colors"],

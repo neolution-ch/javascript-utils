@@ -4,7 +4,6 @@ describe("boolean tests", () => {
   test.each([
     // Test cases like in C#
     // https://github.com/dotnet/runtime/blob/main/src/libraries/System.Runtime/tests/System.Runtime.Tests/System/BooleanTests.cs
-    // eslint-disable-next-line unicorn/no-null
     [null as unknown as string, false],
     [undefined as unknown as string, false],
     [0 as unknown as string, false],

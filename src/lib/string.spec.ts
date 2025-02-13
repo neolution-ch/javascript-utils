@@ -3,7 +3,7 @@ import { isNullOrEmpty, isNullOrWhitespace, capitalize } from "./string";
 describe("string tests", () => {
   test.each([
     // Other types
-    // eslint-disable-next-line unicorn/no-null
+
     [null as unknown as string, true],
     [undefined as unknown as string, true],
     [0 as unknown as string, true],
@@ -21,7 +21,7 @@ describe("string tests", () => {
 
   test.each([
     // Other types
-    // eslint-disable-next-line unicorn/no-null
+
     [null as unknown as string, true],
     [undefined as unknown as string, true],
     [0 as unknown as string, true],
@@ -66,7 +66,6 @@ describe("string tests", () => {
   });
 
   test.each([
-    // eslint-disable-next-line unicorn/no-null
     [null as unknown as string, null],
     [undefined as unknown as string, undefined],
     ["", ""],

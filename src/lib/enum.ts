@@ -13,7 +13,7 @@ export type StandardEnum<T> = {
  * @returns A string containing the name of the enum
  */
 export function getEnumNameFromValue<T>(enumVariable: StandardEnum<T>, enumValue: T): string {
-  return Object.keys(enumVariable)[Object.values(enumVariable).findIndex((x) => x === enumValue)];
+  return Object.keys(enumVariable)[Object.values(enumVariable).indexOf(enumValue)];
 }
 
 /**
@@ -23,7 +23,7 @@ export function getEnumNameFromValue<T>(enumVariable: StandardEnum<T>, enumValue
  * @returns A string containing the value of the enum
  */
 export function getEnumValueFromName<T>(enumVariable: StandardEnum<T>, enumName: string): T {
-  const value = Object.values(enumVariable)[Object.keys(enumVariable).findIndex((x) => x === enumName)] as string;
+  const value = Object.values(enumVariable)[Object.keys(enumVariable).indexOf(enumName)] as string;
   return (isEnumString(enumVariable) ? value : Number.parseInt(value)) as T;
 }
 

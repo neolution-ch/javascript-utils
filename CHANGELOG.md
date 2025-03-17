@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### dependabot: \#53 Bump serialize-javascript from 6.0.0 to 6.0.2
+
 ### dependabot: \#49 Bump cross-spawn from 7.0.3 to 7.0.6
 
 ## [1.2.0] - 2025-01-13

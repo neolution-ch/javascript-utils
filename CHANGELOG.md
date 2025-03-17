@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### dependabot: \#54 Bump @babel/helpers from 7.21.5 to 7.26.10
+
 ### dependabot: \#55 Bump @babel/runtime from 7.21.5 to 7.26.10
 
 ### dependabot: \#53 Bump serialize-javascript from 6.0.0 to 6.0.2

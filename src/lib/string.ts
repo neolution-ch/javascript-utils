@@ -17,7 +17,7 @@ export function isNullOrEmpty(value?: string): boolean {
  * @returns true if the value parameter is null/undefined, Empty, or if value consists exclusively of white-space characters
  */
 export function isNullOrWhitespace(value?: string): boolean {
-  return isNullOrEmpty(value) || (value ?? "").trim().length === 0;
+  return isNullOrEmpty(value) || (value as string).trim().length === 0;
 }
 
 /**

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### dependabot: \#57 Bump tj-actions/changed-files from 41 to 46 in /.github/workflows
+
 ### dependabot: \#54 Bump @babel/helpers from 7.21.5 to 7.26.10
 
 ### dependabot: \#55 Bump @babel/runtime from 7.21.5 to 7.26.10

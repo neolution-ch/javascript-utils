@@ -26,6 +26,11 @@ describe("object tests", () => {
   });
 
   test.each([
+    // Invalid objects
+    [null as unknown as object, null],
+    [undefined as unknown as object, undefined],
+
+    // Valid objects
     [{}, {}],
     [{ hello: "world" }, { hello: "world" }],
     [{ hello: null }, {}],

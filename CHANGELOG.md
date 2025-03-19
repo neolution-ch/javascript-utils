@@ -11,7 +11,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - migrated to eslint 9 flat config
 
+## [1.2.1] - 2025-03-18
+
+### dependabot: \#57 Bump tj-actions/changed-files from 41 to 46 in /.github/workflows
+
+### dependabot: \#54 Bump @babel/helpers from 7.21.5 to 7.26.10
+
+### dependabot: \#55 Bump @babel/runtime from 7.21.5 to 7.26.10
+
+### dependabot: \#53 Bump serialize-javascript from 6.0.0 to 6.0.2
+
 ### dependabot: \#49 Bump cross-spawn from 7.0.3 to 7.0.6
+
+### Added
+
+- Code coverage with 100% threshold
+- README.md
 
 ## [1.2.0] - 2025-01-13
 
@@ -95,7 +110,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added `eslint-plugin-jsdoc` to lint jsdoc comments
 - `getEnumNameFromValue`,`getEnumValueFromName`, `getEnumNames`,`getEnumNameValues` functions to respectively get the name of an enum from its value, the value from its name, all the names and all the values
 
-[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/1.2.0...HEAD
+[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/1.2.1...HEAD
+[1.2.1]: https://github.com/neolution-ch/javascript-utils/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/neolution-ch/javascript-utils/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/neolution-ch/javascript-utils/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/neolution-ch/javascript-utils/compare/0.7.0...1.0.0

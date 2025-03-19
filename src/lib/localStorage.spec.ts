@@ -6,6 +6,15 @@ describe("localStorage tests", () => {
     jest.clearAllMocks();
   });
 
+  test("localStorage not supported", () => {
+    const { localStorage } = global;
+    delete (global as Partial<typeof global>).localStorage;
+    expect(() => {
+      getLocalStorageItem("test");
+    }).toThrow("localStorage not supported");
+    global.localStorage = localStorage;
+  });
+
   test("getLocalStorageItem not existing", () => {
     expect(getLocalStorageItem("test")).toBeUndefined();
   });

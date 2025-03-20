@@ -43,7 +43,7 @@
     "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
-    "@neolution-ch/eslint-config-neolution": "https://pkg.pr.new/neolution-ch/eslint-config-neolution/@neolution-ch/eslint-config-neolution@a6e9793",
+    "@neolution-ch/eslint-config-neolution": "https://pkg.pr.new/neolution-ch/eslint-config-neolution/@neolution-ch/eslint-config-neolution@eaf04f7",
     "date-fns": "^2.30.0",
     "uuid": "^9.0.1"
   },

@@ -43,12 +43,12 @@
     "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
-    "@neolution-ch/eslint-config-neolution": "https://pkg.pr.new/neolution-ch/eslint-config-neolution/@neolution-ch/eslint-config-neolution@eaf04f7",
     "date-fns": "^2.30.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
+    "@neolution-ch/eslint-config-neolution": "https://pkg.pr.new/neolution-ch/eslint-config-neolution/@neolution-ch/eslint-config-neolution@dd11c66",
     "@popperjs/core": "^2.11.7",
     "@release-it/keep-a-changelog": "^4.0.0",
     "@rollup/plugin-commonjs": "^24.1.0",

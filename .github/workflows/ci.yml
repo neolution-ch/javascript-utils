@@ -70,9 +70,10 @@ jobs:
 
   ci:
     if: github.event.pull_request.draft == false
-    runs-on: ubuntu-latest
     permissions:
       pull-requests: write
+      contents: write
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [18.x]

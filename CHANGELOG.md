@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Split up `CI` workflow into two separate workflows for the comment posting to work for PRs from forks.
+
 ## [1.2.1] - 2025-03-18
 
 ### dependabot: \#57 Bump tj-actions/changed-files from 41 to 46 in /.github/workflows

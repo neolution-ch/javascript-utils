@@ -16,9 +16,22 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get PR Number from GitHub API (for forks)
+        id: get_pr_number
+        run: |
+          if [[ "${{ github.event.workflow_run.head_repository.fork }}" == "true" ]]; then
+            echo "This is a forked repository."
+            pr_number=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              "https://api.github.com/repos/${{ github.repository }}/pulls?head=${{ github.event.workflow_run.head_repository.owner.login }}:${{ github.event.workflow_run.head_branch }}" \
+              | jq '.[0].number')
+            echo "pr_number=$pr_number" >> $GITHUB_OUTPUT
+          else
+            echo "pr_number=${{ github.event.workflow_run.pull_requests[0].number }}" >> $GITHUB_OUTPUT
+          fi
+
       - name: Add Coverage PR Comment
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           recreate: true
           path: code-coverage-results.md
-          number: ${{ github.event.workflow_run.pull_requests[0].number }}
+          number: ${{ steps.get_pr_number.outputs.pr_number }}

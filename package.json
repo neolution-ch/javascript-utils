@@ -40,7 +40,7 @@
     "test": "yarn jest",
     "start-all": "concurrently \"yarn start\" \"yarn start-yalc\"",
     "start-yalc": "yarn nodemon --watch dist -x \"yarn yalc push\"",
-    "storybook": "start-storybook -p 6006 "
+    "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
     "date-fns": "^2.30.0",

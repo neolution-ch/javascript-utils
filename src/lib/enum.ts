@@ -13,7 +13,13 @@ export type StandardEnum<T> = {
  * @returns A string containing the name of the enum
  */
 export function getEnumNameFromValue<T>(enumVariable: StandardEnum<T>, enumValue: T): string {
-  return Object.keys(enumVariable)[Object.values(enumVariable).findIndex((x) => x === enumValue)];
+  let result = enumVariable[enumValue as keyof StandardEnum<T>] as string;
+
+  if (result === undefined && isEnumString(enumVariable)) {
+    result = Object.keys(enumVariable)[Object.values(enumVariable).indexOf(enumValue)];
+  }
+
+  return result;
 }
 
 /**
@@ -23,8 +29,7 @@ export function getEnumNameFromValue<T>(enumVariable: StandardEnum<T>, enumValue
  * @returns A string containing the value of the enum
  */
 export function getEnumValueFromName<T>(enumVariable: StandardEnum<T>, enumName: string): T {
-  const value = Object.values(enumVariable)[Object.keys(enumVariable).findIndex((x) => x === enumName)] as string;
-  return (isEnumString(enumVariable) ? value : Number.parseInt(value)) as T;
+  return enumVariable[enumName as keyof StandardEnum<T>] as T;
 }
 
 /**
@@ -59,7 +64,9 @@ export function getEnumValues<T>(enumVariable: StandardEnum<T>): T[] {
  * @returns A bool
  */
 function isEnumString<T>(enumVariable: StandardEnum<T>) {
-  const keys = Object.keys(enumVariable);
+  for (const key in enumVariable) {
+    return !/^\d+$/.test(key);
+  }
 
-  return keys.length > 0 && !/^\d+$/.test(keys.at(0) as string);
+  return false;
 }

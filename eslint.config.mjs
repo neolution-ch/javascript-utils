@@ -1,7 +1,9 @@
 import neolutionEslintConfig from "@neolution-ch/eslint-config-neolution";
+import jestPlugin from "eslint-plugin-jest";
 
 export default [
   ...neolutionEslintConfig.configs.flat.typescript,
+  jestPlugin.configs["flat/recommended"],
   {
     ignores: ["**/coverage/"],
   },

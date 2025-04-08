@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Rollup and Jest configs in TypeScript
+
+### Removed
+
+- Unnecessary dev-dependencies
+
 ## [1.2.2] - 2025-04-04
 
 ### Changed
@@ -17,10 +25,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Improved `getEnumNameFromValue` and `getEnumValueFromName` performance
-
-### Removed
-
-- Unnecessary dev-dependencies
 
 ## [1.2.1] - 2025-03-18
 

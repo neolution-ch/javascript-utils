@@ -7,21 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Rollup and Jest configs in TypeScript
+
+### Removed
+
+- Unnecessary dev-dependencies
+
 ## [1.2.2] - 2025-04-04
 
 ### Changed
 
 - Split up `CI` workflow into two separate workflows for the comment posting to work for PRs from forks.
 - Ignore code coverage output folder
-- Rollup and Jest configs in TypeScript
 
 ### Fixed
 
 - Improved `getEnumNameFromValue` and `getEnumValueFromName` performance
-
-### Removed
-
-- Unnecessary dev-dependencies
 
 ## [1.2.1] - 2025-03-18
 

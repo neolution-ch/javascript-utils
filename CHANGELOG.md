@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Split up `CI` workflow into two separate workflows for the comment posting to work for PRs from forks.
 - Ignore code coverage output folder
+- Rollup and Jest configs in TypeScript
 
 ### Fixed
 

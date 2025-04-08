@@ -12,7 +12,7 @@ const plugins = [
   }),
   typescript({
     clean: true,
-    exclude: ["**/__tests__", "**/*.test.ts", "**/stories/**/*"],
+    exclude: ["**/__tests__", "**/*.test.ts", "**/stories/**/*", "**/coverage"],
   }),
   commonjs({
     include: /\/node_modules\//,

@@ -97,4 +97,14 @@ describe("enum tests", () => {
     const values = getEnumValues<TestEnum>(TestEnum);
     expect(values).toStrictEqual([TestEnum.A, TestEnum.B, TestEnum.C]);
   });
+
+  test("getEnumNames/getEnumValues with empty enum", () => {
+    enum TestEnum {}
+
+    const names = getEnumNames<TestEnum>(TestEnum);
+    expect(names).toStrictEqual([]);
+
+    const values = getEnumValues<TestEnum>(TestEnum);
+    expect(values).toStrictEqual([]);
+  });
 });

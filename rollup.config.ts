@@ -17,6 +17,7 @@ const cleanDist: Plugin = {
   writeBundle() {
     fs.rmSync("./dist/rollup.config.d.ts", { force: true });
     fs.rmSync("./dist/jest.config.d.ts", { force: true });
+    fs.rmSync("./dist/eslint.config.d.ts", { force: true });
   },
 };
 

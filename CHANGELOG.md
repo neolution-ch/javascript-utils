@@ -7,12 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Rollup and Jest configs in TypeScript
+- Ignore code coverage output folder
+- Migrate to eslint 9 flat config
+
+### Removed
+
+- Unnecessary dev-dependencies
+
 ## [1.2.2] - 2025-04-04
 
 ### Changed
 
 - Split up `CI` workflow into two separate workflows for the comment posting to work for PRs from forks.
-- migrated to eslint 9 flat config
 
 ### Fixed
 

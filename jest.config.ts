@@ -1,5 +1,6 @@
-/** @type {import('ts-jest').JestConfigWithTsJest} */
-module.exports = {
+import type { Config } from "@jest/types";
+
+const config: Config.InitialOptions = {
   preset: "ts-jest",
   testEnvironment: "node",
   resetMocks: false,
@@ -15,3 +16,5 @@ module.exports = {
     },
   },
 };
+
+export default config;

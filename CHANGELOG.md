@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2025-04-10
+
 ### Changed
 
 - Rollup and Jest configs in TypeScript
@@ -130,7 +132,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added `eslint-plugin-jsdoc` to lint jsdoc comments
 - `getEnumNameFromValue`,`getEnumValueFromName`, `getEnumNames`,`getEnumNameValues` functions to respectively get the name of an enum from its value, the value from its name, all the names and all the values
 
-[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/1.2.2...HEAD
+[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/1.3.0...HEAD
+[1.3.0]: https://github.com/neolution-ch/javascript-utils/compare/1.2.2...1.3.0
 [1.2.2]: https://github.com/neolution-ch/javascript-utils/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/neolution-ch/javascript-utils/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/neolution-ch/javascript-utils/compare/1.1.0...1.2.0

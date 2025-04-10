@@ -8,6 +8,7 @@ import {
   getNextBusinessDate,
   getStartOfDay,
   getEndOfDay,
+  getFirstDayOfYear,
   getLastDayOfYear,
 } from "./date";
 
@@ -130,6 +131,21 @@ describe("date tests", () => {
     ["test" as unknown as Date, new Date(Number.NaN)],
   ])("getEndOfDay", (date, expected) => {
     expect(getEndOfDay(date).getTime()).toBe(expected.getTime());
+  });
+
+  test.each([
+    [null as unknown as Date, new Date(Number.NaN)],
+    [undefined as unknown as Date, new Date(Number.NaN)],
+    [42 as unknown as Date, new Date(Number.NaN)],
+    ["test" as unknown as Date, new Date(Number.NaN)],
+  ])("getFirstDayOfYear", (date, expected) => {
+    expect(getFirstDayOfYear(date).getTime()).toBe(expected.getTime());
+  });
+
+  test("getFirstDayOfYear all days", () => {
+    for (let date = new Date(2024, 0, 1); date < new Date(2025, 0, 1); date.setDate(date.getDate() + 1)) {
+      expect(getFirstDayOfYear(date).getTime()).toBe(new Date(2024, 0, 1, 0, 0, 0, 0).getTime());
+    }
   });
 
   test.each([

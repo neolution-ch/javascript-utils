@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Unnecessary dev-dependencies
 
+### Added
+
+- `getFirstDayOfYear` date utility function
+
 ## [1.2.2] - 2025-04-04
 
 ### Changed

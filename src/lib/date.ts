@@ -96,6 +96,15 @@ export function getEndOfDay(date: Date): Date {
 }
 
 /**
+ * Get the first day of a year for the given date
+ * @param date The date
+ * @returns The first day of the date year
+ */
+export function getFirstDayOfYear(date: Date): Date {
+  return dateIsValid(date) ? new Date(date.getFullYear(), 0, 1) : new Date(Number.NaN);
+}
+
+/**
  * Get the last day of a year for the given date
  * @param date The date
  * @returns The last day of the date year

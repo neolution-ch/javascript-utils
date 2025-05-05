@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Remove external dependencies, they are now embedded in the bundle
+
 ## [1.3.0] - 2025-04-10
 
 ### Changed

@@ -866,11 +866,6 @@
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.14.tgz#add4c98d341472a289190b424efbdb096991bb24"
   integrity sha512-XPSJHWmi394fuUuzDnGz1wiKqWfo1yXecHQMRf2l6hztTO+nPru658AyDngaBe7isIxEkRsPR3FZh+s7iVa4Uw==
 
-"@jridgewell/sourcemap-codec@^1.4.13":
-  version "1.4.15"
-  resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz#d7c6e6755c78567a951e04ab52ef0fd26de59f32"
-  integrity sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==
-
 "@jridgewell/trace-mapping@0.3.9":
   version "0.3.9"
   resolved "https://registry.yarnpkg.com/@jridgewell/trace-mapping/-/trace-mapping-0.3.9.tgz#6534fd5933a53ba7cbf3a17615e273a0d1273ff9"
@@ -1129,18 +1124,6 @@
     detect-newline "^4.0.0"
     string-template "^1.0.0"
 
-"@rollup/plugin-commonjs@^24.1.0":
-  version "24.1.0"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-24.1.0.tgz#79e54bd83bb64396761431eee6c44152ef322100"
-  integrity sha512-eSL45hjhCWI0jCCXcNtLVqM5N1JlBGvlFfY0m6oOYnLCJ6N0qEXoZql4sY2MOUArzhH4SA/qBpTxvvZp2Sc+DQ==
-  dependencies:
-    "@rollup/pluginutils" "^5.0.1"
-    commondir "^1.0.1"
-    estree-walker "^2.0.2"
-    glob "^8.0.3"
-    is-reference "1.2.1"
-    magic-string "^0.27.0"
-
 "@rollup/plugin-node-resolve@^15.0.2":
   version "15.0.2"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-15.0.2.tgz#8183a80c2cbf7b471f5ac86b16747997f3b5d185"
@@ -1275,15 +1258,10 @@
   dependencies:
     "@babel/types" "^7.20.7"
 
-"@types/estree@*", "@types/estree@^1.0.0":
+"@types/estree@^1.0.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.5.tgz#a6ce3e556e00fd9895dd872dd172ad0d4bd687f4"
   integrity sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==
-
-"@types/estree@0.0.39":
-  version "0.0.39"
-  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
-  integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
 "@types/estree@^1.0.6":
   version "1.0.7"
@@ -1363,13 +1341,6 @@
   version "1.20.2"
   resolved "https://registry.yarnpkg.com/@types/resolve/-/resolve-1.20.2.tgz#97d26e00cd4a0423b4af620abecf3e6f442b7975"
   integrity sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==
-
-"@types/rollup-plugin-peer-deps-external@^2.2.5":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@types/rollup-plugin-peer-deps-external/-/rollup-plugin-peer-deps-external-2.2.5.tgz#8df65fb70c26b0054117ce54dbd01d3a2dfa2e1d"
-  integrity sha512-BvxHEsbzspw1BDyktFdjx5AQ5OHZGFJuDUAj+dDzDT0pfnz9/vr8sxxQwGINsptaltxbTVBTAxlZujM62F79XA==
-  dependencies:
-    rollup "^0.63.4"
 
 "@types/stack-utils@^2.0.0":
   version "2.0.1"
@@ -3595,17 +3566,6 @@ glob@^7.0.0, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^8.0.3:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-8.1.0.tgz#d388f656593ef708ee3e34640fdfb99a9fd1c33e"
-  integrity sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==
-  dependencies:
-    fs.realpath "^1.0.0"
-    inflight "^1.0.4"
-    inherits "2"
-    minimatch "^5.0.1"
-    once "^1.3.0"
-
 global-dirs@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/global-dirs/-/global-dirs-3.0.1.tgz#0c488971f066baceda21447aecb1a8b911d22485"
@@ -4250,13 +4210,6 @@ is-plain-object@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/is-plain-object/-/is-plain-object-5.0.0.tgz#4427f50ab3429e9025ea7d52e9043a9ef4159344"
   integrity sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==
-
-is-reference@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/is-reference/-/is-reference-1.2.1.tgz#8b2dac0b371f4bc994fdeaba9eb542d03002d0b7"
-  integrity sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==
-  dependencies:
-    "@types/estree" "*"
 
 is-regex@^1.1.4:
   version "1.1.4"
@@ -5122,13 +5075,6 @@ macos-release@^3.1.0:
   resolved "https://registry.yarnpkg.com/macos-release/-/macos-release-3.1.0.tgz#6165bb0736ae567ed6649e36ce6a24d87cbb7aca"
   integrity sha512-/M/R0gCDgM+Cv1IuBG1XGdfTFnMEG6PZeT+KGWHO/OG+imqmaD9CH5vHBTycEM3+Kc4uG2Il+tFAuUWLqQOeUA==
 
-magic-string@^0.27.0:
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.27.0.tgz#e4a3413b4bab6d98d2becffd48b4a257effdbbf3"
-  integrity sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==
-  dependencies:
-    "@jridgewell/sourcemap-codec" "^1.4.13"
-
 make-dir@^3.0.0, make-dir@^3.0.2:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-3.1.0.tgz#415e967046b3a7f1d185277d84aa58203726a13f"
@@ -5214,13 +5160,6 @@ minimatch@^3.0.4, minimatch@^3.1.1, minimatch@^3.1.2:
   integrity sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==
   dependencies:
     brace-expansion "^1.1.7"
-
-minimatch@^5.0.1:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-5.1.0.tgz#1717b464f4971b144f6aabe8f2d0b8e4511e09c7"
-  integrity sha512-9TPBGGak4nHfGZsPBohm9AWg6NoT7QTCehS3BIJABslyZbzxfV78QM2Y6+i741OPZIafFAaiiEMh5OyIrJPgtg==
-  dependencies:
-    brace-expansion "^2.0.1"
 
 minimatch@^9.0.4:
   version "9.0.5"
@@ -6145,11 +6084,6 @@ reusify@^1.0.4:
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
 
-rollup-plugin-peer-deps-external@^2.2.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-peer-deps-external/-/rollup-plugin-peer-deps-external-2.2.4.tgz#8a420bbfd6dccc30aeb68c9bf57011f2f109570d"
-  integrity sha512-AWdukIM1+k5JDdAqV/Cxd+nejvno2FVLVeZ74NKggm3Q5s9cbbcOgUPGdbxPi4BXu7xGaZ8HG12F+thImYu/0g==
-
 rollup-plugin-typescript2@^0.34.1:
   version "0.34.1"
   resolved "https://registry.yarnpkg.com/rollup-plugin-typescript2/-/rollup-plugin-typescript2-0.34.1.tgz#c457f155a71d133c142689213fce78694e30d0be"
@@ -6160,14 +6094,6 @@ rollup-plugin-typescript2@^0.34.1:
     fs-extra "^10.0.0"
     semver "^7.3.7"
     tslib "^2.4.0"
-
-rollup@^0.63.4:
-  version "0.63.5"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.63.5.tgz#5543eecac9a1b83b7e1be598b5be84c9c0a089db"
-  integrity sha512-dFf8LpUNzIj3oE0vCvobX6rqOzHzLBoblyFp+3znPbjiSmSvOoK2kMKx+Fv9jYduG1rvcCfCveSgEaQHjWRF6g==
-  dependencies:
-    "@types/estree" "0.0.39"
-    "@types/node" "*"
 
 rollup@^3.21.4:
   version "3.29.5"

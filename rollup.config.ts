@@ -1,9 +1,7 @@
-import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import external from "rollup-plugin-peer-deps-external";
 import terser from "@rollup/plugin-terser";
 import typescript from "rollup-plugin-typescript2";
-import { defineConfig, InputPluginOption } from "rollup";
+import { defineConfig } from "rollup";
 import { type Plugin } from "rollup";
 import * as fs from "fs";
 
@@ -22,17 +20,11 @@ const cleanDist: Plugin = {
 };
 
 const plugins = [
-  external({
-    includeDependencies: true,
-  }) as InputPluginOption,
   typescript({
     clean: true,
     exclude: ["**/__tests__", "**/*.test.ts", "**/stories/**/*", "**/coverage"],
   }),
-  commonjs({
-    include: /\/node_modules\//,
-  }),
-  nodeResolve,
+  nodeResolve(),
   terser({
     output: { comments: false },
     compress: {
@@ -48,7 +40,6 @@ export default defineConfig([
     output: {
       file: "dist/index.js",
       format: "cjs",
-      name: "JavaScriptUtilities",
       sourcemap: true,
       exports: "named",
       interop: "auto",
@@ -60,7 +51,6 @@ export default defineConfig([
     output: {
       file: "dist/index.modern.js",
       format: "esm",
-      name: "JavaScriptUtilities",
       sourcemap: true,
       exports: "named",
     },
@@ -74,10 +64,6 @@ export default defineConfig([
       name: "JavaScriptUtilities",
       sourcemap: true,
       exports: "named",
-      globals: {
-        "date-fns": "dateFns",
-        uuid: "uuid",
-      },
     },
     plugins,
   },

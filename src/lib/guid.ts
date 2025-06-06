@@ -9,12 +9,13 @@ export function newGuid() {
 }
 
 /**
- * Check whether a string it is a valid Guid (version 4 UUID)
+ * Check whether a string it is a valid Guid
  * @param str The string to test whether it is a valid Guid
  * @returns A value indicating whether the string is a valid Guid
  */
 export function isValidGuid(str: string) {
-  return uuid.validate(str);
+  const regex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  return typeof str === "string" && regex.test(str);
 }
 
 /**

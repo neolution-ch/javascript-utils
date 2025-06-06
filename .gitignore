@@ -29,4 +29,7 @@ storybook-static
 .terraform
 terraform
 
+# Ignore vs folder
+.vs
+
 .npmrc

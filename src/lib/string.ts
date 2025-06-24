@@ -32,3 +32,16 @@ export function capitalize(value?: string): string | undefined {
 
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
+
+/**
+ * Uncapitalize the string
+ * @param value The string to uncapitalize
+ * @returns The uncapitalized string
+ */
+export function uncapitalize(value?: string): string | undefined {
+  if (!value || isNullOrWhitespace(value)) {
+    return value;
+  }
+
+  return value.charAt(0).toLowerCase() + value.slice(1);
+}

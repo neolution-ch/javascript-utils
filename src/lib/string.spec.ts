@@ -1,4 +1,4 @@
-import { isNullOrEmpty, isNullOrWhitespace, capitalize } from "./string";
+import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize } from "./string";
 
 describe("string tests", () => {
   test.each([
@@ -71,5 +71,17 @@ describe("string tests", () => {
     ["hello world", "Hello world"],
   ])("capitalize", (value, expected) => {
     expect(capitalize(value)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, null],
+    [undefined as unknown as string, undefined],
+    ["", ""],
+    ["A", "a"],
+    ["Hello", "hello"],
+    ["Hello world", "hello world"],
+    ["hello world", "hello world"],
+  ])("uncapitalize", (value, expected) => {
+    expect(uncapitalize(value)).toBe(expected);
   });
 });

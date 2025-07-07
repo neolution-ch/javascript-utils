@@ -86,7 +86,7 @@ describe("string tests", () => {
   });
 
   test.each([
-    [null as unknown as string, 10, "...",""],
+    [null as unknown as string, 10, "...", ""],
     [undefined as unknown as string, 10, "...", ""],
     ["", 10, "...", ""],
     ["hello", 10, "...", "hello"],
@@ -98,7 +98,7 @@ describe("string tests", () => {
     ["hello", 3, ">>", "hel>>"],
     ["test", 2, "", "te"],
   ])("truncate", (value, maxLength, suffix, expected) => {
-    expect(truncate(value as string, maxLength, suffix)).toBe(expected);
+    expect(truncate(value, maxLength, suffix)).toBe(expected);
   });
 
   test.each([
@@ -114,7 +114,7 @@ describe("string tests", () => {
     ["abcdefabcdef", "def", "abcdefabc"],
     ["   hello   ", undefined as unknown as string, "hello"],
   ])("trim", (value, needle, expected) => {
-    expect(trim(value as string, needle)).toBe(expected);
+    expect(trim(value, needle)).toBe(expected);
   });
 
   test.each([
@@ -136,7 +136,7 @@ describe("string tests", () => {
     ["hello", "", "hello"],
     ["", "xyz", ""],
   ])("ltrim", (value, needle, expected) => {
-    expect(ltrim(value as string, needle)).toBe(expected);
+    expect(ltrim(value, needle)).toBe(expected);
   });
 
   test.each([
@@ -159,7 +159,7 @@ describe("string tests", () => {
     ["hello", "", "hello"],
     ["", "xyz", ""],
   ])("rtrim", (value, needle, expected) => {
-    expect(rtrim(value as string, needle)).toBe(expected);
+    expect(rtrim(value, needle)).toBe(expected);
   });
 
   test.each([
@@ -179,6 +179,6 @@ describe("string tests", () => {
     ["hello\n", ["hello", ""]],
     ["\nhello", ["", "hello"]],
   ])("splitLines", (value, expected) => {
-    expect(splitLines(value as string)).toEqual(expected);
+    expect(splitLines(value)).toEqual(expected);
   });
 });

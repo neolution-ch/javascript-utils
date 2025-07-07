@@ -45,3 +45,109 @@ export function uncapitalize(value?: string): string | undefined {
 
   return value.charAt(0).toLowerCase() + value.slice(1);
 }
+
+/**
+ * Truncates a string to a maximum length, adding a suffix if truncated
+ * @param value The string to truncate
+ * @param maxLength The maximum length of the resulting string
+ * @param suffix The suffix to append if truncated (default: "...")
+ * @returns The truncated string
+ */
+export function truncate(value: string, maxLength: number, suffix = "..."): string {
+  if (!value || typeof value !== "string") {
+    return value || "";
+  }
+
+  if (value.length <= maxLength) {
+    return value;
+  }
+
+  return `${value.substr(0, maxLength)}${suffix}`;
+}
+
+/**
+ * Removes all occurrences of needle from the beginning and end of haystack
+ * @param haystack The string to trim
+ * @param needle The string to remove (default: " ")
+ * @returns The trimmed string
+ */
+export function trim(haystack: string, needle = " "): string {
+  if (!haystack || typeof haystack !== "string") {
+    return haystack || "";
+  }
+
+  const trimmed = ltrim(haystack, needle);
+  return rtrim(trimmed, needle);
+}
+
+/**
+ * Removes all occurrences of needle from the beginning of haystack
+ * @param haystack The string to trim
+ * @param needle The string to remove
+ * @returns The trimmed string
+ */
+export function ltrim(haystack: string, needle: string): string {
+  if (!haystack || !needle || typeof haystack !== "string" || typeof needle !== "string") {
+    return haystack || "";
+  }
+
+  const needleLen = needle.length;
+  if (needleLen === 0 || haystack.length === 0) {
+    return haystack;
+  }
+
+  let offset = 0;
+
+  while (haystack.indexOf(needle, offset) === offset) {
+    offset = offset + needleLen;
+  }
+  return haystack.substring(offset);
+}
+
+/**
+ * Removes all occurrences of needle from the end of haystack
+ * @param haystack The string to trim
+ * @param needle The string to remove
+ * @returns The trimmed string
+ */
+export function rtrim(haystack: string, needle: string): string {
+  if (!haystack || !needle || typeof haystack !== "string" || typeof needle !== "string") {
+    return haystack || "";
+  }
+
+  const needleLen = needle.length;
+  const haystackLen = haystack.length;
+
+  if (needleLen === 0 || haystackLen === 0) {
+    return haystack;
+  }
+
+  let offset = haystackLen;
+  let idx = -1;
+
+  while (true) {
+    idx = haystack.lastIndexOf(needle, offset - 1);
+    if (idx === -1 || idx + needleLen !== offset) {
+      break;
+    }
+    if (idx === 0) {
+      return "";
+    }
+    offset = idx;
+  }
+
+  return haystack.substring(0, offset);
+}
+
+/**
+ * Splits a string into lines using various line separators (\r\n, \r, \n)
+ * @param str The string to split
+ * @returns An array of lines
+ */
+export function splitLines(str: string): string[] {
+  if (!str || typeof str !== "string") {
+    return str === "" ? [""] : [];
+  }
+
+  return str.split(/\r\n|\r|\n/);
+}

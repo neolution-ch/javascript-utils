@@ -1,4 +1,4 @@
-import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize } from "./string";
+import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate, trim, ltrim, rtrim, splitLines } from "./string";
 
 describe("string tests", () => {
   test.each([
@@ -83,5 +83,102 @@ describe("string tests", () => {
     ["hello world", "hello world"],
   ])("uncapitalize", (value, expected) => {
     expect(uncapitalize(value)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, 10, "...",""],
+    [undefined as unknown as string, 10, "...", ""],
+    ["", 10, "...", ""],
+    ["hello", 10, "...", "hello"],
+    ["hello", 5, "...", "hello"],
+    ["hello world", 5, "...", "hello..."],
+    ["hello world", 8, "...", "hello wo..."],
+    ["hello world", 11, "...", "hello world"],
+    ["hello world", 0, "...", "..."],
+    ["hello", 3, ">>", "hel>>"],
+    ["test", 2, "", "te"],
+  ])("truncate", (value, maxLength, suffix, expected) => {
+    expect(truncate(value as string, maxLength, suffix)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, " ", ""],
+    [undefined as unknown as string, " ", ""],
+    ["", " ", ""],
+    ["hello", " ", "hello"],
+    [" hello ", " ", "hello"],
+    ["  hello  ", " ", "hello"],
+    ["xxxhelloxxx", "xxx", "hello"],
+    ["abcabchelloabcabc", "abc", "hello"],
+    ["abcdefabcdef", "abc", "defabcdef"],
+    ["abcdefabcdef", "def", "abcdefabc"],
+    ["   hello   ", undefined as unknown as string, "hello"],
+  ])("trim", (value, needle, expected) => {
+    expect(trim(value as string, needle)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, " ", ""],
+    [undefined as unknown as string, " ", ""],
+    ["", " ", ""],
+    ["hello", " ", "hello"],
+    [" hello", " ", "hello"],
+    ["  hello", " ", "hello"],
+    ["hello ", " ", "hello "],
+    ["xxxhello", "xxx", "hello"],
+    ["abcabchello", "abc", "hello"],
+    ["hello", "xyz", "hello"],
+    ["", "abc", ""],
+    ["abc", "", "abc"],
+    ["hello", null as unknown as string, "hello"],
+    ["hello", undefined as unknown as string, "hello"],
+    ["", "", ""],
+    ["hello", "", "hello"],
+    ["", "xyz", ""],
+  ])("ltrim", (value, needle, expected) => {
+    expect(ltrim(value as string, needle)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, " ", ""],
+    [undefined as unknown as string, " ", ""],
+    ["", " ", ""],
+    ["hello", " ", "hello"],
+    ["hello ", " ", "hello"],
+    ["hello  ", " ", "hello"],
+    [" hello", " ", " hello"],
+    ["helloxxx", "xxx", "hello"],
+    ["helloabcabc", "abc", "hello"],
+    ["hello", "xyz", "hello"],
+    ["", "abc", ""],
+    ["abc", "", "abc"],
+    ["hello", null as unknown as string, "hello"],
+    ["hello", undefined as unknown as string, "hello"],
+    ["abc", "abc", ""],
+    ["", "", ""],
+    ["hello", "", "hello"],
+    ["", "xyz", ""],
+  ])("rtrim", (value, needle, expected) => {
+    expect(rtrim(value as string, needle)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, []],
+    [undefined as unknown as string, []],
+    ["", [""]],
+    ["hello", ["hello"]],
+    ["hello\nworld", ["hello", "world"]],
+    ["hello\r\nworld", ["hello", "world"]],
+    ["hello\rworld", ["hello", "world"]],
+    ["hello\n\nworld", ["hello", "", "world"]],
+    ["hello\r\n\r\nworld", ["hello", "", "world"]],
+    ["line1\nline2\rline3\r\nline4", ["line1", "line2", "line3", "line4"]],
+    ["\n", ["", ""]],
+    ["\r\n", ["", ""]],
+    ["\r", ["", ""]],
+    ["hello\n", ["hello", ""]],
+    ["\nhello", ["", "hello"]],
+  ])("splitLines", (value, expected) => {
+    expect(splitLines(value as string)).toEqual(expected);
   });
 });

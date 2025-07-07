@@ -103,4 +103,21 @@ describe("string tests", () => {
   ])("truncate", (value, maxLength, suffix, expected) => {
     expect(truncate(value, maxLength, suffix)).toBe(expected);
   });
+
+  test.each([
+    [null as unknown as string, 10, null],
+    [undefined as unknown as string, 10, undefined],
+    ["", 10, ""],
+    ["hello", 10, "hello"],
+    ["hello", 5, "hello"],
+    ["hello world", 5, "hello"],
+    ["hello world", 8, "hello wo"],
+    ["hello world", 11, "hello world"],
+    ["hello world", 0, ""],
+    ["test", 2, "te"],
+    ["a very long string", 6, "a very"],
+    ["short", 10, "short"],
+  ])("truncate without suffix parameter", (value, maxLength, expected) => {
+    expect(truncate(value, maxLength)).toBe(expected);
+  });
 });

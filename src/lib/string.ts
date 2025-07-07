@@ -50,12 +50,12 @@ export function uncapitalize(value?: string): string | undefined {
  * Truncates a string to a maximum length, adding a suffix if truncated
  * @param value The string to truncate
  * @param maxLength The maximum length of the resulting string
- * @param suffix The suffix to append if truncated (default: "...")
+ * @param suffix The suffix to append if truncated (default: "")
  * @returns The truncated string
  */
-export function truncate(value: string | null | undefined, maxLength: number, suffix = "..."): string {
-  if (!value || typeof value !== "string") {
-    return value || "";
+export function truncate(value: string | undefined, maxLength: number, suffix = ""): string | undefined {
+  if (!value || isNullOrWhitespace(value)) {
+    return value;
   }
 
   if (value.length <= maxLength) {
@@ -66,67 +66,75 @@ export function truncate(value: string | null | undefined, maxLength: number, su
 }
 
 /**
- * Removes all occurrences of needle from the beginning and end of haystack
- * @param haystack The string to trim
+ * Removes all occurrences of needle from the beginning and end of value
+ * @param value The string to trim
  * @param needle The string to remove (default: " ")
  * @returns The trimmed string
  */
-export function trim(haystack: string | null | undefined, needle = " "): string {
-  if (!haystack || typeof haystack !== "string") {
-    return haystack || "";
+export function trim(value?: string, needle = " "): string | undefined {
+  if (!value || isNullOrWhitespace(value)) {
+    return value;
   }
 
-  const trimmed = ltrim(haystack, needle);
+  const trimmed = ltrim(value, needle);
   return rtrim(trimmed, needle);
 }
 
 /**
- * Removes all occurrences of needle from the beginning of haystack
- * @param haystack The string to trim
- * @param needle The string to remove
+ * Removes all occurrences of needle from the beginning of value
+ * @param value The string to trim
+ * @param needle The string to remove (default: " ")
  * @returns The trimmed string
  */
-export function ltrim(haystack: string | null | undefined, needle: string | null | undefined): string {
-  if (!haystack || !needle || typeof haystack !== "string" || typeof needle !== "string") {
-    return haystack || "";
+export function ltrim(value?: string, needle = " "): string | undefined {
+  if (!value || isNullOrWhitespace(value)) {
+    return value;
+  }
+
+  if (!needle || typeof needle !== "string") {
+    return value;
   }
 
   const needleLen = needle.length;
-  if (needleLen === 0 || haystack.length === 0) {
-    return haystack;
+  if (needleLen === 0 || value.length === 0) {
+    return value;
   }
 
   let offset = 0;
 
-  while (haystack.indexOf(needle, offset) === offset) {
+  while (value.indexOf(needle, offset) === offset) {
     offset = offset + needleLen;
   }
-  return haystack.slice(offset);
+  return value.slice(offset);
 }
 
 /**
- * Removes all occurrences of needle from the end of haystack
- * @param haystack The string to trim
- * @param needle The string to remove
+ * Removes all occurrences of needle from the end of value
+ * @param value The string to trim
+ * @param needle The string to remove (default: " ")
  * @returns The trimmed string
  */
-export function rtrim(haystack: string | null | undefined, needle: string | null | undefined): string {
-  if (!haystack || !needle || typeof haystack !== "string" || typeof needle !== "string") {
-    return haystack || "";
+export function rtrim(value?: string, needle = " "): string | undefined {
+  if (!value || isNullOrWhitespace(value)) {
+    return value;
+  }
+
+  if (!needle || typeof needle !== "string") {
+    return value;
   }
 
   const needleLen = needle.length;
-  const haystackLen = haystack.length;
+  const valueLen = value.length;
 
-  if (needleLen === 0 || haystackLen === 0) {
-    return haystack;
+  if (needleLen === 0 || valueLen === 0) {
+    return value;
   }
 
-  let offset = haystackLen;
+  let offset = valueLen;
   let idx = -1;
 
   while (true) {
-    idx = haystack.lastIndexOf(needle, offset - 1);
+    idx = value.lastIndexOf(needle, offset - 1);
     if (idx === -1 || idx + needleLen !== offset) {
       break;
     }
@@ -136,18 +144,18 @@ export function rtrim(haystack: string | null | undefined, needle: string | null
     offset = idx;
   }
 
-  return haystack.slice(0, offset);
+  return value.slice(0, offset);
 }
 
 /**
  * Splits a string into lines using various line separators (\r\n, \r, \n)
- * @param str The string to split
+ * @param value The string to split
  * @returns An array of lines
  */
-export function splitLines(str: string | null | undefined): string[] {
-  if (!str || typeof str !== "string") {
-    return str === "" ? [""] : [];
+export function splitLines(value?: string): string[] {
+  if (!value || typeof value !== "string") {
+    return value === "" ? [""] : [];
   }
 
-  return str.split(/\r\n|\r|\n/);
+  return value.split(/\r\n|\r|\n/);
 }

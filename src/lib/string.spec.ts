@@ -86,24 +86,27 @@ describe("string tests", () => {
   });
 
   test.each([
-    [null as unknown as string, 10, "...", ""],
-    [undefined as unknown as string, 10, "...", ""],
-    ["", 10, "...", ""],
-    ["hello", 10, "...", "hello"],
-    ["hello", 5, "...", "hello"],
-    ["hello world", 5, "...", "hello..."],
-    ["hello world", 8, "...", "hello wo..."],
-    ["hello world", 11, "...", "hello world"],
-    ["hello world", 0, "...", "..."],
+    [null as unknown as string, 10, "", null],
+    [undefined as unknown as string, 10, "", undefined],
+    ["", 10, "", ""],
+    ["hello", 10, "", "hello"],
+    ["hello", 5, "", "hello"],
+    ["hello world", 5, "", "hello"],
+    ["hello world", 8, "", "hello wo"],
+    ["hello world", 11, "", "hello world"],
+    ["hello world", 0, "", ""],
     ["hello", 3, ">>", "hel>>"],
     ["test", 2, "", "te"],
+    ["hello world", 5, "...", "hello..."],
+    ["hello world", 8, "...", "hello wo..."],
+    ["hello world", 0, "...", "..."],
   ])("truncate", (value, maxLength, suffix, expected) => {
     expect(truncate(value, maxLength, suffix)).toBe(expected);
   });
 
   test.each([
-    [null as unknown as string, " ", ""],
-    [undefined as unknown as string, " ", ""],
+    [null as unknown as string, " ", null],
+    [undefined as unknown as string, " ", undefined],
     ["", " ", ""],
     ["hello", " ", "hello"],
     [" hello ", " ", "hello"],
@@ -118,8 +121,8 @@ describe("string tests", () => {
   });
 
   test.each([
-    [null as unknown as string, " ", ""],
-    [undefined as unknown as string, " ", ""],
+    [null as unknown as string, " ", null],
+    [undefined as unknown as string, " ", undefined],
     ["", " ", ""],
     ["hello", " ", "hello"],
     [" hello", " ", "hello"],
@@ -135,13 +138,14 @@ describe("string tests", () => {
     ["", "", ""],
     ["hello", "", "hello"],
     ["", "xyz", ""],
+    ["hello", "", "hello"], // Test for empty needle
   ])("ltrim", (value, needle, expected) => {
     expect(ltrim(value, needle)).toBe(expected);
   });
 
   test.each([
-    [null as unknown as string, " ", ""],
-    [undefined as unknown as string, " ", ""],
+    [null as unknown as string, " ", null],
+    [undefined as unknown as string, " ", undefined],
     ["", " ", ""],
     ["hello", " ", "hello"],
     ["hello ", " ", "hello"],
@@ -158,6 +162,7 @@ describe("string tests", () => {
     ["", "", ""],
     ["hello", "", "hello"],
     ["", "xyz", ""],
+    ["hello", "", "hello"], // Test for empty needle
   ])("rtrim", (value, needle, expected) => {
     expect(rtrim(value, needle)).toBe(expected);
   });

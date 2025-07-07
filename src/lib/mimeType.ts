@@ -1,6 +1,17 @@
 import { isNullOrEmpty } from "./string";
 
 /**
+ * Private helper function to check if a MIME type matches a main type pattern
+ * @param mimeType The MIME type to check
+ * @param mainType The main MIME type (e.g., "image", "video")
+ * @returns true if the MIME type matches the pattern
+ */
+function isMainMimeType(mimeType: string, mainType: string): boolean {
+  const normalizedMimeType = mimeType.toLowerCase().trim();
+  return normalizedMimeType.startsWith(`${mainType}/`) && normalizedMimeType.length > mainType.length + 1;
+}
+
+/**
  * Check if the MIME type represents an image
  * @param mimeType The MIME type to check
  * @returns true if the MIME type is for an image
@@ -10,8 +21,7 @@ export function isImageMimeType(mimeType?: string): boolean {
     return false;
   }
 
-  const normalizedMimeType = mimeType!.toLowerCase().trim();
-  return normalizedMimeType.startsWith("image/") && normalizedMimeType.length > 6;
+  return isMainMimeType(mimeType!, "image");
 }
 
 /**
@@ -38,8 +48,7 @@ export function isVideoMimeType(mimeType?: string): boolean {
     return false;
   }
 
-  const normalizedMimeType = mimeType!.toLowerCase().trim();
-  return normalizedMimeType.startsWith("video/") && normalizedMimeType.length > 6;
+  return isMainMimeType(mimeType!, "video");
 }
 
 /**
@@ -52,8 +61,7 @@ export function isAudioMimeType(mimeType?: string): boolean {
     return false;
   }
 
-  const normalizedMimeType = mimeType!.toLowerCase().trim();
-  return normalizedMimeType.startsWith("audio/") && normalizedMimeType.length > 6;
+  return isMainMimeType(mimeType!, "audio");
 }
 
 /**
@@ -66,8 +74,7 @@ export function isTextMimeType(mimeType?: string): boolean {
     return false;
   }
 
-  const normalizedMimeType = mimeType!.toLowerCase().trim();
-  return normalizedMimeType.startsWith("text/") && normalizedMimeType.length > 5;
+  return isMainMimeType(mimeType!, "text");
 }
 
 /**
@@ -80,6 +87,5 @@ export function isApplicationMimeType(mimeType?: string): boolean {
     return false;
   }
 
-  const normalizedMimeType = mimeType!.toLowerCase().trim();
-  return normalizedMimeType.startsWith("application/") && normalizedMimeType.length > 12;
+  return isMainMimeType(mimeType!, "application");
 }

@@ -116,6 +116,7 @@ describe("string tests", () => {
     ["abcdefabcdef", "abc", "defabcdef"],
     ["abcdefabcdef", "def", "abcdefabc"],
     ["   hello   ", undefined as unknown as string, "hello"],
+    ["   ", undefined as unknown as string, ""],
   ])("trim", (value, needle, expected) => {
     expect(trim(value, needle)).toBe(expected);
   });
@@ -139,6 +140,7 @@ describe("string tests", () => {
     ["hello", "", "hello"],
     ["", "xyz", ""],
     ["hello", "", "hello"], // Test for empty needle
+    ["   ", undefined as unknown as string, ""],
   ])("ltrim", (value, needle, expected) => {
     expect(ltrim(value, needle)).toBe(expected);
   });
@@ -163,6 +165,7 @@ describe("string tests", () => {
     ["hello", "", "hello"],
     ["", "xyz", ""],
     ["hello", "", "hello"], // Test for empty needle
+    ["   ", undefined as unknown as string, ""],
   ])("rtrim", (value, needle, expected) => {
     expect(rtrim(value, needle)).toBe(expected);
   });
@@ -185,5 +188,13 @@ describe("string tests", () => {
     ["\nhello", ["", "hello"]],
   ])("splitLines", (value, expected) => {
     expect(splitLines(value)).toEqual(expected);
+  });
+
+  test.each([
+    ["hello\n\nworld", ["hello", "world"]],
+    ["\nhello\n\nworld\n", ["hello", "world"]],
+    ["  \nhello\n  \nworld\n  ", ["hello", "world"]],
+  ])("splitLines with removeEmptyEntries=true", (value, expected) => {
+    expect(splitLines(value, true)).toEqual(expected);
   });
 });

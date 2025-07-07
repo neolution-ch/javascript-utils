@@ -72,8 +72,13 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
  * @returns The trimmed string
  */
 export function trim(value?: string, needle = " "): string | undefined {
-  if (!value || isNullOrWhitespace(value)) {
+  if (!value || typeof value !== "string") {
     return value;
+  }
+
+  // Handle undefined needle by using default value
+  if (needle === undefined) {
+    needle = " ";
   }
 
   const trimmed = ltrim(value, needle);
@@ -87,11 +92,16 @@ export function trim(value?: string, needle = " "): string | undefined {
  * @returns The trimmed string
  */
 export function ltrim(value?: string, needle = " "): string | undefined {
-  if (!value || isNullOrWhitespace(value)) {
+  if (!value || typeof value !== "string") {
     return value;
   }
 
-  if (!needle || typeof needle !== "string") {
+  // Handle undefined needle by using default value
+  if (needle === undefined) {
+    needle = " ";
+  }
+
+  if (!needle || isNullOrEmpty(needle)) {
     return value;
   }
 
@@ -114,34 +124,51 @@ export function ltrim(value?: string, needle = " "): string | undefined {
  * @param needle The string to remove (default: " ")
  * @returns The trimmed string
  */
+/**
+ * Helper function to validate trim input parameters
+ * @param value The string to validate
+ * @param needle The needle to validate
+ * @returns true if both parameters are valid for trimming
+ */
+function isValidTrimInput(value?: string, needle?: string): boolean {
+  return !(!value || typeof value !== "string" || !needle || isNullOrEmpty(needle));
+}
+
+/**
+ * Removes all occurrences of needle from the end of value
+ * @param value The string to trim
+ * @param needle The string to remove (default: " ")
+ * @returns The trimmed string
+ */
 export function rtrim(value?: string, needle = " "): string | undefined {
-  if (!value || isNullOrWhitespace(value)) {
+  if (!value || typeof value !== "string") {
     return value;
   }
 
-  if (!needle || typeof needle !== "string") {
+  const effectiveNeedle = needle === undefined ? " " : needle;
+
+  if (!isValidTrimInput(value, effectiveNeedle)) {
     return value;
   }
 
-  const needleLen = needle.length;
-  const valueLen = value.length;
-
-  if (needleLen === 0 || valueLen === 0) {
+  if (effectiveNeedle.length === 0 || value.length === 0) {
     return value;
   }
 
-  let offset = valueLen;
-  let idx = -1;
+  let offset = value.length;
 
-  while (true) {
-    idx = value.lastIndexOf(needle, offset - 1);
-    if (idx === -1 || idx + needleLen !== offset) {
+  while (offset > 0) {
+    const lastIndex = value.lastIndexOf(effectiveNeedle, offset - 1);
+
+    if (lastIndex === -1 || lastIndex + effectiveNeedle.length !== offset) {
       break;
     }
-    if (idx === 0) {
+
+    if (lastIndex === 0) {
       return "";
     }
-    offset = idx;
+
+    offset = lastIndex;
   }
 
   return value.slice(0, offset);
@@ -150,12 +177,22 @@ export function rtrim(value?: string, needle = " "): string | undefined {
 /**
  * Splits a string into lines using various line separators (\r\n, \r, \n)
  * @param value The string to split
+ * @param removeEmptyEntries Whether to remove empty entries from the result (default: false)
  * @returns An array of lines
  */
-export function splitLines(value?: string): string[] {
+export function splitLines(value?: string, removeEmptyEntries = false): string[] {
   if (!value || typeof value !== "string") {
-    return value === "" ? [""] : [];
+    if (value === "") {
+      return removeEmptyEntries ? [] : [""];
+    }
+    return [];
   }
 
-  return value.split(/\r\n|\r|\n/);
+  const lines = value.split(/\r\n|\r|\n/);
+
+  if (removeEmptyEntries) {
+    return lines.filter((line) => !isNullOrWhitespace(line));
+  }
+
+  return lines;
 }

@@ -1,7 +1,7 @@
 {
   "name": "@neolution-ch/javascript-utils",
   "version": "1.5.0",
-  "description": "todo @drebrez",
+  "description": "This is a collection of utilities that we have created to help with our development process.",
   "homepage": "https://neolution-ch.github.io/javascript-utils",
   "repository": {
     "type": "git",
@@ -19,9 +19,6 @@
     }
   },
   "main": "dist/index.js",
-  "umd:main": "dist/index.umd.js",
-  "jsdelivr": "dist/index.umd.js",
-  "unpkg": "dist/index.umd.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
   "jsnext:main": "dist/index.modern.js",

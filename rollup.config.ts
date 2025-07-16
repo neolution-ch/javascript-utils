@@ -32,7 +32,7 @@ const plugins = [
   commonjs({
     include: /\/node_modules\//,
   }),
-  nodeResolve,
+  nodeResolve(),
   terser({
     output: { comments: false },
     compress: {
@@ -48,7 +48,6 @@ export default defineConfig([
     output: {
       file: "dist/index.js",
       format: "cjs",
-      name: "JavaScriptUtilities",
       sourcemap: true,
       exports: "named",
       interop: "auto",
@@ -60,24 +59,8 @@ export default defineConfig([
     output: {
       file: "dist/index.modern.js",
       format: "esm",
-      name: "JavaScriptUtilities",
       sourcemap: true,
       exports: "named",
-    },
-    plugins,
-  },
-  {
-    input,
-    output: {
-      file: "dist/index.umd.js",
-      format: "umd",
-      name: "JavaScriptUtilities",
-      sourcemap: true,
-      exports: "named",
-      globals: {
-        "date-fns": "dateFns",
-        uuid: "uuid",
-      },
     },
     plugins,
   },

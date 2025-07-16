@@ -45,3 +45,22 @@ export function uncapitalize(value?: string): string | undefined {
 
   return value.charAt(0).toLowerCase() + value.slice(1);
 }
+
+/**
+ * Truncates a string to a maximum length, adding a suffix if truncated
+ * @param value The string to truncate
+ * @param maxLength The maximum length of the resulting string
+ * @param suffix The suffix to append if truncated (default: "")
+ * @returns The truncated string
+ */
+export function truncate(value: string | undefined, maxLength: number, suffix = ""): string | undefined {
+  if (!value || isNullOrWhitespace(value)) {
+    return value;
+  }
+
+  if (value.length <= maxLength) {
+    return value;
+  }
+
+  return `${value.slice(0, maxLength)}${suffix}`;
+}

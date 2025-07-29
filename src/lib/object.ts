@@ -14,7 +14,7 @@ export const convertNullToUndefined = (obj: object | object[]): void => {
   if (Array.isArray(obj)) {
     for (const item of obj as unknown as object[]) {
       if (item === null) {
-        obj.splice(obj.indexOf(item), 1);
+        obj[obj.indexOf(item)] = undefined;
       } else if (isObject(item)) {
         convertNullToUndefined(item);
       }

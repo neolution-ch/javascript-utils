@@ -10,8 +10,16 @@ export const isObject = (obj: object): boolean =>
  * Convert null properties to undefined
  * @param obj The object
  */
-export const convertNullToUndefined = (obj: object): void => {
-  if (!isObject(obj)) {
+export const convertNullToUndefined = (obj: object | object[]): void => {
+  if (Array.isArray(obj)) {
+    for (const item of obj as unknown as object[]) {
+      if (item === null) {
+        obj.splice(obj.indexOf(item), 1);
+      } else if (isObject(item)) {
+        convertNullToUndefined(item);
+      }
+    }
+  } else if (!isObject(obj)) {
     return;
   }
 
@@ -19,7 +27,7 @@ export const convertNullToUndefined = (obj: object): void => {
     const value = obj[key as keyof typeof obj];
     if (value === null) {
       delete obj[key as keyof typeof obj];
-    } else if (isObject(value)) {
+    } else if (isObject(value) || Array.isArray(value)) {
       convertNullToUndefined(value);
     }
   }

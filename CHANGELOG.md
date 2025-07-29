@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - UMD build format from Rollup config
 
+### Fixed
+
+- `convertNullToUndefined` is now handling arrays properly
+
 ## [1.5.0] - 2025-07-07
 
 ### Added

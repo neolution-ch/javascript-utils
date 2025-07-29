@@ -36,6 +36,12 @@ describe("object tests", () => {
     [{ hello: null }, {}],
     [{ hello: "world", other: null }, { hello: "world" }],
     [{ nested: { prop1: "test", prop2: null } }, { nested: { prop1: "test" } }],
+    [{ nested: [{ prop1: "test", prop2: null }] }, { nested: [{ prop1: "test" }] }],
+    [{ nested: [1, 2, null, 3, 4] }, { nested: [1, 2, 3, 4] }],
+    [
+      [{ hello: "world" }, null, { nested: { prop1: "test", prop2: null } }],
+      [{ hello: "world" }, { nested: { prop1: "test" } }],
+    ],
   ])("convertNullToUndefined", (obj, expected) => {
     convertNullToUndefined(obj);
     expect(obj).toStrictEqual(expected);

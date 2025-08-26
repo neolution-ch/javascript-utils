@@ -1,4 +1,4 @@
-import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate } from "./string";
+import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate, ltrim, rtrim, trim } from "./string";
 
 describe("string tests", () => {
   test.each([
@@ -119,5 +119,65 @@ describe("string tests", () => {
     ["short", 10, "short"],
   ])("truncate without suffix parameter", (value, maxLength, expected) => {
     expect(truncate(value, maxLength)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, " ", null],
+    [undefined as unknown as string, " ", undefined],
+    [" hello world", " ", "hello world"],
+    ["  hello world", " ", "hello world"],
+    ["   hello world", " ", "hello world"],
+  ])("left trim", (haystack, needle, expected) => {
+    expect(ltrim(haystack, needle)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, " ", null],
+    [undefined as unknown as string, " ", undefined],
+    [" hello world", "", " hello world"],
+    ["  hello world", "", "  hello world"],
+    ["   hello world", "", "   hello world"],
+  ])("left trim without needle", (haystack, needle, expected) => {
+    expect(ltrim(haystack, needle)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, " ", null],
+    [undefined as unknown as string, " ", undefined],
+    ["hello world ", " ", "hello world"],
+    ["hello world  ", " ", "hello world"],
+    ["hello world   ", " ", "hello world"],
+  ])("right trim", (haystack, needle, expected) => {
+    expect(rtrim(haystack, needle)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, " ", null],
+    [undefined as unknown as string, " ", undefined],
+    ["hello world ", "", "hello world "],
+    ["hello world  ", "", "hello world  "],
+    ["hello world   ", "", "hello world   "],
+  ])("right trim without needle", (haystack, needle, expected) => {
+    expect(rtrim(haystack, needle)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, " ", null],
+    [undefined as unknown as string, " ", undefined],
+    [" hello world ", " ", "hello world"],
+    ["  hello world  ", " ", "hello world"],
+    ["   hello world   ", " ", "hello world"],
+  ])("trim", (haystack, needle, expected) => {
+    expect(trim(haystack, needle)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, " ", null],
+    [undefined as unknown as string, " ", undefined],
+    [" hello world ", "", " hello world "],
+    ["  hello world  ", "", "  hello world  "],
+    ["   hello world   ", "", "   hello world   "],
+  ])("trim without needle", (haystack, needle, expected) => {
+    expect(trim(haystack, needle)).toBe(expected);
   });
 });

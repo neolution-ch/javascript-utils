@@ -64,3 +64,71 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
 
   return `${value.slice(0, maxLength)}${suffix}`;
 }
+
+/**
+ * Removes all occurrences of needle from the start of haystack
+ * @param haystack string to trim
+ * @param needle the thing to trim
+ * @returns the string trimmed from the left side
+ */
+export function ltrim(haystack: string, needle: string): string {
+  if (!haystack || !needle) return haystack;
+
+  const needleLength = needle.length;
+  if (needleLength === 0 || haystack.length === 0) {
+    return haystack;
+  }
+
+  let offset = 0;
+
+  while (haystack.indexOf(needle, offset) === offset) {
+    offset = offset + needleLength;
+  }
+  return haystack.slice(offset);
+}
+
+/**
+ * Removes all occurrences of needle from the end of haystack
+ * @param haystack string to trim
+ * @param needle the thing to trim
+ * @returns the string trimmed from the right side
+ */
+export function rtrim(haystack: string, needle: string): string {
+  if (!haystack || !needle) {
+    return haystack;
+  }
+
+  const needleLength = needle.length,
+    haystackLen = haystack.length;
+
+  if (needleLength === 0 || haystackLen === 0) {
+    return haystack;
+  }
+
+  let offset = haystackLen,
+    idx = -1;
+
+  while (true) {
+    idx = haystack.lastIndexOf(needle, offset - 1);
+    if (idx === -1 || idx + needleLength !== offset) {
+      break;
+    }
+    if (idx === 0) {
+      return "";
+    }
+    offset = idx;
+  }
+
+  return haystack.slice(0, offset);
+}
+
+/**
+ * Removes all occurrences of needle from the start and the end of haystack
+ * @param haystack string to trim
+ * @param needle the thing to trim
+ * @returns the string trimmed from the right and left side
+ */
+export function trim(haystack: string, needle: string): string {
+  const trimmed = ltrim(haystack, needle);
+  return rtrim(trimmed, needle);
+}

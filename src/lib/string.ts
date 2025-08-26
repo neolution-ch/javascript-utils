@@ -64,3 +64,12 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
 
   return `${value.slice(0, maxLength)}${suffix}`;
 }
+
+/**
+ * Splits the string at line breaks
+ * @param str the string to split
+ * @returns the individual lines as an array
+ */
+export function splitLine(str: string): string[] {
+  return str.split(/\r\n|\r|\n/);
+}

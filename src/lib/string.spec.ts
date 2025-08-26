@@ -122,27 +122,28 @@ describe("string tests", () => {
   });
 
   test.each([
-    ["", " ", ""],
-    ["", "", ""],
-    ["hello world", "", "hello world"],
+    [null as unknown as string, " ", null as unknown as string],
+    [undefined as unknown as string, " ", undefined as unknown as string],
+    ["hello world", "hello world", ""],
+    ["hello world", " ", "hello world"],
     [" hello world", " ", "hello world"],
   ])("left trim", (haystack, needle, expected) => {
     expect(ltrim(haystack, needle)).toBe(expected);
   });
 
   test.each([
-    ["", " ", ""],
-    ["", "", ""],
+    [null as unknown as string, " ", null as unknown as string],
+    [undefined as unknown as string, " ", undefined as unknown as string],
     ["hello world", "hello world", ""],
-    ["hello world", "", "hello world"],
     ["hello world ", " ", "hello world"],
+    ["hello world", " ", "hello world"],
   ])("right trim", (haystack, needle, expected) => {
     expect(rtrim(haystack, needle)).toBe(expected);
   });
 
   test.each([
-    ["", " ", ""],
-    ["", "", ""],
+    [null as unknown as string, " ", null as unknown as string],
+    [undefined as unknown as string, " ", undefined as unknown as string],
     ["hello world", "", "hello world"],
     [" hello world ", " ", "hello world"],
   ])("trim", (haystack, needle, expected) => {

@@ -72,8 +72,6 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
  * @returns the string trimmed from the left side
  */
 export function ltrim(haystack: string, needle: string): string {
-  if (!haystack || !needle) return haystack;
-
   const needleLength = needle.length;
   if (needleLength === 0 || haystack.length === 0) {
     return haystack;
@@ -94,18 +92,14 @@ export function ltrim(haystack: string, needle: string): string {
  * @returns the string trimmed from the right side
  */
 export function rtrim(haystack: string, needle: string): string {
-  if (!haystack || !needle) {
-    return haystack;
-  }
-
   const needleLength = needle.length,
-    haystackLen = haystack.length;
+    haystackLength = haystack.length;
 
-  if (needleLength === 0 || haystackLen === 0) {
+  if (needleLength === 0 || haystackLength === 0) {
     return haystack;
   }
 
-  let offset = haystackLen,
+  let offset = haystackLength,
     idx = -1;
 
   while (true) {

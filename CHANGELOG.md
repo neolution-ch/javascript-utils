@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2025-08-26
+
+### Added
+
+- `splitLine` string utility functions
+
+## [2.1.0] - 2025-08-26
+
+### Added
+
+- `ltrim`, `ltrim` and `ltrim` string type utility functions
+
 ## [2.0.0] - 2025-07-29
 
 ### Added

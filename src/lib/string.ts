@@ -132,3 +132,12 @@ export function trim(haystack: string, needle: string): string {
   const trimmed = ltrim(haystack, needle);
   return rtrim(trimmed, needle);
 }
+
+/**
+ * Splits the string at line breaks
+ * @param str the string to split
+ * @returns the individual lines as an array
+ */
+export function splitLine(str: string): string[] {
+  return str.split(/\r\n|\r|\n/);
+}

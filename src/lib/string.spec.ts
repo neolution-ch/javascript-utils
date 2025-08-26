@@ -1,4 +1,4 @@
-import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate } from "./string";
+import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate, splitLine } from "./string";
 
 describe("string tests", () => {
   test.each([
@@ -119,5 +119,22 @@ describe("string tests", () => {
     ["short", 10, "short"],
   ])("truncate without suffix parameter", (value, maxLength, expected) => {
     expect(truncate(value, maxLength)).toBe(expected);
+  });
+
+  test.each([["hello world", ["hello world"]]])("splitLine with single line", (str, expected) => {
+    expect(splitLine(str)).toStrictEqual(expected);
+  });
+
+  test.each([
+    ["hello world", ["hello world"]],
+    ["hello world\nhello world\nhello world", ["hello world", "hello world", "hello world"]],
+    ["hello world\rhello world\rhello world", ["hello world", "hello world", "hello world"]],
+    ["hello world\r\nhello world\r\nhello world", ["hello world", "hello world", "hello world"]],
+  ])("splitLine", (str, expected) => {
+    expect(splitLine(str)).toStrictEqual(expected);
+  });
+
+  test.each([["", [""]]])("splitLine with empty strings", (str, expected) => {
+    expect(splitLine(str)).toStrictEqual(expected);
   });
 });

@@ -134,7 +134,19 @@ describe("string tests", () => {
     expect(splitLine(str)).toStrictEqual(expected);
   });
 
-  test.each([["", [""]]])("splitLine with empty strings", (str, expected) => {
+  test.each([
+    ["", []],
+    [null as unknown as string, []],
+    [undefined as unknown as string, []],
+  ])("splitLine with empty strings", (str, expected) => {
     expect(splitLine(str)).toStrictEqual(expected);
+  });
+
+  test.each([
+    [null as unknown as string, []],
+    [undefined as unknown as string, []],
+    ["hello world\n", ["hello world"]],
+  ])("splitLine with the option to remove empty entries", (str, expected) => {
+    expect(splitLine(str, true)).toEqual(expected);
   });
 });

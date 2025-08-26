@@ -68,8 +68,16 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
 /**
  * Splits the string at line breaks
  * @param str the string to split
+ * @param removeEmptyEntries the option to remove empty entries
  * @returns the individual lines as an array
  */
-export function splitLine(str: string): string[] {
+export function splitLine(str: string, removeEmptyEntries: boolean = false): string[] {
+  if (isNullOrEmpty(str)) {
+    return [];
+  }
+
+  if (removeEmptyEntries) {
+    return str.split(/\r\n|\r|\n/).filter((line) => !isNullOrWhitespace(line));
+  }
   return str.split(/\r\n|\r|\n/);
 }

@@ -64,3 +64,34 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
 
   return `${value.slice(0, maxLength)}${suffix}`;
 }
+
+/**
+ * Validation of Social insurance number with regex and checking of checksum
+ * Validation according to https://www.sozialversicherungsnummer.ch/aufbau-neu.htm
+ * @param socialInsuranceNumber The social insurance number to check
+ * @returns the result if the social insurance number is valid or not
+ */
+export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string): boolean {
+  const regex = new RegExp(/[7][5][6][.][\d]{4}[.][\d]{4}[.][\d]{2}$/);
+  if (regex.test(socialInsuranceNumber) && !isNullOrEmpty(socialInsuranceNumber)) {
+    //todo check checksum
+    const number = socialInsuranceNumber.slice(0, -1);
+
+    const reversedNumber = [...number.split(".").join("")].reverse().join("");
+    const reversedNumberArray = [...reversedNumber];
+    let sum = 0;
+    for (const [i, element] of reversedNumberArray.entries()) {
+      sum += i % 2 === 0 ? Number(element) * 3 : Number(element) * 1;
+    }
+
+    const checksum = Math.ceil(sum / 10) * 10 - sum;
+    const checknumber = Number.parseInt(socialInsuranceNumber.slice(-1));
+
+    if (checksum !== checknumber) {
+      return false;
+    }
+    return true;
+  } else {
+    return false;
+  }
+}

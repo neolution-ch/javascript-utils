@@ -129,7 +129,7 @@ describe("string tests", () => {
     ["ch93 0076 2011 6238 5295 7", false],
     ["DE93 0076 2011 6238 5295 7", false],
     ["CH93 0076 2011 6238 5295 7", true],
-  ])("Is IBAN valid", (unformattedIbanNumber, expected) => {
+  ])("Is Swiss IBAN valid", (unformattedIbanNumber, expected) => {
     expect(isValidSwissIbanNumber(unformattedIbanNumber)).toBe(expected);
   });
 });

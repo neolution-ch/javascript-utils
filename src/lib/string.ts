@@ -72,9 +72,9 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
  * @returns the result if the social insurance number is valid or not
  */
 export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string): boolean {
-  const regex = new RegExp(/[7][5][6][.][\d]{4}[.][\d]{4}[.][\d]{2}$/);
-  if (regex.test(socialInsuranceNumber) && !isNullOrEmpty(socialInsuranceNumber)) {
-    //todo check checksum
+  if (!isNullOrEmpty(socialInsuranceNumber)) {
+    const compactInsuranceNumber = socialInsuranceNumber.replaceAll(/[\s.]+/g, "");
+    if (!/^756\d{10}$/.test(compactInsuranceNumber)) return false;
     const number = socialInsuranceNumber.slice(0, -1);
 
     const reversedNumber = [...number.split(".").join("")].reverse().join("");
@@ -91,7 +91,6 @@ export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string):
       return false;
     }
     return true;
-  } else {
-    return false;
   }
+  return false;
 }

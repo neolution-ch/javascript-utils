@@ -80,7 +80,7 @@ export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string):
     return false;
   }
   const number = compactInsuranceNumber.slice(0, -1);
-  const reversedNumber = [...number.split(".").join("")].reverse().join("");
+  const reversedNumber = [...number].reverse().join("");
   const reversedNumberArray = [...reversedNumber];
   let sum = 0;
   for (const [i, element] of reversedNumberArray.entries()) {

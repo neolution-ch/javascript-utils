@@ -76,8 +76,6 @@ export function splitLine(str: string, removeEmptyEntries: boolean = false): str
     return [];
   }
 
-  if (removeEmptyEntries) {
-    return str.split(/\r\n|\r|\n/).filter((line) => !isNullOrWhitespace(line));
-  }
-  return str.split(/\r\n|\r|\n/);
+  const splitted = str.split(/\r\n|\r|\n/);
+  return removeEmptyEntries ? splitted.filter((line) => !isNullOrWhitespace(line)) : splitted;
 }

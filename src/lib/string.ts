@@ -75,7 +75,7 @@ export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string):
   if (!isNullOrEmpty(socialInsuranceNumber)) {
     const compactInsuranceNumber = socialInsuranceNumber.replaceAll(/[\s.]+/g, "");
     if (!/^756\d{10}$/.test(compactInsuranceNumber)) return false;
-    const number = socialInsuranceNumber.slice(0, -1);
+    const number = compactInsuranceNumber.slice(0, -1);
 
     const reversedNumber = [...number.split(".").join("")].reverse().join("");
     const reversedNumberArray = [...reversedNumber];
@@ -84,13 +84,10 @@ export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string):
       sum += i % 2 === 0 ? Number(element) * 3 : Number(element) * 1;
     }
 
-    const checksum = Math.ceil(sum / 10) * 10 - sum;
-    const checknumber = Number.parseInt(socialInsuranceNumber.slice(-1));
+    const checksum = (10 - (sum % 10)) % 10;
+    const checknumber = Number.parseInt(compactInsuranceNumber.slice(-1));
 
-    if (checksum !== checknumber) {
-      return false;
-    }
-    return true;
+    return checksum === checknumber;
   }
   return false;
 }

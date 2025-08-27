@@ -74,7 +74,7 @@ export function isValidSwissIbanNumber(iBanNumber: string): boolean {
   if (!isNullOrEmpty(iBanNumber)) {
     const compactIban = iBanNumber.replaceAll(/\s+/g, "");
     if (!/^CH\d{19}$/.test(compactIban)) return false;
-    const rearrangedIban = compactIban.slice(4) + compactIban.slice(0, 4).toString();
+    const rearrangedIban = compactIban.slice(4) + compactIban.slice(0, 4);
 
     const numericStr = Array.from(rearrangedIban, (ch) => {
       if (/[A-Z]/.test(ch)) {

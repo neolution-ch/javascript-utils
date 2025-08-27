@@ -66,7 +66,7 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
 }
 
 /**
- * Checks if the provided string is a valid swiss IBAN number
+ * Checks if the provided string is a valid Swiss IBAN number
  * @param iBanNumber The provided IBAN number to check
  * @returns The result of the IBAN number check
  */

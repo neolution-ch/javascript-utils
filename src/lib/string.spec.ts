@@ -126,8 +126,8 @@ describe("string tests", () => {
     [undefined as unknown as string, false],
     ["7569217076985", true],
     ["756.9217.0769.85", true],
-    ["756.1234.5678.99", false],
-    ["7561234567899", false],
+    ["756.1234.5678.91", false],
+    ["7561234567891", false],
     ["7000000000000", false],
   ])("check if ahv number is valid or not", (ahvNumber, expected) => {
     expect(isValidSwissSocialSecurityNumber(ahvNumber)).toBe(expected);

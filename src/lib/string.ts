@@ -72,22 +72,23 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
  * @returns The result if the social insurance number is valid or not
  */
 export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string): boolean {
-  if (!isNullOrEmpty(socialInsuranceNumber)) {
-    const compactInsuranceNumber = socialInsuranceNumber.replaceAll(/[\s.]+/g, "");
-    if (!/^756\d{10}$/.test(compactInsuranceNumber)) return false;
-    const number = compactInsuranceNumber.slice(0, -1);
-
-    const reversedNumber = [...number.split(".").join("")].reverse().join("");
-    const reversedNumberArray = [...reversedNumber];
-    let sum = 0;
-    for (const [i, element] of reversedNumberArray.entries()) {
-      sum += i % 2 === 0 ? Number(element) * 3 : Number(element) * 1;
-    }
-
-    const checksum = (10 - (sum % 10)) % 10;
-    const checknumber = Number.parseInt(compactInsuranceNumber.slice(-1));
-
-    return checksum === checknumber;
+  if (isNullOrEmpty(socialInsuranceNumber)) {
+    return false;
   }
-  return false;
+  const compactInsuranceNumber = socialInsuranceNumber.replaceAll(/[\s.]+/g, "");
+  if (!/^756\d{10}$/.test(compactInsuranceNumber)) {
+    return false;
+  }
+  const number = compactInsuranceNumber.slice(0, -1);
+  const reversedNumber = [...number.split(".").join("")].reverse().join("");
+  const reversedNumberArray = [...reversedNumber];
+  let sum = 0;
+  for (const [i, element] of reversedNumberArray.entries()) {
+    sum += i % 2 === 0 ? Number(element) * 3 : Number(element) * 1;
+  }
+
+  const checksum = (10 - (sum % 10)) % 10;
+  const checknumber = Number.parseInt(compactInsuranceNumber.slice(-1));
+
+  return checksum === checknumber;
 }

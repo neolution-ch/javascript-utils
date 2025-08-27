@@ -87,10 +87,7 @@ export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string):
     const checksum = Math.ceil(sum / 10) * 10 - sum;
     const checknumber = Number.parseInt(socialInsuranceNumber.slice(-1));
 
-    if (checksum !== checknumber) {
-      return false;
-    }
-    return true;
+    return checksum === checknumber;
   }
   return false;
 }

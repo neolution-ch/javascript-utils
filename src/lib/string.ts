@@ -66,10 +66,10 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
 }
 
 /**
- * Validation of Social insurance number with regex and checking of checksum
+ * Validation of Social insurance number with checking the checksum
  * Validation according to https://www.sozialversicherungsnummer.ch/aufbau-neu.htm
  * @param socialInsuranceNumber The social insurance number to check
- * @returns the result if the social insurance number is valid or not
+ * @returns The result if the social insurance number is valid or not
  */
 export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string): boolean {
   if (!isNullOrEmpty(socialInsuranceNumber)) {

@@ -84,6 +84,19 @@ export function isValidSwissIbanNumber(ibanNumber: string): boolean {
     return false;
   }
 
+  /**
+   * Validates a Swiss IBAN number.
+   *
+   * Steps:
+   * - The number must start with `CH`, be 21 digits long and follow one of the accepted formats:
+   * - `CHXX XXXX XXXX XXXX XXXX X`or `CHXXXXXXXXXXXXXXXXXXX`.
+   * - Remove all whitespaces.
+   * - Rearrange by moving the first 4 characters (CH + 2 check digits) to the end.
+   * - Replace letters with numbers: A=10, B=11, ..., Z=35.
+   * - Convert the resulting string to a large integer and calculate modulo 97.
+   * - The number is valid if the resto of the calculation equals 1.
+   */
+
   const compactIbanNumber = ibanNumber.replaceAll(" ", "");
   const rearrangedIban = compactIbanNumber.slice(4) + compactIbanNumber.slice(0, 4);
   const numericStr = rearrangedIban.replaceAll(/[A-Z]/g, (ch) => (ch.codePointAt(0)! - 55).toString());

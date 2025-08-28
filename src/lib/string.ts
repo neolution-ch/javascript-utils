@@ -79,12 +79,29 @@ export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string):
     return false;
   }
 
-  const socialInsuranceNumberWithDots = new RegExp(/^756.\d{4}.\d{4}.\d{2}$/);
-  const socialInsuranceNumberWithoutDots = new RegExp(/^756\d{10}$/);
+  const socialInsuranceNumberWithDots = new RegExp(/^756.?\d{4}.?\d{4}.?\d{2}$/);
 
-  if (!socialInsuranceNumberWithDots.test(socialInsuranceNumber) && !socialInsuranceNumberWithoutDots.test(socialInsuranceNumber)) {
+  if (!socialInsuranceNumberWithDots.test(socialInsuranceNumber)) {
     return false;
   }
+
+  /**
+   * Validates a Swiss social security number (AHV number).
+   *
+   * Validation steps:
+   * - The number must start with `756`, be 13 digits long, and follow one of the accepted formats:
+   *   - `756.XXXX.XXXX.XX` or `756XXXXXXXXXX`.
+   * - Remove dots → 13 digits remain.
+   * - The last digit is the check digit.
+   * - To calculate the check digit:
+   *   - Take the first 12 digits and reverse them.
+   *   - Multiply digits at even positions by 3, and digits at odd positions by 1.
+   *   - Sum all results.
+   *   - Look at the last digit of the sum (sum % 10).
+   *   - The check digit is the value needed to reach the next multiple of 10.
+   * - The number is valid if this check digit matches the last digit.
+   */
+
   const compactNumber = socialInsuranceNumber.replaceAll(".", "");
   const digits = compactNumber.slice(0, -1);
   const reversedDigits = [...digits].reverse().join("");

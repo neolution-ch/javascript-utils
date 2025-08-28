@@ -66,27 +66,28 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
 }
 
 /**
- * Checks if the provided string is a valid Swiss IBAN number
+ * Checks if the provided string is a valid swiss IBAN number
  * @param ibanNumber The provided IBAN number to check
+ * Must be in one of the following formats:
+ * - "CHXX XXXX XXXX XXXX XXXX X" with whitespaces
+ * - "CHXXXXXXXXXXXXXXXXXXX" without whitespaces
  * @returns The result of the IBAN number check
  */
 export function isValidSwissIbanNumber(ibanNumber: string): boolean {
   if (isNullOrWhitespace(ibanNumber)) {
     return false;
   }
-  const compactIban = ibanNumber.replaceAll(/\s+/g, "");
-  if (!/^CH\d{19}$/.test(compactIban)) {
+
+  const compactIbanNumberWithWhiteSpaces = new RegExp(/^CH\d{2}(?:\s?\d{4}){4}\s?\d{1}$/);
+  const compactIbanNumberWithoutWhiteSpaces = new RegExp(/^CH\d{19}$/);
+
+  if (!compactIbanNumberWithWhiteSpaces.test(ibanNumber) && !compactIbanNumberWithoutWhiteSpaces.test(ibanNumber)) {
     return false;
   }
-  const rearrangedIban = compactIban.slice(4) + compactIban.slice(0, 4);
-  const numericStr = Array.from(rearrangedIban, (ch) => {
-    if (/[A-Z]/.test(ch)) {
-      const code = ch.codePointAt(0);
-      // code is never undefined!
-      return (code! - 55).toString();
-    }
-    return ch;
-  }).join("");
+
+  const compactInsuranceNumber = ibanNumber.replaceAll(/[\s.]+/g, "");
+  const rearrangedIban = compactInsuranceNumber.slice(4) + compactInsuranceNumber.slice(0, 4);
+  const numericStr = rearrangedIban.replaceAll(/[A-Z]/g, (ch) => (ch.codePointAt(0)! - 55).toString());
 
   let restOfCalculation = 0;
   for (const digit of numericStr) {

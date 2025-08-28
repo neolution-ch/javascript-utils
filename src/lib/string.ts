@@ -79,13 +79,12 @@ export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string):
     return false;
   }
 
-  const socialInsuranceNumberWithDots = new RegExp(/[7][5][6][.][\d]{4}[.][\d]{4}[.][\d]{2}$/);
+  const socialInsuranceNumberWithDots = new RegExp(/^756.\d{4}.\d{4}.\d{2}$/);
   const socialInsuranceNumberWithoutDots = new RegExp(/^756\d{10}$/);
 
   if (!socialInsuranceNumberWithDots.test(socialInsuranceNumber) && !socialInsuranceNumberWithoutDots.test(socialInsuranceNumber)) {
     return false;
   }
-
   const compactNumber = socialInsuranceNumber.replaceAll(/[\s.]+/g, "");
   const digits = compactNumber.slice(0, -1);
   const reversedDigits = [...digits].reverse().join("");

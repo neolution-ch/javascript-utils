@@ -72,7 +72,7 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
  * @returns The result if the social insurance number is valid or not
  */
 export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string): boolean {
-  if (isNullOrEmpty(socialInsuranceNumber)) {
+  if (isNullOrWhitespace(socialInsuranceNumber)) {
     return false;
   }
   const compactInsuranceNumber = socialInsuranceNumber.replaceAll(/[\s.]+/g, "");

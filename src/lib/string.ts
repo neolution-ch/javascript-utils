@@ -89,7 +89,7 @@ export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string):
    * Validates a Swiss social security number (AHV number).
    *
    * Validation steps:
-   * - The number must start with `756`, be 13 digits long, and follow one of the accepted formats:
+   * - The number must start with `756`, be 13 digits long and follow one of the accepted formats:
    *   - `756.XXXX.XXXX.XX` or `756XXXXXXXXXX`.
    * - Remove dots → 13 digits remain.
    * - The last digit is the check digit.

@@ -79,14 +79,13 @@ export function isValidSwissIbanNumber(ibanNumber: string): boolean {
   }
 
   const compactIbanNumberWithWhiteSpaces = new RegExp(/^CH\d{2}(?:\s?\d{4}){4}\s?\d{1}$/);
-  const compactIbanNumberWithoutWhiteSpaces = new RegExp(/^CH\d{19}$/);
 
-  if (!compactIbanNumberWithWhiteSpaces.test(ibanNumber) && !compactIbanNumberWithoutWhiteSpaces.test(ibanNumber)) {
+  if (!compactIbanNumberWithWhiteSpaces.test(ibanNumber)) {
     return false;
   }
 
-  const compactInsuranceNumber = ibanNumber.replaceAll(/[\s.]+/g, "");
-  const rearrangedIban = compactInsuranceNumber.slice(4) + compactInsuranceNumber.slice(0, 4);
+  const compactIbanNumber = ibanNumber.replaceAll(" ", "");
+  const rearrangedIban = compactIbanNumber.slice(4) + compactIbanNumber.slice(0, 4);
   const numericStr = rearrangedIban.replaceAll(/[A-Z]/g, (ch) => (ch.codePointAt(0)! - 55).toString());
 
   let restOfCalculation = 0;

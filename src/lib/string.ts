@@ -85,7 +85,7 @@ export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string):
   if (!socialInsuranceNumberWithDots.test(socialInsuranceNumber) && !socialInsuranceNumberWithoutDots.test(socialInsuranceNumber)) {
     return false;
   }
-  const compactNumber = socialInsuranceNumber.replaceAll(/[\s.]+/g, "");
+  const compactNumber = socialInsuranceNumber.replaceAll(".", "");
   const digits = compactNumber.slice(0, -1);
   const reversedDigits = [...digits].reverse().join("");
   const reversedDigitsArray = [...reversedDigits];

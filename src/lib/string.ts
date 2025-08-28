@@ -67,14 +67,14 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
 
 /**
  * Checks if the provided string is a valid Swiss IBAN number
- * @param iBanNumber The provided IBAN number to check
+ * @param ibanNumber The provided IBAN number to check
  * @returns The result of the IBAN number check
  */
-export function isValidSwissIbanNumber(iBanNumber: string): boolean {
-  if (isNullOrEmpty(iBanNumber)) {
+export function isValidSwissIbanNumber(ibanNumber: string): boolean {
+  if (isNullOrWhitespace(ibanNumber)) {
     return false;
   }
-  const compactIban = iBanNumber.replaceAll(/\s+/g, "");
+  const compactIban = ibanNumber.replaceAll(/\s+/g, "");
   if (!/^CH\d{19}$/.test(compactIban)) {
     return false;
   }

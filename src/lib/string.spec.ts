@@ -125,13 +125,13 @@ describe("string tests", () => {
     [null as unknown as string, false],
     [undefined as unknown as string, false],
     ["7569217076985", true],
+    ["7561234567891", false],
     ["756.9217.0769.85", true],
     ["756.1234.5678.91", false],
-    ["7 5......69 2...1707......69.85", true],
+    ["756.1234.5678.91", false],
+    ["7 5......69 2...1707......69.85", false],
     ["7 5......61 2...3456......7......89 1", false],
-    ["7561234567891", false],
-    ["7000000000000", false],
-  ])("check if ahv number is valid or not", (ahvNumber, expected) => {
+  ])("check if the social insurance number is valid or not", (ahvNumber, expected) => {
     expect(isValidSwissSocialSecurityNumber(ahvNumber)).toBe(expected);
   });
 });

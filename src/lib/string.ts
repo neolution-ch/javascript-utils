@@ -66,29 +66,38 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
 }
 
 /**
- * Validation of Social insurance number with checking the checksum
+ * Validation of social insurance number with checking the checksum
  * Validation according to https://www.sozialversicherungsnummer.ch/aufbau-neu.htm
  * @param socialInsuranceNumber The social insurance number to check
+ * Must be in one of the following formats:
+ * - "756.XXXX.XXXX.XX" with dots as seperators
+ * - "756XXXXXXXXXX" with digits only
  * @returns The result if the social insurance number is valid or not
  */
 export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string): boolean {
   if (isNullOrWhitespace(socialInsuranceNumber)) {
     return false;
   }
-  const compactInsuranceNumber = socialInsuranceNumber.replaceAll(/[\s.]+/g, "");
-  if (!/^756\d{10}$/.test(compactInsuranceNumber)) {
+
+  const socialInsuranceNumberWithDots = new RegExp(/[7][5][6][.][\d]{4}[.][\d]{4}[.][\d]{2}$/);
+  const socialInsuranceNumberWithoutDots = new RegExp(/^756\d{10}$/);
+
+  if (!socialInsuranceNumberWithDots.test(socialInsuranceNumber) && !socialInsuranceNumberWithoutDots.test(socialInsuranceNumber)) {
     return false;
   }
-  const number = compactInsuranceNumber.slice(0, -1);
-  const reversedNumber = [...number].reverse().join("");
-  const reversedNumberArray = [...reversedNumber];
+
+  const compactNumber = socialInsuranceNumber.replaceAll(/[\s.]+/g, "");
+  const digits = compactNumber.slice(0, -1);
+  const reversedDigits = [...digits].reverse().join("");
+  const reversedDigitsArray = [...reversedDigits];
+
   let sum = 0;
-  for (const [i, element] of reversedNumberArray.entries()) {
+  for (const [i, element] of reversedDigitsArray.entries()) {
     sum += i % 2 === 0 ? Number(element) * 3 : Number(element) * 1;
   }
 
   const checksum = (10 - (sum % 10)) % 10;
-  const checknumber = Number.parseInt(compactInsuranceNumber.slice(-1));
+  const checknumber = Number.parseInt(compactNumber.slice(-1));
 
   return checksum === checknumber;
 }

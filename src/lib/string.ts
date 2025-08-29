@@ -70,7 +70,7 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
  * Validation according to https://www.sozialversicherungsnummer.ch/aufbau-neu.htm
  * @param socialInsuranceNumber The social insurance number to check
  * Must be in one of the following formats:
- * - "756.XXXX.XXXX.XX" with dots as seperators
+ * - "756.XXXX.XXXX.XX" with dots as separators
  * - "756XXXXXXXXXX" with digits only
  * @returns The result if the social insurance number is valid or not
  */

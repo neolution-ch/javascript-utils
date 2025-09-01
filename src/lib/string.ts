@@ -79,7 +79,7 @@ export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string):
     return false;
   }
 
-  const socialInsuranceNumberWithDots = new RegExp(/^756.?\d{4}.?\d{4}.?\d{2}$/);
+  const socialInsuranceNumberWithDots = new RegExp(/^756\.?\d{4}\.?\d{4}\.?\d{2}$/);
 
   if (!socialInsuranceNumberWithDots.test(socialInsuranceNumber)) {
     return false;

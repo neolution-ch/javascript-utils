@@ -75,45 +75,55 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
  * @returns The result if the social insurance number is valid or not
  */
 export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string): boolean {
+  // 1. Check if input is empty or only whitespace
   if (isNullOrWhitespace(socialInsuranceNumber)) {
     return false;
   }
 
-  const socialInsuranceNumberWithDots = new RegExp(/^756\.?\d{4}\.?\d{4}\.?\d{2}$/);
+  /**
+   * 2. Check if input matches accepted formats:
+   *    - With dots: 756.XXXX.XXXX.XX
+   *    - Without dots: 756XXXXXXXXXX
+   */
+  const socialInsuranceNumberWithDots = new RegExp(/^756\.\d{4}\.\d{4}\.\d{2}$/);
+  const socialInsuranceNumberWithoutDots = new RegExp(/^756\d{10}$/);
 
-  if (!socialInsuranceNumberWithDots.test(socialInsuranceNumber)) {
+  if (!socialInsuranceNumberWithDots.test(socialInsuranceNumber) && !socialInsuranceNumberWithoutDots.test(socialInsuranceNumber)) {
     return false;
   }
 
-  /**
-   * Validates a Swiss social security number (AHV number).
-   *
-   * Validation steps:
-   * - The number must start with 756, be 13 digits long and follow one of the accepted formats:
-   *   - "756.XXXX.XXXX.XX" or "756XXXXXXXXXX".
-   * - Remove dots → 13 digits remain.
-   * - The last digit is the check digit.
-   * - To calculate the check digit:
-   *   - Take the first 12 digits and reverse them.
-   *   - Multiply digits at even positions by 3, and digits at odd positions by 1.
-   *   - Sum all results.
-   *   - Look at the last digit of the sum (sum % 10).
-   *   - The check digit is the value needed to reach the next multiple of 10.
-   * - The number is valid if this check digit matches the last digit.
-   */
-
+  // 3. Remove all dots → get a string of 13 digits
   const compactNumber = socialInsuranceNumber.replaceAll(".", "");
+
+  /**
+   * 4. Separate digits for checksum calculation
+   *    - first 12 digits: used to calculate checksum
+   *    - last digit: actual check digit
+   */
   const digits = compactNumber.slice(0, -1);
   const reversedDigits = [...digits].reverse().join("");
   const reversedDigitsArray = [...reversedDigits];
 
+  /*
+   * 5. Calculate weighted sum for checksum
+   *    - Even positions (after reversing) ×3
+   *    - Odd positions ×1
+   */
   let sum = 0;
   for (const [i, element] of reversedDigitsArray.entries()) {
     sum += i % 2 === 0 ? Number(element) * 3 : Number(element) * 1;
   }
 
+  /*
+   * 6. Calculate expected check digit
+   *    - Check digit = value to reach next multiple of 10
+   */
   const checksum = (10 - (sum % 10)) % 10;
   const checknumber = Number.parseInt(compactNumber.slice(-1));
 
+  /*
+   * 7. Compare calculated check digit with actual last digit
+   *    - If equal → valid AHV number
+   */
   return checksum === checknumber;
 }

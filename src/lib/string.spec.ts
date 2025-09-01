@@ -126,6 +126,7 @@ describe("string tests", () => {
     [undefined as unknown as string, false],
     ["7561234567891", false],
     ["7569217076985", true],
+    ["756.92170769.85", false],
     ["756.9217.0769.85", true],
     ["756..9217.0769.85", false],
     ["756.1234.5678.91", false],

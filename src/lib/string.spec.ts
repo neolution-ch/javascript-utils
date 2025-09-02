@@ -126,6 +126,7 @@ describe("string tests", () => {
     [undefined as unknown as string, false],
     ["CH9300762011623852957", true],
     ["CH93 0076 2011 6238 5295 7", true],
+    ["CH930076 20116238 5295 7", false],
     ["CH93-0076-2011-6238-5295-7", false],
     ["CH93 0000 0000 0000 0000 1", false],
     ["ch93 0076 2011 6238 5295 7", false],

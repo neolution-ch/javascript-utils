@@ -74,37 +74,38 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
  * @returns The result of the IBAN number check
  */
 export function isValidSwissIbanNumber(ibanNumber: string): boolean {
+  // 1. Reject null, undefined or whitespace-only strings
   if (isNullOrWhitespace(ibanNumber)) {
     return false;
   }
 
-  const compactIbanNumberWithWhiteSpaces = new RegExp(/^CH\d{2}(?:\s?\d{4}){4}\s?\d{1}$/);
+  // 2. Define allowed strict formats
+  //    - with spaces: "CHXX XXXX XXXX XXXX XXXX X"
+  const compactIbanNumberWithWhiteSpaces = new RegExp(/^CH\d{2}(?: \d{4}){4} \d{1}$/);
+  //    - without spaces: "CHXXXXXXXXXXXXXXXXXXX"
+  const compactIbanNumberWithoutWhiteSpaces = new RegExp(/^CH\d{19}$/);
 
-  if (!compactIbanNumberWithWhiteSpaces.test(ibanNumber)) {
+  // 3. Check if input matches one of the allowed formats
+  if (!compactIbanNumberWithWhiteSpaces.test(ibanNumber) && !compactIbanNumberWithoutWhiteSpaces.test(ibanNumber)) {
     return false;
   }
 
-  /**
-   * Validates a Swiss IBAN number.
-   *
-   * Steps:
-   * - The number must start with `CH`, be 21 digits long and follow one of the accepted formats:
-   * - `CHXX XXXX XXXX XXXX XXXX X`or `CHXXXXXXXXXXXXXXXXXXX`.
-   * - Remove all whitespaces.
-   * - Rearrange by moving the first 4 characters (CH + 2 check digits) to the end.
-   * - Replace letters with numbers: A=10, B=11, ..., Z=35.
-   * - Convert the resulting string to a large integer and calculate modulo 97.
-   * - The number is valid if the resto of the calculation equals 1.
-   */
-
+  // 4. Remove all spaces to get a compact IBAN string
   const compactIbanNumber = ibanNumber.replaceAll(" ", "");
+
+  // 5. Rearrange IBAN for checksum calculation
+  //    - move first 4 characters (CH + 2 check digits) to the end
   const rearrangedIban = compactIbanNumber.slice(4) + compactIbanNumber.slice(0, 4);
+
+  // 6. Replace letters with numbers (A=10, B=11, ..., Z=35)
   const numericStr = rearrangedIban.replaceAll(/[A-Z]/g, (ch) => (ch.codePointAt(0)! - 55).toString());
 
+  // 7. Perform modulo 97 calculation to validate IBAN
   let restOfCalculation = 0;
   for (const digit of numericStr) {
     restOfCalculation = (restOfCalculation * 10 + Number(digit)) % 97;
   }
 
+  // 8. IBAN is valid only if the remainder equals 1
   return restOfCalculation === 1;
 }

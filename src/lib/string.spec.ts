@@ -1,4 +1,12 @@
-import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate, isValidSwissSocialSecurityNumber } from "./string";
+import {
+  isNullOrEmpty,
+  isNullOrWhitespace,
+  capitalize,
+  uncapitalize,
+  truncate,
+  isValidSwissIbanNumber,
+  isValidSwissSocialSecurityNumber,
+} from "./string";
 
 describe("string tests", () => {
   test.each([
@@ -119,6 +127,20 @@ describe("string tests", () => {
     ["short", 10, "short"],
   ])("truncate without suffix parameter", (value, maxLength, expected) => {
     expect(truncate(value, maxLength)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, false],
+    [undefined as unknown as string, false],
+    ["CH9300762011623852957", true],
+    ["CH93 0076 2011 6238 5295 7", true],
+    ["CH930076 20116238 5295 7", false],
+    ["CH93-0076-2011-6238-5295-7", false],
+    ["CH93 0000 0000 0000 0000 1", false],
+    ["ch93 0076 2011 6238 5295 7", false],
+    ["DE93 0076 2011 6238 5295 7", false],
+  ])("check if this swiss IBAN is valid or not", (unformattedIbanNumber, expected) => {
+    expect(isValidSwissIbanNumber(unformattedIbanNumber)).toBe(expected);
   });
 
   test.each([

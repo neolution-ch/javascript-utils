@@ -1,4 +1,12 @@
-import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate, isValidSwissIbanNumber ,isValidSwissSocialSecurityNumber } from "./string";
+import {
+  isNullOrEmpty,
+  isNullOrWhitespace,
+  capitalize,
+  uncapitalize,
+  truncate,
+  isValidSwissIbanNumber,
+  isValidSwissSocialSecurityNumber,
+} from "./string";
 
 describe("string tests", () => {
   test.each([
@@ -134,7 +142,7 @@ describe("string tests", () => {
   ])("check if this swiss IBAN is valid or not", (unformattedIbanNumber, expected) => {
     expect(isValidSwissIbanNumber(unformattedIbanNumber)).toBe(expected);
   });
-  
+
   test.each([
     [null as unknown as string, false],
     [undefined as unknown as string, false],

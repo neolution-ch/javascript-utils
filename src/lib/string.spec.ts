@@ -1,4 +1,13 @@
-import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate, splitLine } from "./string";
+import {
+  isNullOrEmpty,
+  isNullOrWhitespace,
+  capitalize,
+  uncapitalize,
+  truncate,
+  splitLine,
+  isValidSwissIbanNumber,
+  isValidSwissSocialSecurityNumber,
+} from "./string";
 
 describe("string tests", () => {
   test.each([
@@ -126,7 +135,11 @@ describe("string tests", () => {
   });
 
   test.each([
+    ["", []],
+    [null as unknown as string, []],
+    [undefined as unknown as string, []],
     ["hello world", ["hello world"]],
+    ["hello world\n", ["hello world"]],
     ["hello world\nhello world\nhello world", ["hello world", "hello world", "hello world"]],
     ["hello world\rhello world\rhello world", ["hello world", "hello world", "hello world"]],
     ["hello world\r\nhello world\r\nhello world", ["hello world", "hello world", "hello world"]],
@@ -135,18 +148,31 @@ describe("string tests", () => {
   });
 
   test.each([
-    ["", []],
-    [null as unknown as string, []],
-    [undefined as unknown as string, []],
-  ])("splitLine with empty strings", (str, expected) => {
-    expect(splitLine(str)).toStrictEqual(expected);
+    [null as unknown as string, false],
+    [undefined as unknown as string, false],
+    ["CH9300762011623852957", true],
+    ["CH93 0076 2011 6238 5295 7", true],
+    ["CH930076 20116238 5295 7", false],
+    ["CH93-0076-2011-6238-5295-7", false],
+    ["CH93 0000 0000 0000 0000 1", false],
+    ["ch93 0076 2011 6238 5295 7", false],
+    ["DE93 0076 2011 6238 5295 7", false],
+  ])("check if this swiss IBAN is valid or not", (unformattedIbanNumber, expected) => {
+    expect(isValidSwissIbanNumber(unformattedIbanNumber)).toBe(expected);
   });
 
   test.each([
-    [null as unknown as string, []],
-    [undefined as unknown as string, []],
-    ["hello world\n", ["hello world"]],
-  ])("splitLine with the option to remove empty entries", (str, expected) => {
-    expect(splitLine(str, true)).toEqual(expected);
+    [null as unknown as string, false],
+    [undefined as unknown as string, false],
+    ["7561234567891", false],
+    ["7569217076985", true],
+    ["756.92170769.85", false],
+    ["756.9217.0769.85", true],
+    ["756..9217.0769.85", false],
+    ["756.1234.5678.91", false],
+    ["test756.9217.0769.85", false],
+    ["7.56..9217...0769.85", false],
+  ])("check if the social insurance number is valid or not", (ahvNumber, expected) => {
+    expect(isValidSwissSocialSecurityNumber(ahvNumber)).toBe(expected);
   });
 });

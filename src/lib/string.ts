@@ -66,6 +66,21 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
 }
 
 /**
+ * Splits the string at line breaks
+ * @param str the string to split
+ * @param removeEmptyEntries the option to remove empty entries
+ * @returns the individual lines as an array
+ */
+export function splitLine(str: string, removeEmptyEntries: boolean = false): string[] {
+  if (isNullOrEmpty(str)) {
+    return [];
+  }
+
+  const splitted = str.split(/\r\n|\r|\n/);
+  return removeEmptyEntries ? splitted.filter((line) => !isNullOrWhitespace(line)) : splitted;
+}
+
+/**
  * Checks if the provided string is a valid swiss IBAN number
  * @param ibanNumber The provided IBAN number to check
  * Must be in one of the following formats:

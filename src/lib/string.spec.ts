@@ -130,8 +130,11 @@ describe("string tests", () => {
     expect(truncate(value, maxLength)).toBe(expected);
   });
 
-  test.each([["hello world", ["hello world"]]])("splitLine with single line", (str, expected) => {
-    expect(splitLine(str)).toStrictEqual(expected);
+  test.each([
+    ["", []],
+    ["hello world\n", ["hello world", ""]],
+  ])("splitLine without the parameter to remove the empty entries", (str, expected) => {
+    expect(splitLine(str)).toEqual(expected);
   });
 
   test.each([
@@ -143,8 +146,8 @@ describe("string tests", () => {
     ["hello world\nhello world\nhello world", ["hello world", "hello world", "hello world"]],
     ["hello world\rhello world\rhello world", ["hello world", "hello world", "hello world"]],
     ["hello world\r\nhello world\r\nhello world", ["hello world", "hello world", "hello world"]],
-  ])("splitLine", (str, expected) => {
-    expect(splitLine(str)).toStrictEqual(expected);
+  ])("splitLine with the parameter to remove empty entries", (str, expected) => {
+    expect(splitLine(str, true)).toEqual(expected);
   });
 
   test.each([

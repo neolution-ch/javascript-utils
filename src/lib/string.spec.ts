@@ -4,6 +4,9 @@ import {
   capitalize,
   uncapitalize,
   truncate,
+  ltrim,
+  rtrim,
+  trim,
   isValidSwissIbanNumber,
   isValidSwissSocialSecurityNumber,
 } from "./string";
@@ -157,7 +160,8 @@ describe("string tests", () => {
   ])("trim", (haystack, needle, expected) => {
     expect(trim(haystack, needle)).toBe(expected);
   });
-    
+
+  test.each([
     [null as unknown as string, false],
     [undefined as unknown as string, false],
     ["CH9300762011623852957", true],

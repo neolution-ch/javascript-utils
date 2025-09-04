@@ -132,7 +132,11 @@ describe("string tests", () => {
 
   test.each([
     ["", []],
+    ["hello world", ["hello world"]],
     ["hello world\n", ["hello world", ""]],
+    ["hello world\n\n", ["hello world", "", ""]],
+    ["hello world\r\r", ["hello world", "", ""]],
+    ["hello world\r\n\r\n", ["hello world", "", ""]],
   ])("splitLine without the parameter to remove the empty entries", (str, expected) => {
     expect(splitLine(str)).toEqual(expected);
   });
@@ -143,9 +147,14 @@ describe("string tests", () => {
     [undefined as unknown as string, []],
     ["hello world", ["hello world"]],
     ["hello world\n", ["hello world"]],
-    ["hello world\nhello world\nhello world", ["hello world", "hello world", "hello world"]],
-    ["hello world\rhello world\rhello world", ["hello world", "hello world", "hello world"]],
-    ["hello world\r\nhello world\r\nhello world", ["hello world", "hello world", "hello world"]],
+    ["hello world\n\n", ["hello world"]],
+    ["hello world\r\r", ["hello world"]],
+    ["hello world\r\n\r\n", ["hello world"]],
+    ["hello world 1\nhello world 2\nhello world 3", ["hello world 1", "hello world 2", "hello world 3"]],
+    ["hello world 1\nhello world 2\rhello world 3", ["hello world 1", "hello world 2", "hello world 3"]],
+    ["hello world 1\rhello world 2\rhello world 3", ["hello world 1", "hello world 2", "hello world 3"]],
+    ["hello world 1\r\nhello world 2\r\nhello world 3", ["hello world 1", "hello world 2", "hello world 3"]],
+    ["hello world 1\r\nhello world 2\nhello world 3\rhello world 4", ["hello world 1", "hello world 2", "hello world 3", "hello world 4"]],
   ])("splitLine with the parameter to remove empty entries", (str, expected) => {
     expect(splitLine(str, true)).toEqual(expected);
   });

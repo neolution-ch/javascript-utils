@@ -1,4 +1,4 @@
-import { formatSwissSocialInsuranceNumber, isValidSwissIbanNumber, isValidSwissSocialSecurityNumber } from "./swissStandards";
+import { formatSwissSocialInsuranceNumber, isValidSwissIbanNumber, isValidSwissSocialInsuranceNumber } from "./swissStandards";
 
 describe("Swiss standards test", () => {
   test.each([
@@ -27,7 +27,7 @@ describe("Swiss standards test", () => {
     ["test756.9217.0769.85", false],
     ["7.56..9217...0769.85", false],
   ])("check if the social insurance number is valid or not", (ahvNumber, expected) => {
-    expect(isValidSwissSocialSecurityNumber(ahvNumber)).toBe(expected);
+    expect(isValidSwissSocialInsuranceNumber(ahvNumber)).toBe(expected);
   });
 
   test.each([

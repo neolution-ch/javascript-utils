@@ -1,13 +1,4 @@
-import {
-  isNullOrEmpty,
-  isNullOrWhitespace,
-  capitalize,
-  uncapitalize,
-  truncate,
-  ltrim,
-  rtrim,
-  trim,
-} from "./string";
+import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate, ltrim, rtrim, trim } from "./string";
 
 describe("string tests", () => {
   test.each([

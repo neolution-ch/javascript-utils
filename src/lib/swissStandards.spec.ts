@@ -27,8 +27,8 @@ describe("Swiss standards test", () => {
     ["756.1234.5678.91", false],
     ["test756.9217.0769.85", false],
     ["7.56..9217...0769.85", false],
-  ])("check if the social insurance number is valid or not", (ahvNumber, expected) => {
-    expect(isValidSwissSocialInsuranceNumber(ahvNumber)).toBe(expected);
+  ])("check if the social insurance number is valid or not", (swissSocialInsuranceNumber, expected) => {
+    expect(isValidSwissSocialInsuranceNumber(swissSocialInsuranceNumber)).toBe(expected);
   });
 
   test.each([
@@ -45,6 +45,5 @@ describe("Swiss standards test", () => {
 
     expect(result.ibanNumber).toBe(expectedIbanNumber);
     expect(result.isValidSwissIbanNumber).toBe(expectedIsValid);
-    expect(isValidSwissSocialInsuranceNumber(ahvNumber)).toBe(expected);
   });
 });

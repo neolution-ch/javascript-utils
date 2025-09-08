@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `ltrim`, `rtrim` and `trim` string type utility functions
+- `trimStart`, `trimEnd` and `trim` string type utility functions
 
 ### Changed
 

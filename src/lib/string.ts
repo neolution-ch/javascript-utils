@@ -71,17 +71,15 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
  * @param needle the thing to trim
  * @returns the string trimmed from the left side
  */
-export function ltrim(haystack: string, needle: string): string {
+export function trimStart(haystack: string, needle: string): string {
   if (isNullOrEmpty(haystack) || isNullOrEmpty(needle)) {
     return haystack;
   }
 
-  const needleLength = needle.length;
-
   let offset = 0;
 
   while (haystack.indexOf(needle, offset) === offset) {
-    offset = offset + needleLength;
+    offset = offset + needle.length;
   }
   return haystack.slice(offset);
 }
@@ -92,20 +90,17 @@ export function ltrim(haystack: string, needle: string): string {
  * @param needle the thing to trim
  * @returns the string trimmed from the right side
  */
-export function rtrim(haystack: string, needle: string): string {
+export function trimEnd(haystack: string, needle: string): string {
   if (isNullOrEmpty(haystack) || isNullOrEmpty(needle)) {
     return haystack;
   }
 
-  const needleLength = needle.length,
-    haystackLength = haystack.length;
-
-  let offset = haystackLength,
+  let offset = haystack.length,
     idx = -1;
 
   while (true) {
     idx = haystack.lastIndexOf(needle, offset - 1);
-    if (idx === -1 || idx + needleLength !== offset) {
+    if (idx === -1 || idx + needle.length !== offset) {
       break;
     }
     if (idx === 0) {
@@ -124,6 +119,6 @@ export function rtrim(haystack: string, needle: string): string {
  * @returns the string trimmed from the right and left side
  */
 export function trim(haystack: string, needle: string): string {
-  const trimmed = ltrim(haystack, needle);
-  return rtrim(trimmed, needle);
+  const trimmed = trimStart(haystack, needle);
+  return trimEnd(trimmed, needle);
 }

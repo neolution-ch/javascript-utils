@@ -1,4 +1,4 @@
-import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate, ltrim, rtrim, trim } from "./string";
+import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate, trimStart, trimEnd, trim } from "./string";
 
 describe("string tests", () => {
   test.each([
@@ -128,7 +128,7 @@ describe("string tests", () => {
     ["hello world", " ", "hello world"],
     [" hello world", " ", "hello world"],
   ])("left trim", (haystack, needle, expected) => {
-    expect(ltrim(haystack, needle)).toBe(expected);
+    expect(trimStart(haystack, needle)).toBe(expected);
   });
 
   test.each([
@@ -138,7 +138,7 @@ describe("string tests", () => {
     ["hello world ", " ", "hello world"],
     ["hello world", " ", "hello world"],
   ])("right trim", (haystack, needle, expected) => {
-    expect(rtrim(haystack, needle)).toBe(expected);
+    expect(trimEnd(haystack, needle)).toBe(expected);
   });
 
   test.each([
@@ -146,6 +146,9 @@ describe("string tests", () => {
     [undefined as unknown as string, " ", undefined as unknown as string],
     ["hello world", "", "hello world"],
     [" hello world ", " ", "hello world"],
+    ["hello world ", " ", "hello world"],
+    [" hello world", " ", "hello world"],
+    ["hello worldhello world", "hello world", ""],
   ])("trim", (haystack, needle, expected) => {
     expect(trim(haystack, needle)).toBe(expected);
   });

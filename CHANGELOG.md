@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `formatSwissIbanNumber` string utility function
 
+### Changed
+
+- Moved `isValidSwissIbanNumber` and `isValidSwissSocialInsuranceNumber` to swissStandards
+
+### Fixed
+
+- `isValidSwissSocialInsuranceNumber` is now named properly
+
 ## [2.1.0] - 2025-09-03
 
 ### Added

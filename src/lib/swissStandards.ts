@@ -54,7 +54,7 @@ export function isValidSwissIbanNumber(ibanNumber: string): boolean {
  * - "756XXXXXXXXXX" with digits only
  * @returns The result if the social insurance number is valid or not
  */
-export function isValidSwissSocialSecurityNumber(socialInsuranceNumber: string): boolean {
+export function isValidSwissSocialInsuranceNumber(socialInsuranceNumber: string): boolean {
   // 1. Check if input is empty or only whitespace
   if (isNullOrWhitespace(socialInsuranceNumber)) {
     return false;

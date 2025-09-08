@@ -1,4 +1,4 @@
-import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate, splitLine } from "./string";
+import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate, splitLines } from "./string";
 
 describe("string tests", () => {
   test.each([
@@ -129,7 +129,7 @@ describe("string tests", () => {
     ["hello world\r\r", ["hello world", "", ""]],
     ["hello world\r\n\r\n", ["hello world", "", ""]],
   ])("splitLine without the parameter to remove the empty entries", (str, expected) => {
-    expect(splitLine(str)).toEqual(expected);
+    expect(splitLines(str)).toEqual(expected);
   });
 
   test.each([
@@ -147,6 +147,6 @@ describe("string tests", () => {
     ["hello world 1\r\nhello world 2\r\nhello world 3", ["hello world 1", "hello world 2", "hello world 3"]],
     ["hello world 1\r\nhello world 2\nhello world 3\rhello world 4", ["hello world 1", "hello world 2", "hello world 3", "hello world 4"]],
   ])("splitLine with the parameter to remove empty entries", (str, expected) => {
-    expect(splitLine(str, true)).toEqual(expected);
+    expect(splitLines(str, true)).toEqual(expected);
   });
 });

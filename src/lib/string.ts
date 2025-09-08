@@ -71,7 +71,7 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
  * @param removeEmptyEntries the option to remove empty entries
  * @returns the individual lines as an array
  */
-export function splitLine(str: string, removeEmptyEntries: boolean = false): string[] {
+export function splitLines(str: string, removeEmptyEntries: boolean = false): string[] {
   if (isNullOrEmpty(str)) {
     return [];
   }

@@ -122,3 +122,28 @@ export function trim(haystack: string, needle: string): string {
   const trimmed = trimStart(haystack, needle);
   return trimEnd(trimmed, needle);
 }
+
+/**
+ * Splits the string at line breaks
+ * @param str the string to split
+ * @param removeEmptyEntries the option to remove empty entries
+ * @param trimEntries the option to trim the entries
+ * @returns the individual lines as an array
+ */
+export function splitLines(str: string, removeEmptyEntries: boolean = false, trimEntries: boolean = false): string[] {
+  if (isNullOrEmpty(str)) {
+    return [];
+  }
+
+  let splitted = str.split(/\r\n|\r|\n/);
+
+  if (trimEntries) {
+    splitted = splitted.map((x) => x.trim());
+  }
+
+  if (removeEmptyEntries) {
+    splitted = splitted.filter((line) => line.length > 0);
+  }
+
+  return splitted;
+}

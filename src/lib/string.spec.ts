@@ -1,4 +1,4 @@
-import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate, trimStart, trimEnd, trim } from "./string";
+import { isNullOrEmpty, isNullOrWhitespace, capitalize, uncapitalize, truncate, splitLines, trimStart, trimEnd, trim } from "./string";
 
 describe("string tests", () => {
   test.each([
@@ -155,5 +155,42 @@ describe("string tests", () => {
     ["hello worldhello world", "hello world", ""],
   ])("trim", (haystack, needle, expected) => {
     expect(trim(haystack, needle)).toBe(expected);
+  });
+    
+  test.each([
+    ["", false, false, []],
+    [null as unknown as string, false, false, []],
+    [undefined as unknown as string, false, false, []],
+    [" aaaa  \n\nbbbb  \n \ncccc", false, false, [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\rbbbb  \r \rcccc", false, false, [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\rbbbb  \n \r\ncccc", false, false, [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\n\r\nbbbb  \r\n \r\ncccc", false, false, [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+
+    [" aaaa  \n\nbbbb  \n \ncccc", true, false, [" aaaa  ", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\rbbbb  \r \rcccc", true, false, [" aaaa  ", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\rbbbb  \n \r\ncccc", true, false, [" aaaa  ", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\n\r\nbbbb  \r\n \r\ncccc", true, false, [" aaaa  ", "bbbb  ", " ", "cccc"]],
+
+    [" aaaa  \n\nbbbb  \n \ncccc", false, true, ["aaaa", "", "bbbb", "", "cccc"]],
+    [" aaaa  \r\rbbbb  \r \rcccc", false, true, ["aaaa", "", "bbbb", "", "cccc"]],
+    [" aaaa  \r\rbbbb  \n \r\ncccc", false, true, ["aaaa", "", "bbbb", "", "cccc"]],
+    [" aaaa  \r\n\r\nbbbb  \r\n \r\ncccc", false, true, ["aaaa", "", "bbbb", "", "cccc"]],
+
+    [" aaaa  \n\nbbbb  \n \ncccc", true, true, ["aaaa", "bbbb", "cccc"]],
+    [" aaaa  \r\rbbbb  \r \rcccc", true, true, ["aaaa", "bbbb", "cccc"]],
+    [" aaaa  \r\rbbbb  \n \r\ncccc", true, true, ["aaaa", "bbbb", "cccc"]],
+  ])("splitLines with parameter removeEmptyEntries and trimEntries", (str, removeEmptyEntries, trimEntries, expected) => {
+    expect(splitLines(str, removeEmptyEntries, trimEntries)).toEqual(expected);
+  });
+
+  test.each([
+    ["", []],
+    [null as unknown as string, []],
+    [undefined as unknown as string, []],
+    [" aaaa  \n\nbbbb  \n \ncccc", [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\rbbbb  \r \rcccc", [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\n\nbbbb  \r\n \r\ncccc", [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+  ])("splitLines with just the string as a parameter", (str, expected) => {
+    expect(splitLines(str)).toEqual(expected);
   });
 });

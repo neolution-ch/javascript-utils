@@ -122,31 +122,39 @@ describe("string tests", () => {
   });
 
   test.each([
-    ["", []],
-    ["hello world", ["hello world"]],
-    ["hello world\n", ["hello world", ""]],
-    ["hello world\n\n", ["hello world", "", ""]],
-    ["hello world\r\r", ["hello world", "", ""]],
-    ["hello world\r\n\r\n", ["hello world", "", ""]],
-  ])("splitLine without the parameter to remove the empty entries", (str, expected) => {
-    expect(splitLines(str)).toEqual(expected);
+    ["", false, false, []],
+    [null as unknown as string, false, false, []],
+    [undefined as unknown as string, false, false, []],
+    [" aaaa  \n\nbbbb  \n \ncccc", false, false, [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\rbbbb  \r \rcccc", false, false, [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\rbbbb  \n \r\ncccc", false, false, [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\n\r\nbbbb  \r\n \r\ncccc", false, false, [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+
+    [" aaaa  \n\nbbbb  \n \ncccc", true, false, [" aaaa  ", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\rbbbb  \r \rcccc", true, false, [" aaaa  ", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\rbbbb  \n \r\ncccc", true, false, [" aaaa  ", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\n\r\nbbbb  \r\n \r\ncccc", true, false, [" aaaa  ", "bbbb  ", " ", "cccc"]],
+
+    [" aaaa  \n\nbbbb  \n \ncccc", false, true, ["aaaa", "", "bbbb", "", "cccc"]],
+    [" aaaa  \r\rbbbb  \r \rcccc", false, true, ["aaaa", "", "bbbb", "", "cccc"]],
+    [" aaaa  \r\rbbbb  \n \r\ncccc", false, true, ["aaaa", "", "bbbb", "", "cccc"]],
+    [" aaaa  \r\n\r\nbbbb  \r\n \r\ncccc", false, true, ["aaaa", "", "bbbb", "", "cccc"]],
+
+    [" aaaa  \n\nbbbb  \n \ncccc", true, true, ["aaaa", "bbbb", "cccc"]],
+    [" aaaa  \r\rbbbb  \r \rcccc", true, true, ["aaaa", "bbbb", "cccc"]],
+    [" aaaa  \r\rbbbb  \n \r\ncccc", true, true, ["aaaa", "bbbb", "cccc"]],
+  ])("splitLines with parameter removeEmptyEntries and trimEntries", (str, removeEmptyEntries, trimEntries, expected) => {
+    expect(splitLines(str, removeEmptyEntries, trimEntries)).toEqual(expected);
   });
 
   test.each([
     ["", []],
     [null as unknown as string, []],
     [undefined as unknown as string, []],
-    ["hello world", ["hello world"]],
-    ["hello world\n", ["hello world"]],
-    ["hello world\n\n", ["hello world"]],
-    ["hello world\r\r", ["hello world"]],
-    ["hello world\r\n\r\n", ["hello world"]],
-    ["hello world 1\nhello world 2\nhello world 3", ["hello world 1", "hello world 2", "hello world 3"]],
-    ["hello world 1\nhello world 2\rhello world 3", ["hello world 1", "hello world 2", "hello world 3"]],
-    ["hello world 1\rhello world 2\rhello world 3", ["hello world 1", "hello world 2", "hello world 3"]],
-    ["hello world 1\r\nhello world 2\r\nhello world 3", ["hello world 1", "hello world 2", "hello world 3"]],
-    ["hello world 1\r\nhello world 2\nhello world 3\rhello world 4", ["hello world 1", "hello world 2", "hello world 3", "hello world 4"]],
-  ])("splitLine with the parameter to remove empty entries", (str, expected) => {
-    expect(splitLines(str, true)).toEqual(expected);
+    [" aaaa  \n\nbbbb  \n \ncccc", [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\rbbbb  \r \rcccc", [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+    [" aaaa  \r\n\nbbbb  \r\n \r\ncccc", [" aaaa  ", "", "bbbb  ", " ", "cccc"]],
+  ])("splitLines with just the string as a parameter", (str, expected) => {
+    expect(splitLines(str)).toEqual(expected);
   });
 });

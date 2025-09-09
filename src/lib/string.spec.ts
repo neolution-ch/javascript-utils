@@ -127,6 +127,8 @@ describe("string tests", () => {
     ["hello world", "hello world", ""],
     ["hello world", " ", "hello world"],
     [" hello world", " ", "hello world"],
+    ["hello world hello world", "hello world", " hello world"],
+    ["hello worldhello world", "hello world", ""],
   ])("left trim", (haystack, needle, expected) => {
     expect(trimStart(haystack, needle)).toBe(expected);
   });
@@ -137,6 +139,8 @@ describe("string tests", () => {
     ["hello world", "hello world", ""],
     ["hello world ", " ", "hello world"],
     ["hello world", " ", "hello world"],
+    ["hello world hello world", "hello world", "hello world "],
+    ["hello worldhello world", "hello world", ""],
   ])("right trim", (haystack, needle, expected) => {
     expect(trimEnd(haystack, needle)).toBe(expected);
   });

@@ -156,7 +156,7 @@ describe("string tests", () => {
   ])("trim", (haystack, needle, expected) => {
     expect(trim(haystack, needle)).toBe(expected);
   });
-    
+
   test.each([
     ["", false, false, []],
     [null as unknown as string, false, false, []],

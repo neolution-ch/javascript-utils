@@ -66,6 +66,64 @@ export function truncate(value: string | undefined, maxLength: number, suffix = 
 }
 
 /**
+ * Removes all occurrences of needle from the start of haystack
+ * @param haystack string to trim
+ * @param needle the thing to trim
+ * @returns the string trimmed from the left side
+ */
+export function trimStart(haystack: string, needle: string): string {
+  if (isNullOrEmpty(haystack) || isNullOrEmpty(needle)) {
+    return haystack;
+  }
+
+  let offset = 0;
+
+  while (haystack.indexOf(needle, offset) === offset) {
+    offset = offset + needle.length;
+  }
+  return haystack.slice(offset);
+}
+
+/**
+ * Removes all occurrences of needle from the end of haystack
+ * @param haystack string to trim
+ * @param needle the thing to trim
+ * @returns the string trimmed from the right side
+ */
+export function trimEnd(haystack: string, needle: string): string {
+  if (isNullOrEmpty(haystack) || isNullOrEmpty(needle)) {
+    return haystack;
+  }
+
+  let offset = haystack.length,
+    idx = -1;
+
+  while (true) {
+    idx = haystack.lastIndexOf(needle, offset - 1);
+    if (idx === -1 || idx + needle.length !== offset) {
+      break;
+    }
+    if (idx === 0) {
+      return "";
+    }
+    offset = idx;
+  }
+
+  return haystack.slice(0, offset);
+}
+
+/**
+ * Removes all occurrences of needle from the start and the end of haystack
+ * @param haystack string to trim
+ * @param needle the thing to trim
+ * @returns the string trimmed from the right and left side
+ */
+export function trim(haystack: string, needle: string): string {
+  const trimmed = trimStart(haystack, needle);
+  return trimEnd(trimmed, needle);
+}
+
+/**
  * Splits the string at line breaks
  * @param str the string to split
  * @param removeEmptyEntries the option to remove empty entries

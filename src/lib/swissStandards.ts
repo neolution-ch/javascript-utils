@@ -107,3 +107,43 @@ export function isValidSwissSocialInsuranceNumber(socialInsuranceNumber: string)
    */
   return checksum === checknumber;
 }
+
+/**
+ * Formats a Swiss IBAN number to the standard of "CHXX XXXX XXXX XXXX XXXX X"
+ * @param unformattedIbanNumber the IBAN number to format
+ * @returns a object containing the formatted IBAN number and a boolean indicating if the IBAN number was valid or not
+ */
+export function formatSwissIbanNumber(unformattedIbanNumber: string): {
+  /**
+   * The formatted IBAN number or the original input if the unformatted IBAN number was invalid
+   */
+  ibanNumber: string;
+  /**
+   * The result if the IBAN number is valid or not
+   */
+  isValidSwissIbanNumber: boolean;
+} {
+  // 1. Check if the unformatted IBAN number is empty or only a whitespace
+  if (isNullOrWhitespace(unformattedIbanNumber)) {
+    return { ibanNumber: unformattedIbanNumber, isValidSwissIbanNumber: false };
+  }
+
+  // 2. Remove all non-alphanumeric characters and convert letters to uppercase
+  const cleanedIbanNumber = unformattedIbanNumber.replaceAll(/[^A-Z0-9]/gi, "").toUpperCase();
+
+  // 3. Check if it is possible to format a new IBAN number
+  if (!/^CH\d{19}$/.test(cleanedIbanNumber)) {
+    return { ibanNumber: unformattedIbanNumber, isValidSwissIbanNumber: false };
+  }
+
+  // 4. Format the cleaned IBAN number into groups of 4 characters separated by spaces
+  const formattedIbanNumber = cleanedIbanNumber.replaceAll(/(.{4})/g, "$1 ").trim();
+
+  // 5. If the Swiss IBAN number is valid return the formatted IBAN number with the true status
+  if (isValidSwissIbanNumber(formattedIbanNumber)) {
+    return { ibanNumber: formattedIbanNumber, isValidSwissIbanNumber: true };
+  }
+
+  // 6. If the Swiss IBAN number is not valid return the formatted IBAN number with the false status
+  return { ibanNumber: formattedIbanNumber, isValidSwissIbanNumber: false };
+}

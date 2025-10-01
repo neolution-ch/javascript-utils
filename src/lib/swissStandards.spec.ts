@@ -12,8 +12,21 @@ describe("Swiss standards test", () => {
     ["ch93 0076 2011 6238 5295 7", false],
     ["c93 0076 2011 6238 5295 7", false],
     ["DE93 0076 2011 6238 5295 7", false],
-  ])("check if this swiss IBAN is valid or not", (unformattedIbanNumber, expected) => {
-    expect(isValidSwissIbanNumber(unformattedIbanNumber)).toBe(expected);
+  ])("check if the swiss IBAN number is valid or not", (iBanNumberToCheck, expected) => {
+    expect(isValidSwissIbanNumber(iBanNumberToCheck)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, false],
+    [undefined as unknown as string, false],
+    ["CH3400762ABC123DEF456", true],
+    ["CH34 0076 2ABC 123D EF45 6", true],
+    ["Some random string", false],
+    ["DE34 0076 2ABC 123D EF45 3", false],
+    ["CH34 0076 2ABC 123D EF45 \n6", false],
+    ["CH34 0076 2ABC 123D EF45 !", false],
+  ])("check if the siwss IBAN number with letters is valid or not", (iBanNumberToCheck, expected) => {
+    expect(isValidSwissIbanNumber(iBanNumberToCheck)).toBe(expected);
   });
 
   test.each([

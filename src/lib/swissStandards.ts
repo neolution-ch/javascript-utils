@@ -20,8 +20,8 @@ export function isValidSwissIbanNumber(ibanNumber: string): boolean {
   //    - without spaces: "CHXXXXXXXXXXXXXXXXXXX"
   const compactIbanNumberWithoutWhiteSpaces = new RegExp(/^CH\d{2}[A-Z0-9]{17}$/);
 
-  // 3. Check if input matches one of the allowed formats
-  if (!compactIbanNumberWithWhiteSpaces.test(ibanNumber) && !compactIbanNumberWithoutWhiteSpaces.test(ibanNumber)) {
+  // 3. Check if the input matches one of the allowed formats
+  if (!(compactIbanNumberWithWhiteSpaces.test(ibanNumber) || compactIbanNumberWithoutWhiteSpaces.test(ibanNumber))) {
     return false;
   }
 
@@ -46,7 +46,7 @@ export function isValidSwissIbanNumber(ibanNumber: string): boolean {
 }
 
 /**
- * Validation of social insurance number with checking the checksum
+ * Validation of a social insurance number with checking the checksum
  * Validation according to https://www.sozialversicherungsnummer.ch/aufbau-neu.htm
  * @param socialInsuranceNumber The social insurance number to check
  * Must be in one of the following formats:
@@ -55,13 +55,13 @@ export function isValidSwissIbanNumber(ibanNumber: string): boolean {
  * @returns The result if the social insurance number is valid or not
  */
 export function isValidSwissSocialInsuranceNumber(socialInsuranceNumber: string): boolean {
-  // 1. Check if input is empty or only whitespace
+  // 1. Check if the input is empty or only a whitespace
   if (isNullOrWhitespace(socialInsuranceNumber)) {
     return false;
   }
 
   /**
-   * 2. Check if input matches accepted formats:
+   * 2. Check if the input matches one of the accepted formats:
    *    - With dots: 756.XXXX.XXXX.XX
    *    - Without dots: 756XXXXXXXXXX
    */

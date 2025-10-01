@@ -11,8 +11,21 @@ describe("Swiss standards test", () => {
     ["CH93 0000 0000 0000 0000 1", false],
     ["ch93 0076 2011 6238 5295 7", false],
     ["DE93 0076 2011 6238 5295 7", false],
-  ])("check if this swiss IBAN is valid or not", (unformattedIbanNumber, expected) => {
-    expect(isValidSwissIbanNumber(unformattedIbanNumber)).toBe(expected);
+  ])("check if the swiss IBAN number is valid or not", (iBanNumberToCheck, expected) => {
+    expect(isValidSwissIbanNumber(iBanNumberToCheck)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as string, false],
+    [undefined as unknown as string, false],
+    ["CH3400762ABC123DEF456", true],
+    ["CH34 0076 2ABC 123D EF45 6", true],
+    ["Some random string", false],
+    ["DE34 0076 2ABC 123D EF45 3", false],
+    ["CH34 0076 2ABC 123D EF45 \n6", false],
+    ["CH34 0076 2ABC 123D EF45 !", false],
+  ])("check if the siwss IBAN number with letters is valid or not", (iBanNumberToCheck, expected) => {
+    expect(isValidSwissIbanNumber(iBanNumberToCheck)).toBe(expected);
   });
 
   test.each([
@@ -26,7 +39,7 @@ describe("Swiss standards test", () => {
     ["756.1234.5678.91", false],
     ["test756.9217.0769.85", false],
     ["7.56..9217...0769.85", false],
-  ])("check if the social insurance number is valid or not", (ahvNumber, expected) => {
-    expect(isValidSwissSocialInsuranceNumber(ahvNumber)).toBe(expected);
+  ])("check if the social insurance number is valid or not", (socialInsuranceNumberToCheck, expected) => {
+    expect(isValidSwissSocialInsuranceNumber(socialInsuranceNumberToCheck)).toBe(expected);
   });
 });

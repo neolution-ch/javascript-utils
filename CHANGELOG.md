@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `formatSwissSocialInsuranceNumber` swiss standard function
+- `splitLines` string utility function
+- `trimStart`, `trimEnd` and `trim` string type utility functions
 
 ### Changed
 
@@ -18,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - `isValidSwissSocialInsuranceNumber` is now named properly
+- `isValidSwissIbanNumber` now also allows IBAN numbers with letters
 
 ## [2.1.0] - 2025-09-03
 

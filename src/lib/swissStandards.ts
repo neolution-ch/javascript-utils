@@ -16,12 +16,12 @@ export function isValidSwissIbanNumber(ibanNumber: string): boolean {
 
   // 2. Define allowed strict formats
   //    - with spaces: "CHXX XXXX XXXX XXXX XXXX X"
-  const compactIbanNumberWithWhiteSpaces = new RegExp(/^CH\d{2}(?: \d{4}){4} \d{1}$/);
+  const compactIbanNumberWithWhiteSpaces = new RegExp(/^CH[0-9]{2} [0-9]{4} [0-9][A-Z0-9]{3} [A-Z0-9]{4} [A-Z0-9]{4} [A-Z0-9]$/);
   //    - without spaces: "CHXXXXXXXXXXXXXXXXXXX"
-  const compactIbanNumberWithoutWhiteSpaces = new RegExp(/^CH\d{19}$/);
+  const compactIbanNumberWithoutWhiteSpaces = new RegExp(/^CH[0-9]{7}[A-Z0-9]{12}$/);
 
-  // 3. Check if input matches one of the allowed formats
-  if (!compactIbanNumberWithWhiteSpaces.test(ibanNumber) && !compactIbanNumberWithoutWhiteSpaces.test(ibanNumber)) {
+  // 3. Check if the input matches one of the allowed formats
+  if (!(compactIbanNumberWithWhiteSpaces.test(ibanNumber) || compactIbanNumberWithoutWhiteSpaces.test(ibanNumber))) {
     return false;
   }
 
@@ -46,7 +46,7 @@ export function isValidSwissIbanNumber(ibanNumber: string): boolean {
 }
 
 /**
- * Validation of social insurance number with checking the checksum
+ * Validation of a social insurance number with checking the checksum
  * Validation according to https://www.sozialversicherungsnummer.ch/aufbau-neu.htm
  * @param socialInsuranceNumber The social insurance number to check
  * Must be in one of the following formats:
@@ -55,13 +55,13 @@ export function isValidSwissIbanNumber(ibanNumber: string): boolean {
  * @returns The result if the social insurance number is valid or not
  */
 export function isValidSwissSocialInsuranceNumber(socialInsuranceNumber: string): boolean {
-  // 1. Check if input is empty or only whitespace
+  // 1. Check if the input is empty or only a whitespace
   if (isNullOrWhitespace(socialInsuranceNumber)) {
     return false;
   }
 
   /**
-   * 2. Check if input matches accepted formats:
+   * 2. Check if the input matches one of the accepted formats:
    *    - With dots: 756.XXXX.XXXX.XX
    *    - Without dots: 756XXXXXXXXXX
    */

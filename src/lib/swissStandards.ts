@@ -109,41 +109,24 @@ export function isValidSwissSocialInsuranceNumber(socialInsuranceNumber: string)
 }
 
 /**
- * Formats a Swiss IBAN number to the standard of "CHXX XXXX XXXX XXXX XXXX X"
- * @param unformattedIbanNumber the IBAN number to format
- * @returns a object containing the formatted IBAN number and a boolean indicating if the IBAN number was valid or not
+ * Attempts to parse and validate a Swiss IBAN.
+ * @param unformattedIbanNumber - The unformatted IBAN as a string
+ * @returns The result object with the following properties:
+ * @property {boolean} isValid - Indicates whether the IBAN is valid or not
+ * @property {string} iban - The cleaned IBAN, only present if valid
+ * @property {string} ibanFormatted - The formatted IBAN, only present if valid
  */
-export function formatSwissIbanNumber(unformattedIbanNumber: string): {
-  /**
-   * The formatted IBAN number or the original input if the unformatted IBAN number was invalid
-   */
-  ibanNumber: string;
-  /**
-   * The result if the IBAN number is valid or not
-   */
-  isValidSwissIbanNumber: boolean;
-} {
-  // 1. Check if the unformatted IBAN number is empty or only a whitespace
+export function tryParseSwissIbanNumber(unformattedIbanNumber?: string) {
   if (isNullOrWhitespace(unformattedIbanNumber)) {
-    return { ibanNumber: unformattedIbanNumber, isValidSwissIbanNumber: false };
+    return { isValid: false };
   }
 
-  // 2. Remove all non-alphanumeric characters and convert letters to uppercase
-  const cleanedIbanNumber = unformattedIbanNumber.replaceAll(/[^A-Z0-9]/gi, "").toUpperCase();
+  const iban = unformattedIbanNumber!.replaceAll(/[^A-Z0-9]/gi, "").toUpperCase();
+  const isValid = isValidSwissIbanNumber(iban);
 
-  // 3. Check if it is possible to format a new IBAN number
-  if (!/^CH\d{19}$/.test(cleanedIbanNumber)) {
-    return { ibanNumber: unformattedIbanNumber, isValidSwissIbanNumber: false };
-  }
-
-  // 4. Format the cleaned IBAN number into groups of 4 characters separated by spaces
-  const formattedIbanNumber = cleanedIbanNumber.replaceAll(/(.{4})/g, "$1 ").trim();
-
-  // 5. If the Swiss IBAN number is valid return the formatted IBAN number with the true status
-  if (isValidSwissIbanNumber(formattedIbanNumber)) {
-    return { ibanNumber: formattedIbanNumber, isValidSwissIbanNumber: true };
-  }
-
-  // 6. If the Swiss IBAN number is not valid return the formatted IBAN number with the false status
-  return { ibanNumber: formattedIbanNumber, isValidSwissIbanNumber: false };
+  return {
+    isValid: isValid,
+    iban: isValid ? iban : undefined,
+    ibanFormatted: isValid ? iban.match(/.{1,4}/g)?.join(" ") : undefined,
+  };
 }

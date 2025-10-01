@@ -1,4 +1,4 @@
-import { isValidSwissIbanNumber, isValidSwissSocialInsuranceNumber, formatSwissIbanNumber } from "./swissStandards";
+import { isValidSwissIbanNumber, isValidSwissSocialInsuranceNumber, tryParseSwissIbanNumber } from "./swissStandards";
 
 describe("Swiss standards test", () => {
   test.each([
@@ -12,7 +12,7 @@ describe("Swiss standards test", () => {
     ["ch93 0076 2011 6238 5295 7", false],
     ["c93 0076 2011 6238 5295 7", false],
     ["DE93 0076 2011 6238 5295 7", false],
-  ])("check if the swiss IBAN number is valid or not", (iBanNumberToCheck, expected) => {
+  ])("check if the Swiss IBAN number is valid or not", (iBanNumberToCheck, expected) => {
     expect(isValidSwissIbanNumber(iBanNumberToCheck)).toBe(expected);
   });
 
@@ -25,7 +25,7 @@ describe("Swiss standards test", () => {
     ["DE34 0076 2ABC 123D EF45 3", false],
     ["CH34 0076 2ABC 123D EF45 \n6", false],
     ["CH34 0076 2ABC 123D EF45 !", false],
-  ])("check if the siwss IBAN number with letters is valid or not", (iBanNumberToCheck, expected) => {
+  ])("check if the Swiss IBAN number with letters is valid or not", (iBanNumberToCheck, expected) => {
     expect(isValidSwissIbanNumber(iBanNumberToCheck)).toBe(expected);
   });
 
@@ -45,18 +45,44 @@ describe("Swiss standards test", () => {
   });
 
   test.each([
-    [null as unknown as string, null, false],
-    [undefined as unknown as string, undefined, false],
-    ["CH9300762011623852957", "CH93 0076 2011 6238 5295 7", true],
-    ["ch9300762011623852957", "CH93 0076 2011 6238 5295 7", true],
-    ["ch9301234567891011127", "CH93 0123 4567 8910 1112 7", false],
-    ["DE93 00 76 2011 62385295 7", "DE93 00 76 2011 62385295 7", false],
-    ["D 93 00 76 2011 62385295 7", "D 93 00 76 2011 62385295 7", false],
-    ["Ch 93 0076 20 1 162385 295 7", "CH93 0076 2011 6238 5295 7", true],
-  ])("Check if the IBAN number gets formatted correctly", (unformattedIbanNumber, expectedIbanNumber, expectedIsValid) => {
-    const result = formatSwissIbanNumber(unformattedIbanNumber);
-
-    expect(result.ibanNumber).toBe(expectedIbanNumber);
-    expect(result.isValidSwissIbanNumber).toBe(expectedIsValid);
+    [null as unknown as string, { isValid: false, iban: undefined, ibanFormatted: undefined }],
+    [undefined as unknown as string, { isValid: false, iban: undefined, ibanFormatted: undefined }],
+    ["", { isValid: false, iban: undefined, ibanFormatted: undefined }],
+    ["CH94 0076 2011 6238 5295 7", { isValid: false, iban: undefined, ibanFormatted: undefined }],
+    ["CH1000000ABC123DEF456", { isValid: false, iban: undefined, ibanFormatted: undefined }],
+    [
+      "CH9300762011623852957",
+      {
+        isValid: true,
+        iban: "CH9300762011623852957",
+        ibanFormatted: "CH93 0076 2011 6238 5295 7",
+      },
+    ],
+    [
+      "CH3400762ABC123DEF456",
+      {
+        isValid: true,
+        iban: "CH3400762ABC123DEF456",
+        ibanFormatted: "CH34 0076 2ABC 123D EF45 6",
+      },
+    ],
+    [
+      "CH93 0076 2011 6238 5295 7",
+      {
+        isValid: true,
+        iban: "CH9300762011623852957",
+        ibanFormatted: "CH93 0076 2011 6238 5295 7",
+      },
+    ],
+    [
+      "CH34 0076 2ABC 123D EF45 6",
+      {
+        isValid: true,
+        iban: "CH3400762ABC123DEF456",
+        ibanFormatted: "CH34 0076 2ABC 123D EF45 6",
+      },
+    ],
+  ])("check if the Swiss IBAN number gets parsed correctly", (unformattedSwissIbanNumber, expected) => {
+    expect(tryParseSwissIbanNumber(unformattedSwissIbanNumber)).toEqual(expected);
   });
 });

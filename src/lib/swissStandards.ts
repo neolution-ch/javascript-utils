@@ -16,9 +16,9 @@ export function isValidSwissIbanNumber(ibanNumber: string): boolean {
 
   // 2. Define allowed strict formats
   //    - with spaces: "CHXX XXXX XXXX XXXX XXXX X"
-  const compactIbanNumberWithWhiteSpaces = new RegExp(/^CH\d{2}(?:\s[A-Z0-9]{4}){4}\s[A-Z0-9]{1}$/);
+  const compactIbanNumberWithWhiteSpaces = new RegExp(/^CH[0-9]{2} [0-9]{4} [0-9][A-Z0-9]{3} [A-Z0-9]{4} [A-Z0-9]{4} [A-Z0-9]$/);
   //    - without spaces: "CHXXXXXXXXXXXXXXXXXXX"
-  const compactIbanNumberWithoutWhiteSpaces = new RegExp(/^CH\d{2}[A-Z0-9]{17}$/);
+  const compactIbanNumberWithoutWhiteSpaces = new RegExp(/^CH[0-9]{7}[A-Z0-9]{12}$/);
 
   // 3. Check if the input matches one of the allowed formats
   if (!(compactIbanNumberWithWhiteSpaces.test(ibanNumber) || compactIbanNumberWithoutWhiteSpaces.test(ibanNumber))) {

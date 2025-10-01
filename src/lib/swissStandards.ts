@@ -107,35 +107,3 @@ export function isValidSwissSocialInsuranceNumber(socialInsuranceNumber: string)
    */
   return checksum === checknumber;
 }
-
-/**
- * Formats a unformatted Swiss social insurance number to the standard format "756.XXXX.XXXX.XX"
- * @param unformattedSocialInsuranceNumber the unformatted Swiss social insurance number to format
- * @returns a object containing the formatted Swiss social insurance number and a boolean indicating if the number was valid or not
- */
-export function formatSwissSocialInsuranceNumber(unformattedSocialInsuranceNumber: string): {
-  /**
-   * The formatted Swiss social insurance number or the original input if the Swiss social insurance number was invalid
-   */
-  socialInsuranceNumber: string;
-  /**
-   * The result if the social insurance number is a valid Swiss social insurance number or not
-   */
-  isValidSwissSocialInsuranceNumber: boolean;
-} {
-  // 1. Check if the unformatted Swiss social insurance number is empty or only a whitespace
-  if (isNullOrWhitespace(unformattedSocialInsuranceNumber)) {
-    return { socialInsuranceNumber: unformattedSocialInsuranceNumber, isValidSwissSocialInsuranceNumber: false };
-  }
-
-  // 2. Remove all non-digit characters, then format as Swiss social insurance number (XXX.XXXX.XXXX.XX)
-  const cleaned = unformattedSocialInsuranceNumber.replaceAll(/\D+/g, "");
-  const formattedSwissSocialInsuranceNumber = cleaned.replaceAll(/(\d{3})(\d{4})(\d{4})(\d{2})/g, "$1.$2.$3.$4");
-
-  // 3. If the Swiss social insurance number is valid return the formatted number with the true status
-  if (isValidSwissSocialInsuranceNumber(formattedSwissSocialInsuranceNumber)) {
-    return { socialInsuranceNumber: formattedSwissSocialInsuranceNumber, isValidSwissSocialInsuranceNumber: true };
-  }
-  // 4. If the Swiss social insurance number is not valid return the formatted number with the false status
-  return { socialInsuranceNumber: formattedSwissSocialInsuranceNumber, isValidSwissSocialInsuranceNumber: false };
-}

@@ -50,38 +50,11 @@ describe("Swiss standards test", () => {
     ["", { isValid: false, iban: undefined, ibanFormatted: undefined }],
     ["CH94 0076 2011 6238 5295 7", { isValid: false, iban: undefined, ibanFormatted: undefined }],
     ["CH1000000ABC123DEF456", { isValid: false, iban: undefined, ibanFormatted: undefined }],
-    [
-      "CH9300762011623852957",
-      {
-        isValid: true,
-        iban: "CH9300762011623852957",
-        ibanFormatted: "CH93 0076 2011 6238 5295 7",
-      },
-    ],
-    [
-      "CH3400762ABC123DEF456",
-      {
-        isValid: true,
-        iban: "CH3400762ABC123DEF456",
-        ibanFormatted: "CH34 0076 2ABC 123D EF45 6",
-      },
-    ],
-    [
-      "CH93 0076 2011 6238 5295 7",
-      {
-        isValid: true,
-        iban: "CH9300762011623852957",
-        ibanFormatted: "CH93 0076 2011 6238 5295 7",
-      },
-    ],
-    [
-      "CH34 0076 2ABC 123D EF45 6",
-      {
-        isValid: true,
-        iban: "CH3400762ABC123DEF456",
-        ibanFormatted: "CH34 0076 2ABC 123D EF45 6",
-      },
-    ],
+    ["CH93-0076,2011.6238\n5295\n7", { isValid: true, iban: "CH9300762011623852957", ibanFormatted: "CH93 0076 2011 6238 5295 7" }],
+    ["CH9300762011623852957", { isValid: true, iban: "CH9300762011623852957", ibanFormatted: "CH93 0076 2011 6238 5295 7" }],
+    ["CH3400762ABC123DEF456", { isValid: true, iban: "CH3400762ABC123DEF456", ibanFormatted: "CH34 0076 2ABC 123D EF45 6" }],
+    ["CH93 0076 2011 6238 5295 7", { isValid: true, iban: "CH9300762011623852957", ibanFormatted: "CH93 0076 2011 6238 5295 7" }],
+    ["CH34 0076 2ABC 123D EF45 6", { isValid: true, iban: "CH3400762ABC123DEF456", ibanFormatted: "CH34 0076 2ABC 123D EF45 6" }],
   ])("check if the Swiss IBAN number gets parsed correctly", (unformattedSwissIbanNumber, expected) => {
     expect(tryParseSwissIbanNumber(unformattedSwissIbanNumber)).toEqual(expected);
   });

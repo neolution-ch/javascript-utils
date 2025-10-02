@@ -107,3 +107,26 @@ export function isValidSwissSocialInsuranceNumber(socialInsuranceNumber: string)
    */
   return checksum === checknumber;
 }
+
+/**
+ * Attempts to parse and validate a Swiss IBAN.
+ * @param unformattedIbanNumber - The unformatted IBAN as a string
+ * @returns The result object with the following properties:
+ * @property {boolean} isValid - Indicates whether the IBAN is valid or not
+ * @property {string} iban - The cleaned IBAN, only present if valid
+ * @property {string} ibanFormatted - The formatted IBAN, only present if valid
+ */
+export function tryParseSwissIbanNumber(unformattedIbanNumber?: string) {
+  if (isNullOrWhitespace(unformattedIbanNumber)) {
+    return { isValid: false };
+  }
+
+  const iban = unformattedIbanNumber!.replaceAll(/[^A-Z0-9]/gi, "").toUpperCase();
+  const isValid = isValidSwissIbanNumber(iban);
+
+  return {
+    isValid: isValid,
+    iban: isValid ? iban : undefined,
+    ibanFormatted: isValid ? iban.match(/.{1,4}/g)?.join(" ") : undefined,
+  };
+}

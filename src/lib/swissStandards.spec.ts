@@ -1,4 +1,9 @@
-import { isValidSwissIbanNumber, isValidSwissSocialInsuranceNumber, tryParseSwissIbanNumber } from "./swissStandards";
+import {
+  isValidSwissIbanNumber,
+  isValidSwissSocialInsuranceNumber,
+  tryParseSwissIbanNumber,
+  tryParseSwissSocialInsuranceNumber,
+} from "./swissStandards";
 
 describe("Swiss standards test", () => {
   test.each([
@@ -57,5 +62,32 @@ describe("Swiss standards test", () => {
     ["CH34 0076 2ABC 123D EF45 6", { isValid: true, iban: "CH3400762ABC123DEF456", ibanFormatted: "CH34 0076 2ABC 123D EF45 6" }],
   ])("check if the Swiss IBAN number gets parsed correctly", (unformattedSwissIbanNumber, expected) => {
     expect(tryParseSwissIbanNumber(unformattedSwissIbanNumber)).toEqual(expected);
+  });
+
+  test.each([
+    [
+      undefined as unknown as string,
+      { isValid: false, swissSocialInsuranceNumber: undefined, swissSocialInsuranceNumberFormatted: undefined },
+    ],
+    [null as unknown as string, { isValid: false, swissSocialInsuranceNumber: undefined, swissSocialInsuranceNumberFormatted: undefined }],
+    [
+      "7569217076985",
+      { isValid: true, swissSocialInsuranceNumber: "7569217076985", swissSocialInsuranceNumberFormatted: "756.9217.0769.85" },
+    ],
+    [
+      "756.9217.0769.85",
+      { isValid: true, swissSocialInsuranceNumber: "7569217076985", swissSocialInsuranceNumberFormatted: "756.9217.0769.85" },
+    ],
+    [
+      "7 56-9217.076 + 9.8 >5",
+      { isValid: true, swissSocialInsuranceNumber: "7569217076985", swissSocialInsuranceNumberFormatted: "756.9217.0769.85" },
+    ],
+    [
+      "7 56-9217.076 + 9.8 \n5",
+      { isValid: true, swissSocialInsuranceNumber: "7569217076985", swissSocialInsuranceNumberFormatted: "756.9217.0769.85" },
+    ],
+    ["7561234567891", { isValid: false, swissSocialInsuranceNumber: undefined, swissSocialInsuranceNumberFormatted: undefined }],
+  ])("check if the Swiss IBAN number gets parsed correctly", (unformattedSwissIbanNumber, expected) => {
+    expect(tryParseSwissSocialInsuranceNumber(unformattedSwissIbanNumber)).toEqual(expected);
   });
 });

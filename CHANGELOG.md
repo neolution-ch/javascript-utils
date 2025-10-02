@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `splitLines` string utility function
+- `tryParseSwissIbanNumber` swiss standard function
 - `trimStart`, `trimEnd` and `trim` string type utility functions
 
 ### Changed

@@ -116,7 +116,20 @@ export function isValidSwissSocialInsuranceNumber(socialInsuranceNumber: string)
  * @property {string} iban - The cleaned IBAN, only present if valid
  * @property {string} ibanFormatted - The formatted IBAN, only present if valid
  */
-export function tryParseSwissIbanNumber(unformattedIbanNumber?: string) {
+export function tryParseSwissIbanNumber(unformattedIbanNumber?: string): {
+  /**
+   * Indicates whether the IBAN is valid or not
+   */
+  isValid: boolean;
+  /**
+   * The cleaned IBAN, only present if valid
+   */
+  iban?: string;
+  /**
+   * The formatted IBAN, only present if valid
+   */
+  ibanFormatted?: string;
+} {
   if (isNullOrWhitespace(unformattedIbanNumber)) {
     return { isValid: false };
   }
@@ -128,5 +141,41 @@ export function tryParseSwissIbanNumber(unformattedIbanNumber?: string) {
     isValid: isValid,
     iban: isValid ? iban : undefined,
     ibanFormatted: isValid ? iban.match(/.{1,4}/g)?.join(" ") : undefined,
+  };
+}
+
+/**
+ * Attempts to parse and validate a Swiss social insurance number.
+ * @param unformattedInsuranceNumber - The unformatted Swiss social insurance number
+ * @returns The result object with the following properties:
+ * @property {boolean} isValid - Indicates whether the Swiss social insurance number is valid or not
+ * @property {string} swissSocialInsuranceNumber - The cleaned Swiss social insurance number, only present if valid
+ * @property {string} swissSocialInsuranceNumberFormatted - The formatted Swiss social insurance number, only present if valid
+ */
+export function tryParseSwissSocialInsuranceNumber(unformattedInsuranceNumber?: string): {
+  /**
+   * Indicates whether the Swiss social insurance number is valid or not
+   */
+  isValid: boolean;
+  /**
+   * The cleaned Swiss social insurance number, only present if valid
+   */
+  swissSocialInsuranceNumber?: string;
+  /**
+   * The formatted Swiss social insurance number, only present if valid
+   */
+  swissSocialInsuranceNumberFormatted?: string;
+} {
+  if (isNullOrWhitespace(unformattedInsuranceNumber)) {
+    return { isValid: false };
+  }
+
+  const insuranceNumber = unformattedInsuranceNumber!.replaceAll(/\D/g, "");
+  const isValid = isValidSwissSocialInsuranceNumber(insuranceNumber);
+
+  return {
+    isValid: isValid,
+    swissSocialInsuranceNumber: isValid ? insuranceNumber : undefined,
+    swissSocialInsuranceNumberFormatted: isValid ? insuranceNumber.replace(/^(\d{3})(\d{4})(\d{4})(\d{2})$/, "$1.$2.$3.$4") : undefined,
   };
 }

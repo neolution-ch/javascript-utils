@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2025-10-02
+
 ### Added
 
 - `tryParseSwissIbanNumber` swiss standard function
@@ -188,7 +190,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added `eslint-plugin-jsdoc` to lint jsdoc comments
 - `getEnumNameFromValue`,`getEnumValueFromName`, `getEnumNames`,`getEnumNameValues` functions to respectively get the name of an enum from its value, the value from its name, all the names and all the values
 
-[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/2.1.0...HEAD
+[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/2.2.0...HEAD
+[2.2.0]: https://github.com/neolution-ch/javascript-utils/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/neolution-ch/javascript-utils/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/neolution-ch/javascript-utils/compare/1.5.0...2.0.0
 [1.5.0]: https://github.com/neolution-ch/javascript-utils/compare/1.4.0...1.5.0

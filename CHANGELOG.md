@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### dependabot: \#86 Bump ajv from 6.12.6 to 6.14.0
+
 ## [2.2.0] - 2025-10-02
 
 ### Added

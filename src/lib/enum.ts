@@ -59,6 +59,20 @@ export function getEnumValues<T>(enumVariable: StandardEnum<T>): T[] {
 }
 
 /**
+ * Parses a string to an enum value
+ * @param enumVariable The enum for which you want to get the values
+ * @param value The string to parse
+ * @returns The enum value corresponding to the string, or undefined if not found
+ */
+export function parseEnum<T>(enumVariable: StandardEnum<T>, value: string): T | undefined {
+  if (!isEnumString(enumVariable) && Number.isNaN(Number(value))) {
+    return undefined;
+  }
+
+  return getEnumValueFromName(enumVariable, getEnumNameFromValue(enumVariable, value as T));
+}
+
+/**
  * Returns if it's a enum with string value
  * @param enumVariable The enum
  * @returns A bool

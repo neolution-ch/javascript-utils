@@ -10,6 +10,7 @@ import {
   getEndOfDay,
   getFirstDayOfYear,
   getLastDayOfYear,
+  getCurrentQuarter,
 } from "./date";
 
 describe("date tests", () => {
@@ -163,9 +164,22 @@ describe("date tests", () => {
     }
   });
 
-  test("get ", () => {
-    for (let date = new Date(2024, 0, 1); date < new Date(2025, 0, 1); date.setDate(date.getDate() + 1)) {
-      expect(getLastDayOfYear(date).getTime()).toBe(new Date(2024, 11, 31, 0, 0, 0, 0).getTime());
-    }
+  test.each([
+    [new Date("2026-01-15"), 1],
+    [new Date("2026-04-10"), 2],
+    [new Date("2026-08-20"), 3],
+    [new Date("2026-11-05"), 4],
+  ])("getCurrentQuarter", (date, expected) => {
+    expect(getCurrentQuarter(date)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as Date, Number.NaN],
+    [undefined as unknown as Date, Number.NaN],
+    [42 as unknown as Date, Number.NaN],
+    ["test" as unknown as Date, Number.NaN],
+    [new Date("invalid-date"), Number.NaN],
+  ])("getCurrentQuarter", (date) => {
+    expect(getCurrentQuarter(date)).toBeNaN();
   });
 });

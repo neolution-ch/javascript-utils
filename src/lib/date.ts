@@ -115,9 +115,9 @@ export function getLastDayOfYear(date: Date): Date {
 }
 
 /**
- * Get the current quarter
+ * Get the quarter
  * @param date The date
- * @returns the number of the current quarter
+ * @returns the number of the quarter
  */
 export function getQuarter(date: Date): number {
   return dateIsValid(date) ? getQuarterInternal(date) : Number.NaN;

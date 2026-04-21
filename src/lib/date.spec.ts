@@ -169,7 +169,7 @@ describe("date tests", () => {
     [new Date("2026-04-10"), 2],
     [new Date("2026-08-20"), 3],
     [new Date("2026-11-05"), 4],
-  ])("getCurrentQuarter", (date, expected) => {
+  ])("getQuarter", (date, expected) => {
     expect(getQuarter(date)).toBe(expected);
   });
 
@@ -179,7 +179,7 @@ describe("date tests", () => {
     [42 as unknown as Date, Number.NaN],
     ["test" as unknown as Date, Number.NaN],
     [new Date("invalid-date"), Number.NaN],
-  ])("getCurrentQuarter", (date) => {
+  ])("getQuarter", (date) => {
     expect(getQuarter(date)).toBeNaN();
   });
 });

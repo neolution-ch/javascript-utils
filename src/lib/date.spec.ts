@@ -162,4 +162,10 @@ describe("date tests", () => {
       expect(getLastDayOfYear(date).getTime()).toBe(new Date(2024, 11, 31, 0, 0, 0, 0).getTime());
     }
   });
+
+  test("get ", () => {
+    for (let date = new Date(2024, 0, 1); date < new Date(2025, 0, 1); date.setDate(date.getDate() + 1)) {
+      expect(getLastDayOfYear(date).getTime()).toBe(new Date(2024, 11, 31, 0, 0, 0, 0).getTime());
+    }
+  });
 });

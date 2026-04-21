@@ -10,7 +10,7 @@ import {
   startOfDay,
   endOfDay,
   lastDayOfYear,
-  getQuarter,
+  getQuarter as getQuarterInternal,
 } from "date-fns";
 
 /**
@@ -119,6 +119,6 @@ export function getLastDayOfYear(date: Date): Date {
  * @param date The date
  * @returns the number of the current quarter
  */
-export function getCurrentQuarter(date: Date): number {
-  return dateIsValid(date) ? getQuarter(date) : Number.NaN;
+export function getQuarter(date: Date): number {
+  return dateIsValid(date) ? getQuarterInternal(date) : Number.NaN;
 }

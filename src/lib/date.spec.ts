@@ -165,21 +165,16 @@ describe("date tests", () => {
   });
 
   test.each([
+    [null as unknown as Date, Number.NaN],
+    [undefined as unknown as Date, Number.NaN],
+    [42 as unknown as Date, Number.NaN],
+    ["test" as unknown as Date, Number.NaN],
+    [new Date("invalid-date"), Number.NaN],
     [new Date("2026-01-15"), 1],
     [new Date("2026-04-10"), 2],
     [new Date("2026-08-20"), 3],
     [new Date("2026-11-05"), 4],
   ])("getQuarter", (date, expected) => {
     expect(getQuarter(date)).toBe(expected);
-  });
-
-  test.each([
-    [null as unknown as Date, Number.NaN],
-    [undefined as unknown as Date, Number.NaN],
-    [42 as unknown as Date, Number.NaN],
-    ["test" as unknown as Date, Number.NaN],
-    [new Date("invalid-date"), Number.NaN],
-  ])("getQuarter", (date) => {
-    expect(getQuarter(date)).toBeNaN();
   });
 });

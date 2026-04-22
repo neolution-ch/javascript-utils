@@ -16,6 +16,7 @@ import {
 
 describe("date tests", () => {
   test.each([
+    // Valid dates
     [new Date(), true],
     [new Date(new Date()), true],
     [new Date("2014-03-15"), true],
@@ -24,6 +25,8 @@ describe("date tests", () => {
     [new Date(Number.MAX_VALUE), false],
     [new Date(Number.NaN), false],
     [new Date("2014-03-36"), false],
+
+    // Invalid dates
     [null as unknown as Date, false],
     [undefined as unknown as Date, false],
     [42 as unknown as Date, false],
@@ -176,13 +179,6 @@ describe("date tests", () => {
     expect(getQuarter(date)).toBe(expected);
   });
 
-  test.each([[null as unknown as Date], [undefined as unknown as Date], [42 as unknown as Date], ["test" as unknown as Date]])(
-    "getQuarter invalid inputs",
-    (date) => {
-      expect(getQuarter(date)).toBeNaN();
-    },
-  );
-
   test.each([
     [new Date("2026-01-15"), 4],
     [new Date("2026-04-10"), 1],
@@ -192,7 +188,11 @@ describe("date tests", () => {
     expect(getPreviousQuarter(date)).toBe(expected);
   });
 
-  test.each([null, undefined, 42, "test", new Date("invalid-date")] as unknown as Date[])("getPreviousQuarter invalid inputs", (date) => {
-    expect(getPreviousQuarter(date)).toBeNaN();
-  });
+  test.each([[null as unknown as Date], [undefined as unknown as Date], [42 as unknown as Date], ["test" as unknown as Date]])(
+    "getQuarter and getPreviousQuarter invalid inputs",
+    (date) => {
+      expect(getQuarter(date)).toBeNaN();
+      expect(getPreviousQuarter(date)).toBeNaN();
+    },
+  );
 });

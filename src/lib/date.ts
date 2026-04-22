@@ -115,7 +115,7 @@ export function getLastDayOfYear(date: Date): Date {
 }
 
 /**
- * Get the quarter
+ * Get the year quarter for the given date
  * @param date The date
  * @returns The year quarter
  */

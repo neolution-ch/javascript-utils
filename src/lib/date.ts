@@ -122,3 +122,16 @@ export function getLastDayOfYear(date: Date): Date {
 export function getQuarter(date: Date): number {
   return dateIsValid(date) ? getQuarterInternal(date) : Number.NaN;
 }
+
+/**
+ * Get the previous year quarter for the given date
+ * @param date The date
+ * @returns The previous year quarter
+ */
+export function getPreviousQuarter(date: Date): number {
+  if (!dateIsValid(date)) return Number.NaN;
+
+  const currentQuarter = getQuarter(date);
+
+  return currentQuarter === 1 ? 4 : currentQuarter - 1;
+}

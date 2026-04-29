@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import {
   dateIsValid,
   dateIsFirstDayOfMonth,
@@ -10,8 +11,8 @@ import {
   getEndOfDay,
   getFirstDayOfYear,
   getLastDayOfYear,
+  addQuarters,
   getQuarter,
-  getPreviousQuarter,
 } from "./date";
 
 describe("date tests", () => {
@@ -180,19 +181,21 @@ describe("date tests", () => {
   });
 
   test.each([
-    [new Date("2026-01-15"), 4],
-    [new Date("2026-04-10"), 1],
-    [new Date("2026-08-20"), 2],
-    [new Date("2026-11-05"), 3],
-  ])("getPreviousQuarter", (date, expected) => {
-    expect(getPreviousQuarter(date)).toBe(expected);
+    [new Date(2026, 4, 29), 1, new Date(2026, 7, 29)],
+    [new Date(2026, 4, 29), 4, new Date(2027, 4, 29)],
+    [new Date(2026, 8, 15), -1, new Date(2026, 5, 15)],
+    [new Date(2026, 8, 15), -4, new Date(2025, 8, 15)],
+  ])("addQuarters", (date, amount, expected) => {
+    expect(addQuarters(date, amount).getTime()).toBe(expected.getTime());
   });
 
-  test.each([[null as unknown as Date], [undefined as unknown as Date], [42 as unknown as Date], ["test" as unknown as Date]])(
-    "getQuarter and getPreviousQuarter invalid inputs",
-    (date) => {
-      expect(getQuarter(date)).toBeNaN();
-      expect(getPreviousQuarter(date)).toBeNaN();
-    },
-  );
+  test.each([
+    [null as unknown as Date, 1],
+    [undefined as unknown as Date, -1],
+    [42 as unknown as Date, 1],
+    ["test" as unknown as Date, -1],
+    [new Date("invalid-date"), 1],
+  ])("addQuarters with invalid inputs", (date, amount) => {
+    expect(addQuarters(date, amount).getTime()).toBe(Number.NaN);
+  });
 });

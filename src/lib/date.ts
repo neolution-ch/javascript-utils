@@ -11,6 +11,7 @@ import {
   endOfDay,
   lastDayOfYear,
   getQuarter as getQuarterInternal,
+  addQuarters as addQuartersInternal,
 } from "date-fns";
 
 /**
@@ -124,14 +125,11 @@ export function getQuarter(date: Date): number {
 }
 
 /**
- * Get the previous year quarter for the given date
+ * Shifts a date by a given number of quarters.
  * @param date The date
- * @returns The previous year quarter
+ * @param amount Number of quarters to shift by (negative values shift the date backwards)
+ * @returns A new Date shifted by the specified number of quarters
  */
-export function getPreviousQuarter(date: Date): number {
-  if (!dateIsValid(date)) return Number.NaN;
-
-  const currentQuarter = getQuarter(date);
-
-  return currentQuarter === 1 ? 4 : currentQuarter - 1;
+export function addQuarters(date: Date, amount: number): Date {
+  return dateIsValid(date) ? addQuartersInternal(date, amount) : new Date(Number.NaN);
 }

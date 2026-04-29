@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import {
   dateIsValid,
   dateIsFirstDayOfMonth,
@@ -181,21 +180,17 @@ describe("date tests", () => {
   });
 
   test.each([
+    [null as unknown as Date, 1, new Date(Number.NaN)],
+    [undefined as unknown as Date, -1, new Date(Number.NaN)],
+    [42 as unknown as Date, 1, new Date(Number.NaN)],
+    ["test" as unknown as Date, -1, new Date(Number.NaN)],
+    [new Date("invalid-date"), 1, new Date(Number.NaN)],
+    [new Date(Number.NaN), 1, new Date(Number.NaN)],
     [new Date(2026, 4, 29), 1, new Date(2026, 7, 29)],
     [new Date(2026, 4, 29), 4, new Date(2027, 4, 29)],
     [new Date(2026, 8, 15), -1, new Date(2026, 5, 15)],
     [new Date(2026, 8, 15), -4, new Date(2025, 8, 15)],
   ])("addQuarters", (date, amount, expected) => {
     expect(addQuarters(date, amount).getTime()).toBe(expected.getTime());
-  });
-
-  test.each([
-    [null as unknown as Date, 1],
-    [undefined as unknown as Date, -1],
-    [42 as unknown as Date, 1],
-    ["test" as unknown as Date, -1],
-    [new Date("invalid-date"), 1],
-  ])("addQuarters with invalid inputs", (date, amount) => {
-    expect(addQuarters(date, amount).getTime()).toBe(Number.NaN);
   });
 });

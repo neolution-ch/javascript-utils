@@ -10,6 +10,8 @@ import {
   getEndOfDay,
   getFirstDayOfYear,
   getLastDayOfYear,
+  addQuarters,
+  getQuarter,
 } from "./date";
 
 describe("date tests", () => {
@@ -161,5 +163,34 @@ describe("date tests", () => {
     for (let date = new Date(2024, 0, 1); date < new Date(2025, 0, 1); date.setDate(date.getDate() + 1)) {
       expect(getLastDayOfYear(date).getTime()).toBe(new Date(2024, 11, 31, 0, 0, 0, 0).getTime());
     }
+  });
+
+  test.each([
+    [null as unknown as Date, Number.NaN],
+    [undefined as unknown as Date, Number.NaN],
+    [42 as unknown as Date, Number.NaN],
+    ["test" as unknown as Date, Number.NaN],
+    [new Date("invalid-date"), Number.NaN],
+    [new Date("2026-01-15"), 1],
+    [new Date("2026-04-10"), 2],
+    [new Date("2026-08-20"), 3],
+    [new Date("2026-11-05"), 4],
+  ])("getQuarter", (date, expected) => {
+    expect(getQuarter(date)).toBe(expected);
+  });
+
+  test.each([
+    [null as unknown as Date, 1, new Date(Number.NaN)],
+    [undefined as unknown as Date, -1, new Date(Number.NaN)],
+    [42 as unknown as Date, 1, new Date(Number.NaN)],
+    ["test" as unknown as Date, -1, new Date(Number.NaN)],
+    [new Date("invalid-date"), 1, new Date(Number.NaN)],
+    [new Date(Number.NaN), 1, new Date(Number.NaN)],
+    [new Date(2026, 4, 29), 1, new Date(2026, 7, 29)],
+    [new Date(2026, 4, 29), 4, new Date(2027, 4, 29)],
+    [new Date(2026, 8, 15), -1, new Date(2026, 5, 15)],
+    [new Date(2026, 8, 15), -4, new Date(2025, 8, 15)],
+  ])("addQuarters", (date, amount, expected) => {
+    expect(addQuarters(date, amount).getTime()).toBe(expected.getTime());
   });
 });

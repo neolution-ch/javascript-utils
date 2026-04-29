@@ -10,6 +10,8 @@ import {
   startOfDay,
   endOfDay,
   lastDayOfYear,
+  getQuarter as getQuarterInternal,
+  addQuarters as addQuartersInternal,
 } from "date-fns";
 
 /**
@@ -111,4 +113,23 @@ export function getFirstDayOfYear(date: Date): Date {
  */
 export function getLastDayOfYear(date: Date): Date {
   return dateIsValid(date) ? lastDayOfYear(date) : new Date(Number.NaN);
+}
+
+/**
+ * Get the year quarter for the given date
+ * @param date The date
+ * @returns The year quarter
+ */
+export function getQuarter(date: Date): number {
+  return dateIsValid(date) ? getQuarterInternal(date) : Number.NaN;
+}
+
+/**
+ * Shifts a date by a given number of quarters.
+ * @param date The date
+ * @param amount Number of quarters to shift by (negative values shift the date backwards)
+ * @returns A new Date shifted by the specified number of quarters
+ */
+export function addQuarters(date: Date, amount: number): Date {
+  return dateIsValid(date) ? addQuartersInternal(date, amount) : new Date(Number.NaN);
 }

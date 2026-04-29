@@ -22,11 +22,11 @@ describe("date tests", () => {
     [new Date("2014-03-15"), true],
     [new Date(2014, 3, 15), true],
     [new Date(42), true],
+
+    // Invalid dates
     [new Date(Number.MAX_VALUE), false],
     [new Date(Number.NaN), false],
     [new Date("2014-03-36"), false],
-
-    // Invalid dates
     [null as unknown as Date, false],
     [undefined as unknown as Date, false],
     [42 as unknown as Date, false],

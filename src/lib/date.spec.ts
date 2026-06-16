@@ -12,6 +12,8 @@ import {
   getLastDayOfYear,
   addQuarters,
   getQuarter,
+  getDateAddTimeZone,
+  getDateWithoutTimeZone,
 } from "./date";
 
 describe("date tests", () => {
@@ -192,5 +194,33 @@ describe("date tests", () => {
     [new Date(2026, 8, 15), -4, new Date(2025, 8, 15)],
   ])("addQuarters", (date, amount, expected) => {
     expect(addQuarters(date, amount).getTime()).toBe(expected.getTime());
+  });
+
+  test.each([
+    [null as unknown as Date, new Date(Number.NaN)],
+    [undefined as unknown as Date, new Date(Number.NaN)],
+    [42 as unknown as Date, new Date(Number.NaN)],
+    ["2014-03-15" as unknown as Date, new Date(Number.NaN)],
+    [{ year: 2014, month: 2, day: 15 } as unknown as Date, new Date(Number.NaN)],
+    [new Date(2026, 6, 5, 0, 0, 0, 0), new Date(2026, 6, 5, 0, 0, 0, 0 + 120 * 60_000)],
+    [new Date(2026, 6, 5, 1, 12, 13, 1), new Date(2026, 6, 5, 1, 12, 13, 1 + 120 * 60_000)],
+    [new Date(2026, 12, 5, 0, 0, 0, 0), new Date(2026, 12, 5, 0, 0, 0, 0 + 60 * 60_000)],
+    [new Date(2026, 12, 5, 1, 12, 13, 1), new Date(2026, 12, 5, 1, 12, 13, 1 + 60 * 60_000)],
+  ])("getDateWithoutTimeZone", (date, expected) => {
+    expect(getDateWithoutTimeZone(date).getTime()).toBe(expected.getTime());
+  });
+
+  test.each([
+    [null as unknown as Date, new Date(Number.NaN)],
+    [undefined as unknown as Date, new Date(Number.NaN)],
+    [42 as unknown as Date, new Date(Number.NaN)],
+    ["2014-03-15" as unknown as Date, new Date(Number.NaN)],
+    [{ year: 2014, month: 2, day: 15 } as unknown as Date, new Date(Number.NaN)],
+    [new Date(2026, 6, 5, 0, 0, 0, 0), new Date(2026, 6, 5, 0, 0, 0, 0 - 120 * 60_000)],
+    [new Date(2026, 6, 5, 1, 12, 13, 1), new Date(2026, 6, 5, 1, 12, 13, 1 - 120 * 60_000)],
+    [new Date(2026, 12, 5, 0, 0, 0, 0), new Date(2026, 12, 5, 0, 0, 0, 0 - 60 * 60_000)],
+    [new Date(2026, 12, 5, 1, 12, 13, 1), new Date(2026, 12, 5, 1, 12, 13, 1 - 60 * 60_000)],
+  ])("getDateAddTimeZone", (date, expected) => {
+    expect(getDateAddTimeZone(date).getTime()).toBe(expected.getTime());
   });
 });

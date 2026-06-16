@@ -133,3 +133,21 @@ export function getQuarter(date: Date): number {
 export function addQuarters(date: Date, amount: number): Date {
   return dateIsValid(date) ? addQuartersInternal(date, amount) : new Date(Number.NaN);
 }
+
+/**
+ * Get the date removing the time-zone offset
+ * @param date The date
+ * @returns the given date removing the time-zone offset
+ */
+export function getDateWithoutTimeZone(date: Date): Date {
+  return dateIsValid(date) ? new Date(date.getTime() - date.getTimezoneOffset() * 60_000) : new Date(Number.NaN);
+}
+
+/**
+ * Get the date adding the time-zone offset
+ * @param date The date
+ * @returns the given date adding the time-zone offset
+ */
+export function getDateAddTimeZone(date: Date): Date {
+  return dateIsValid(date) ? new Date(date.getTime() + date.getTimezoneOffset() * 60_000) : new Date(Number.NaN);
+}

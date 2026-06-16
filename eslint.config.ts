@@ -6,4 +6,8 @@ export default [
     jest: true,
     jsdocRequireJsdoc: true,
   }),
+  {
+    files: ["src/lib/*.spec.ts"],
+    rules: { "max-lines": ["off"] },
+  },
 ];

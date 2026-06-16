@@ -5,7 +5,7 @@ import terser from "@rollup/plugin-terser";
 import typescript from "rollup-plugin-typescript2";
 import { defineConfig, InputPluginOption } from "rollup";
 import { type Plugin } from "rollup";
-import * as fs from "fs";
+import { rmSync } from "node:fs";
 
 const input = "src/index.ts";
 
@@ -15,9 +15,9 @@ const cleanDist: Plugin = {
    * Remove some unwanted files from the dist folder before creating the bundle
    */
   writeBundle() {
-    fs.rmSync("./dist/rollup.config.d.ts", { force: true });
-    fs.rmSync("./dist/jest.config.d.ts", { force: true });
-    fs.rmSync("./dist/eslint.config.d.ts", { force: true });
+    rmSync("./dist/rollup.config.d.ts", { force: true });
+    rmSync("./dist/jest.config.d.ts", { force: true });
+    rmSync("./dist/eslint.config.d.ts", { force: true });
   },
 };
 

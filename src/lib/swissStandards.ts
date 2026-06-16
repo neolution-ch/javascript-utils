@@ -81,7 +81,7 @@ export function isValidSwissSocialInsuranceNumber(socialInsuranceNumber: string)
    *    - last digit: actual check digit
    */
   const digits = compactNumber.slice(0, -1);
-  const reversedDigits = [...digits].reverse().join("");
+  const reversedDigits = [...digits].toReversed().join("");
   const reversedDigitsArray = [...reversedDigits];
 
   /*
@@ -124,11 +124,11 @@ export function tryParseSwissIbanNumber(unformattedIbanNumber?: string): {
   /**
    * The cleaned IBAN, only present if valid
    */
-  iban?: string;
+  iban?: string | undefined;
   /**
    * The formatted IBAN, only present if valid
    */
-  ibanFormatted?: string;
+  ibanFormatted?: string | undefined;
 } {
   if (isNullOrWhitespace(unformattedIbanNumber)) {
     return { isValid: false };
@@ -160,11 +160,11 @@ export function tryParseSwissSocialInsuranceNumber(unformattedInsuranceNumber?: 
   /**
    * The cleaned Swiss social insurance number, only present if valid
    */
-  swissSocialInsuranceNumber?: string;
+  swissSocialInsuranceNumber?: string | undefined;
   /**
    * The formatted Swiss social insurance number, only present if valid
    */
-  swissSocialInsuranceNumberFormatted?: string;
+  swissSocialInsuranceNumberFormatted?: string | undefined;
 } {
   if (isNullOrWhitespace(unformattedInsuranceNumber)) {
     return { isValid: false };

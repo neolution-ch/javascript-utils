@@ -33,3 +33,4 @@ terraform
 .vs
 
 .npmrc
+tsconfig.jest.json

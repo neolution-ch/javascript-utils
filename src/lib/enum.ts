@@ -16,7 +16,7 @@ export function getEnumNameFromValue<T>(enumVariable: StandardEnum<T>, enumValue
   let result = enumVariable[enumValue as keyof StandardEnum<T>] as string;
 
   if (result === undefined && isEnumString(enumVariable)) {
-    result = Object.keys(enumVariable)[Object.values(enumVariable).indexOf(enumValue)];
+    result = Object.keys(enumVariable)[Object.values(enumVariable).indexOf(enumValue)] as string;
   }
 
   return result;

@@ -1,21 +1,14 @@
 {
+  "extends": ["@tsconfig/recommended/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
   "compilerOptions": {
     "outDir": "dist",
     "module": "ESNext",
     "target": "ESNext",
     "lib": ["dom", "esnext"],
-    "moduleResolution": "node",
+    "types": ["node", "jest"],
+    "moduleResolution": "bundler",
     "sourceMap": true,
-    "declaration": true,
-    "esModuleInterop": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": "."
+    "declaration": true
   },
   "include": ["src", "test"],
   "exclude": ["node_modules", "dist", "coverage"],

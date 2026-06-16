@@ -3,10 +3,10 @@ import { isImageMimeType, isPdfMimeType, isVideoMimeType, isAudioMimeType, isTex
 describe("mimeType tests", () => {
   // Common invalid inputs
   const invalidInputs: [string | null | undefined | number | Date, boolean][] = [
-    [null as unknown as string, false],
-    [undefined as unknown as string, false],
-    [0 as unknown as string, false],
-    [new Date() as unknown as string, false],
+    [null, false],
+    [undefined, false],
+    [0, false],
+    [new Date(), false],
     ["", false],
     [" ", false],
     ["not-a-mime-type", false],

@@ -14,14 +14,14 @@
     "./package.json": "./package.json",
     ".": {
       "types": "./dist/src/index.d.ts",
-      "import": "./dist/index.modern.js",
-      "require": "./dist/index.js"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "source": "src/index.ts",
-  "jsnext:main": "dist/index.modern.js",
+  "jsnext:main": "dist/index.mjs",
   "types": "dist/src/index.d.ts",
   "files": [
     "dist"

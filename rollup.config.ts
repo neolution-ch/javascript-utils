@@ -46,7 +46,7 @@ export default defineConfig([
   {
     input,
     output: {
-      file: "dist/index.js",
+      file: "dist/index.cjs",
       format: "cjs",
       sourcemap: true,
       exports: "named",
@@ -57,7 +57,7 @@ export default defineConfig([
   {
     input,
     output: {
-      file: "dist/index.modern.js",
+      file: "dist/index.mjs",
       format: "esm",
       sourcemap: true,
       exports: "named",

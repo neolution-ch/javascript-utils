@@ -21,4 +21,4 @@ export function isValidGuid(str: string) {
 /**
  * The empty Guid (an identifier containing all zeros)
  */
-export const emptyGuid = uuid.NIL;
+export const emptyGuid: string = uuid.NIL;

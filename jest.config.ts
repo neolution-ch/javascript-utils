@@ -4,6 +4,7 @@ const config: Config.InitialOptions = {
   transform: {
     "^.+\\.(t|j)sx?$": "@swc/jest",
   },
+  transformIgnorePatterns: ["/node_modules/(?!uuid)"],
   coverageProvider: "v8",
   testEnvironment: "node",
   resetMocks: false,

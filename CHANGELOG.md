@@ -7,7 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
 - Add LICENSE file
+
+### Changed
+
+- Upgraded `node` engine to `>=22`
+- Upgraded `typescript` to `^6.0.3`
+- Upgraded `uuid` to `^14.0.3`
+- Upgraded `date-fns` to `^4.4.0`
+- Upgraded various dev dependencies (`eslint`, `jest`, `rollup`, `prettier`, ...)
+- `ci` pipeline now runs on multiple node versions (22.x, 24.x, 26.x)
+
+### Removed
+
+- `@types/uuid` dev dependency, as `uuid` now ships its own types
 
 ## [2.5.0] - 2026-06-16
 

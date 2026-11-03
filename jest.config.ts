@@ -1,7 +1,11 @@
 import type { Config } from "@jest/types";
 
 const config: Config.InitialOptions = {
-  preset: "ts-jest",
+  transform: {
+    "^.+\\.(t|j)sx?$": "@swc/jest",
+  },
+  transformIgnorePatterns: ["/node_modules/(?!uuid)"],
+  coverageProvider: "v8",
   testEnvironment: "node",
   resetMocks: false,
   setupFiles: ["jest-localstorage-mock"],

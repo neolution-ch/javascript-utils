@@ -74,7 +74,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x, 24.x, 26.x]
     steps:
       - uses: actions/checkout@v3
 
@@ -88,7 +88,7 @@ jobs:
       - run: yarn prettier-check
       - run: yarn lint
       - run: yarn build
-      - run: yarn jest
+      - run: yarn test
         env:
           TZ: Europe/Zurich
 
@@ -99,8 +99,11 @@ jobs:
           format: markdown
           output: both
 
+      - name: Rename coverage file
+        run: mv code-coverage-results.md code-coverage-results-${{ matrix.node-version }}.md
+
       - name: Upload Coverage Summary Report
         uses: actions/upload-artifact@v4
         with:
-          path: code-coverage-results.md
-          name: code-coverage-results
+          path: code-coverage-results-${{ matrix.node-version }}.md
+          name: code-coverage-results-${{ matrix.node-version }}

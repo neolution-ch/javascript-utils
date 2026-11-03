@@ -12,7 +12,7 @@ describe("string tests", () => {
     // Actual strings
     ["", true],
     [" ", false],
-    ["     ", false],
+    [" ".repeat(5), false],
     ["Not empty", false],
   ])("isNullOrEmpty", (value, expected) => {
     expect(isNullOrEmpty(value)).toBe(expected);
@@ -29,7 +29,7 @@ describe("string tests", () => {
     // Actual strings
     ["", true],
     [" ", true],
-    ["     ", true],
+    [" ".repeat(5), true],
     ["Not empty", false],
 
     // String escape sequences

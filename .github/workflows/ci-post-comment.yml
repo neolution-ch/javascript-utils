@@ -12,7 +12,7 @@ jobs:
       - name: Download code-coverage-results
         uses: actions/download-artifact@v4
         with:
-          name: code-coverage-results
+          name: code-coverage-results-22.x
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -33,5 +33,5 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           recreate: true
-          path: code-coverage-results.md
+          path: code-coverage-results-22.x.md
           number: ${{ steps.get_pr_number.outputs.pr_number }}

@@ -7,7 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
 - Add LICENSE file
+
+### Changed
+
+- Upgraded `uuid` to `^11.1.1`
+
+### Removed
+
+- `@types/uuid` dev dependency, as `uuid` now ships its own types
 
 ## [2.5.0] - 2026-06-16
 

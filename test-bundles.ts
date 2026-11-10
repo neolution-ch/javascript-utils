@@ -2,7 +2,6 @@ import { execSync } from "node:child_process";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { readFileSync } from "node:fs";
-import { createJiti } from "jiti";
 
 /**
  * The interface for the package.json structure we need to test
@@ -40,7 +39,7 @@ const pkgPath = path.join(process.cwd(), "package.json");
 const pkg = JSON.parse(readFileSync(pkgPath, "utf8")) as PackageJson;
 const libName = pkg.name;
 
-console.log(`\n🧪 Starting bundle integration tests for ${libName}...\n`);
+console.log(`\n🧪 Starting strictly native bundle integration tests for ${libName}...\n`);
 
 // 0. Environment & Node version check
 const [major = 0, minor = 0] = process.versions.node.split(".").map(Number);
@@ -70,7 +69,7 @@ try {
 
   // Base64 encode the script to avoid cross-platform quote/escaped char hell in terminal commands
   const inlineEsmScript = `
-    import { newGuid, isValidGuid, getQuarter } from ${JSON.stringify(esmUrl)};
+    import { newGuid, isValidGuid, getQuarter } from ${JSON.stringify(esmUrl)};
     
     const guid = newGuid();
     if (!isValidGuid(guid)) {
@@ -94,46 +93,40 @@ try {
 }
 
 // --------------------------------------------------------
-// CJS BUNDLE TEST (Using jiti to simulate CJS require)
+// CJS BUNDLE TEST (Strictly native Node.js subprocess)
 // --------------------------------------------------------
-console.log("\n▶️ [CJS] Testing bundle functionality...");
+console.log("\n▶️ [CJS] Testing native loading contract...");
 try {
   const cjsEntry = path.join(process.cwd(), pkg.exports["."].require);
+  const cwdUrl = pathToFileURL(`${process.cwd()}/`).href;
 
-  // jiti simulates a strict CommonJS require() context
-  const jiti = createJiti(import.meta.url, { interopDefault: true });
+  // We use createRequire natively inside an isolated node subprocess to guarantee
+  // that no transpilation or tool-assisted fallback hides a bundle loading failure.
+  const inlineCjsScript = `
+    import { createRequire } from 'node:module';
+    const require = createRequire(${JSON.stringify(cwdUrl)});
+    
+    const { newGuid, isValidGuid, getQuarter } = require(${JSON.stringify(cjsEntry)});
+    
+    const guid = newGuid();
+    if (!isValidGuid(guid)) {
+      throw new Error('Generated GUID is invalid: ' + guid);
+    }
+    
+    const quarter = getQuarter(new Date('2026-11-10'));
+    if (quarter !== 4) {
+      throw new Error('Unexpected quarter calculation: ' + quarter);
+    }
+    
+    console.log("   GUID test passed:", guid);
+    console.log("   date-fns test passed (Quarter):", quarter);
+  `;
+  const base64CjsScript = Buffer.from(inlineCjsScript).toString("base64");
 
-  // Cast and destructure the specific functions we want to test
-  const { newGuid, isValidGuid, getQuarter } = jiti(cjsEntry) as {
-    /**
-     * Generates a new GUID string.
-     */
-    newGuid: () => string;
-    /**
-     * Validates whether the given string is a valid GUID.
-     */
-    isValidGuid: (guid: string) => boolean;
-    /**
-     * Calculates the quarter of the given date.
-     */
-    getQuarter: (date: Date) => number;
-  };
-
-  const guid = newGuid();
-  if (!isValidGuid(guid)) {
-    throw new Error(`Generated GUID is invalid: ${guid}`);
-  }
-
-  const quarter = getQuarter(new Date("2026-11-10"));
-  if (quarter !== 4) {
-    throw new Error(`Unexpected quarter calculation: ${quarter}`);
-  }
-
-  console.log("   GUID test passed:", guid);
-  console.log("   date-fns test passed (Quarter):", quarter);
+  execSync(`node --input-type=module --eval "import 'data:text/javascript;base64,${base64CjsScript}'"`, { stdio: "inherit" });
   console.log("✅ [CJS] Passed successfully!");
 } catch (error) {
-  throw new Error("❌ [CJS] Test failed!", { cause: error });
+  throw new Error("❌ [CJS] Test failed! The published bundle does not satisfy the native CommonJS contract.", { cause: error });
 }
 
-console.log("\n🎉 All bundles are fully functional in both ESM and CJS formats!\n");
+console.log("\n🎉 All bundles are fully functional in both ESM and CJS formats under strict native validation!\n");

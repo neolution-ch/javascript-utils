@@ -34,8 +34,9 @@
     "prettier-check": "prettier --check .",
     "prettier-write": "prettier --write .",
     "start": "rollup -c -w",
-    "pretest": "tsc -p tsconfig.json --showConfig > tsconfig.jest.json",
-    "test": "yarn pretest && cross-env TZ=Europe/Zurich TS_NODE_PROJECT='tsconfig.jest.json' yarn jest",
+    "test:unit": "tsc -p tsconfig.json --showConfig > tsconfig.jest.json && cross-env TZ=Europe/Zurich TS_NODE_PROJECT='tsconfig.jest.json' yarn jest",
+    "test:bundles": "jiti test-bundles.ts",
+    "test": "yarn test:unit && yarn test:bundles",
     "start-all": "concurrently \"yarn start\" \"yarn start-yalc\"",
     "start-yalc": "yarn nodemon --watch dist -x \"yarn yalc push\""
   },

@@ -12,5 +12,5 @@
   },
   "include": ["src", "test"],
   "exclude": ["node_modules", "dist", "coverage"],
-  "files": ["rollup.config.ts", "jest.config.ts", "eslint.config.ts"]
+  "files": ["rollup.config.ts", "jest.config.ts", "eslint.config.ts", "test-bundles.ts"]
 }

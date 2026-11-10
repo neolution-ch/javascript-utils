@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Bundles test to ensure the compiled package works with CJS and ESM
+
 ### Changed
 
 - Upgraded `node` engine to `>=22`
@@ -15,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgraded `date-fns` to `^4.4.0`
 - Upgraded various dev dependencies (`eslint`, `jest`, `rollup`, `prettier`, ...)
 - `ci` pipeline now runs on multiple node versions (22.x, 24.x, 26.x)
+- Upgraded `yarn` to `v4` using `corepack`
 
 ## [2.6.0] - 2026-11-04
 
@@ -29,7 +34,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - `@types/uuid` dev dependency, as `uuid` now ships its own types
-
 
 ## [2.5.0] - 2026-06-16
 

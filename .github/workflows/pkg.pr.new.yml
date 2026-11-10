@@ -20,7 +20,11 @@ jobs:
           node-version-file: ".nvmrc"
           cache: "yarn"
 
-      - run: yarn --frozen-lockfile
+      - run: |
+          npm install -g corepack --force
+          corepack enable
+
+      - run: yarn install --immutable
 
       # append the git commit to the package.json version.
       # We do this because some cache mechanisms (like nextjs) don't work well with the same version and ignore the changes

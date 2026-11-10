@@ -43,9 +43,13 @@ jobs:
           git config user.name "GitHub Release Bot"
           git config user.email release-bot@neolution.ch
 
+      - run: |
+          npm install -g corepack --force
+          corepack enable
+
       - name: install yarn packages
         run: |
-          yarn --frozen-lockfile
+          yarn install --immutable
 
       - name: set NPM Token
         run: |

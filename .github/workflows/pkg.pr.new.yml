@@ -15,11 +15,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - run: |
+          npm install -g corepack --force
+          corepack enable
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
+          cache: "yarn"
 
-      - run: yarn --frozen-lockfile
+      - run: yarn install --immutable
 
       # append the git commit to the package.json version.
       # We do this because some cache mechanisms (like nextjs) don't work well with the same version and ignore the changes

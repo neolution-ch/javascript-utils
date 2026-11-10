@@ -95,11 +95,10 @@ export function trimEnd(haystack: string, needle: string): string {
     return haystack;
   }
 
-  let offset = haystack.length,
-    idx = -1;
+  let offset = haystack.length;
 
   while (true) {
-    idx = haystack.lastIndexOf(needle, offset - 1);
+    const idx = haystack.lastIndexOf(needle, offset - 1);
     if (idx === -1 || idx + needle.length !== offset) {
       break;
     }

@@ -70,7 +70,7 @@ try {
 
   // Base64 encode the script to avoid cross-platform quote/escaped char hell in terminal commands
   const inlineEsmScript = `
-    import { newGuid, isValidGuid, getQuarter } from '${esmUrl}';
+    import { newGuid, isValidGuid, getQuarter } from ${JSON.stringify(esmUrl)};
     
     const guid = newGuid();
     if (!isValidGuid(guid)) {

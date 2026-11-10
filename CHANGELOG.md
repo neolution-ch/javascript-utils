@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Upgraded `node` engine to `>=22`
+- Upgraded `node` engine to `>=22.12.0`
 - Upgraded `typescript` to `^6.0.3`
 - Upgraded `uuid` to `^14.0.3`
 - Upgraded `date-fns` to `^4.4.0`

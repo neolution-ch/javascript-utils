@@ -7,10 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-
-- Add LICENSE file
-
 ### Changed
 
 - Upgraded `node` engine to `>=22`
@@ -20,9 +16,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgraded various dev dependencies (`eslint`, `jest`, `rollup`, `prettier`, ...)
 - `ci` pipeline now runs on multiple node versions (22.x, 24.x, 26.x)
 
+## [2.6.0] - 2026-11-04
+
+### Added
+
+- Add LICENSE file
+
+### Changed
+
+- Upgraded `uuid` to `^11.1.1`
+
 ### Removed
 
 - `@types/uuid` dev dependency, as `uuid` now ships its own types
+
 
 ## [2.5.0] - 2026-06-16
 
@@ -227,7 +234,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added `eslint-plugin-jsdoc` to lint jsdoc comments
 - `getEnumNameFromValue`,`getEnumValueFromName`, `getEnumNames`,`getEnumNameValues` functions to respectively get the name of an enum from its value, the value from its name, all the names and all the values
 
-[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/2.5.0...HEAD
+[unreleased]: https://github.com/neolution-ch/javascript-utils/compare/2.6.0...HEAD
+[2.6.0]: https://github.com/neolution-ch/javascript-utils/compare/2.5.0...2.6.0
 [2.5.0]: https://github.com/neolution-ch/javascript-utils/compare/2.4.0...2.5.0
 [2.4.0]: https://github.com/neolution-ch/javascript-utils/compare/2.3.0...2.4.0
 [2.3.0]: https://github.com/neolution-ch/javascript-utils/compare/2.2.0...2.3.0

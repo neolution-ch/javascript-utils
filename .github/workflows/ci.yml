@@ -78,15 +78,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - run: |
+          npm install -g corepack --force
+          corepack enable
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
-
-      - run: |
-          npm install -g corepack --force
-          corepack enable
 
       - run: yarn install --immutable
       - run: yarn prettier-check

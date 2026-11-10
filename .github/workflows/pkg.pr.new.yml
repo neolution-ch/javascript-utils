@@ -15,14 +15,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - run: |
+          npm install -g corepack --force
+          corepack enable
+
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
           cache: "yarn"
-
-      - run: |
-          npm install -g corepack --force
-          corepack enable
 
       - run: yarn install --immutable
 
